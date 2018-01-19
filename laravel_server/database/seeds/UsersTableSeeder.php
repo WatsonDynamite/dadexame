@@ -5,6 +5,7 @@ use Illuminate\Database\Seeder;
 class UsersTableSeeder extends Seeder
 {
     private $numberOfUsers = 30;
+
     /**
      * Run the database seeds.
      *
@@ -14,26 +15,36 @@ class UsersTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create('pt_PT');
 
-        $departments = DB::table('departments')->pluck('id')->toArray();
+        DB::table('users')->insert($this->fakeUser($faker, true));
+
         for ($i = 0; $i < $this->numberOfUsers; ++$i) {
-            DB::table('users')->insert($this->fakeUser($faker, $faker->randomElement($departments)));
+            DB::table('users')->insert($this->fakeUser($faker, false));
         }
     }
 
-    private function fakeUser(Faker\Generator $faker, $departmentId)
+    private function fakeUser(Faker\Generator $faker, $admin)
     {
         static $password;
         $createdAt = Carbon\Carbon::now()->subDays(30);
         $updatedAt = $faker->dateTimeBetween($createdAt);
+
+        $nickname = $admin ? 'admin' : $faker->unique()->userName;
+        $email = $admin ? 'admin@mail.dad' : $faker->unique()->safeEmail;
+        
         return [
             'name' => $faker->name,
-            'email' => $faker->unique()->safeEmail,
+            'email' => $email,
             'password' => $password ?: $password = bcrypt('secret'),
-            'remember_token' => str_random(10),
-            'age' => $faker->numberBetween(18, 75),
-            'department_id' => $departmentId,
+            'nickname' => $nickname,
+            'admin' => $admin,
+            'blocked' => false,
+            'reason_blocked' => null,
+            'reason_reactivated' => null,
+            'total_points' => 0,
+            'total_games_played' => 0,
             'created_at' => $createdAt,
             'updated_at' => $updatedAt,
         ];
     }
 }
+
