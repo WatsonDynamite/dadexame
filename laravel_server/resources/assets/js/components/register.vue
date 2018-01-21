@@ -2,6 +2,22 @@
 	<div>
 		<div class="form-group">
 			<input
+			v-model="name"
+			class="form-control"
+			type="name"
+			placeHolder="Name">
+		</div>
+
+		<div class="form-group">
+			<input
+			v-model="nickname"
+			class="form-control"
+			type="NickName"
+			placeHolder="Nickname">
+		</div>
+
+		<div class="form-group">
+			<input
 			v-model="email"
 			class="form-control"
 			type="email"
@@ -15,8 +31,7 @@
 			type="password"
 			placeHolder="secret">
 		</div>
-		<button @click="login">LOGIN</button>
-		<button @click="register">REGISTER</button>
+		<button @click="test">LOGIN</button>
 	</div>				
 
 
@@ -27,13 +42,15 @@
 export default {
 	data: function() {
 		return{
+			name: '',
+			nickname: '',
 			email: '',
 			password: '',
 		}
 	},
 
 	methods: {
-		login: function() {
+		test: function() {
 			axios.post('http://exame.test/api/login',
 			{
 				email: this.email,
@@ -50,9 +67,6 @@ export default {
 					this.$router.push('multitictactoe');
 				}
 			});
-		},
-		register:  function(){
-			this.$router.push('register');
 		}
 	},
 	mounted() {

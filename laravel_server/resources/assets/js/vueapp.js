@@ -24,10 +24,12 @@ Vue.use(VueSocketio, 'http://192.168.10.10:8080');
 //const singleplayer_game = Vue.component('singlegame', require('./components/singleplayer_tictactoe.vue'));
 const multiplayerGame = Vue.component('multiplayergame', require('./components/multiplayer_tictactoe.vue'));
 const login = Vue.component('login', require('./components/login.vue'));
+const register = Vue.component('register', require('./components/register.vue'));
 
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', component: login },
+  { path: '/register', component: register, meta:{forVisitors: true}},
   //{ path: '/users', component: user },
   //{ path: '/singletictactoe', component: singleplayer_game },
   { path: '/multitictactoe', component: multiplayerGame, meta:{forAuth: true}}

@@ -1414,8 +1414,9 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_socket_io___default.a, 'http://192.168.1
 //const singleplayer_game = Vue.component('singlegame', require('./components/singleplayer_tictactoe.vue'));
 var multiplayerGame = Vue.component('multiplayergame', __webpack_require__(69));
 var login = Vue.component('login', __webpack_require__(93));
+var register = Vue.component('register', __webpack_require__(97));
 
-var routes = [{ path: '/', redirect: '/login' }, { path: '/login', component: login },
+var routes = [{ path: '/', redirect: '/login' }, { path: '/login', component: login }, { path: '/register', component: register, meta: { forVisitors: true } },
 //{ path: '/users', component: user },
 //{ path: '/singletictactoe', component: singleplayer_game },
 { path: '/multitictactoe', component: multiplayerGame, meta: { forAuth: true } }];
@@ -46639,7 +46640,9 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
-    _c("button", { on: { click: _vm.test } }, [_vm._v("LOGIN")])
+    _c("button", { on: { click: _vm.login } }, [_vm._v("LOGIN")]),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.register } }, [_vm._v("REGISTER")])
   ])
 }
 var staticRenderFns = []
@@ -46681,6 +46684,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46692,7 +46696,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 
 	methods: {
-		test: function test() {
+		login: function login() {
 			var _this = this;
 
 			axios.post('http://exame.test/api/login', {
@@ -46709,6 +46713,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					_this.$router.push('multitictactoe');
 				}
 			});
+		},
+		register: function register() {
+			this.$router.push('register');
 		}
 	},
 	mounted: function mounted() {}
@@ -46761,6 +46768,252 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		}
 	});
 });
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(98)
+/* template */
+var __vue_template__ = __webpack_require__(99)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/register.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-897e4240", Component.options)
+  } else {
+    hotAPI.reload("data-v-897e4240", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 98 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			name: '',
+			nickname: '',
+			email: '',
+			password: ''
+		};
+	},
+
+	methods: {
+		test: function test() {
+			var _this = this;
+
+			axios.post('http://exame.test/api/login', {
+				email: this.email,
+				password: this.password
+			}, {
+				headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+			}).then(function (response) {
+				_this.$auth.setToken(response.data.access_token, response.data.expires_in + Date.now());
+				//console.log(response);
+				//console.log(this.$auth.getToken());
+				//console.log(this.$auth.isAuthenticated());
+				if (_this.$auth.isAuthenticated()) {
+					_this.$router.push('multitictactoe');
+				}
+			});
+		}
+	},
+	mounted: function mounted() {}
+});
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.name,
+            expression: "name"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "name", placeHolder: "Name" },
+        domProps: { value: _vm.name },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.name = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.nickname,
+            expression: "nickname"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "NickName", placeHolder: "Nickname" },
+        domProps: { value: _vm.nickname },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.nickname = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.email,
+            expression: "email"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "email", placeHolder: "Email" },
+        domProps: { value: _vm.email },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.email = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.password,
+            expression: "password"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "password", placeHolder: "secret" },
+        domProps: { value: _vm.password },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.password = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.test } }, [_vm._v("LOGIN")])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-897e4240", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
