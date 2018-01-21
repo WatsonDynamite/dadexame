@@ -34,13 +34,14 @@ Route::post('games', 'GameControllerAPI@store');
 Route::patch('games/{id}/join-start', 'GameControllerAPI@joinAndStart');
 Route::patch('games/{id}/endgame/{winner}', 'GameControllerAPI@endgame');
 
+
 Route::post('login', 'LoginControllerAPI@login');
 Route::middleware('auth:api')->post('logout', 'LoginControllerAPI@logout');
+
 
 Route::get('teste', function(){
 	return response()->json(['msg'=>'Só um teste'], 200);
 });
-
 Route::middleware('auth:api')->get('teste', function() {
 	return response() -> json(['msg'=>'Só um teste'], 200);
 });
