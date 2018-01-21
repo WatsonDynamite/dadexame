@@ -15,6 +15,7 @@
 			type="password"
 			placeHolder="secret">
 		</div>
+
 		<button @click="login">LOGIN</button>
 		<button @click="register">REGISTER</button>
 	</div>				

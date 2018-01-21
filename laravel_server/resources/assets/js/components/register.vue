@@ -31,7 +31,7 @@
 			type="password"
 			placeHolder="secret">
 		</div>
-		<button @click="test">LOGIN</button>
+		<button @click="register">REGISTER</button>
 	</div>				
 
 
@@ -50,9 +50,11 @@ export default {
 	},
 
 	methods: {
-		test: function() {
-			axios.post('http://exame.test/api/login',
+		register: function() {
+			axios.post('http://exame.test/api/users',
 			{
+				name: this.name,
+				nickname: this.nickname,
 				email: this.email,
 				password: this.password
 			},
