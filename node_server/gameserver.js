@@ -84,7 +84,7 @@ io.on('connection', function (socket) {
 		//socket.start(game.gameID);
 		//io.to(game.gameID).emit('my_active_games_changed');
 		//io.emit('lobby_changed');
-		console.log('bom dia');
+		socket.emit('my_active_games_changed');
     });
 
     socket.on('get_game', function (data){

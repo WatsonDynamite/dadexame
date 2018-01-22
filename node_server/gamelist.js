@@ -36,10 +36,9 @@ class GameList {
         if (game===null) {
             return null;
         }
-        console.log(game);
-        
         if(game.playerCount > 1){
             game.startGame();
+            console.log(game);
             return game;
         }
         return null;

@@ -3,7 +3,9 @@
         <div>
             <h2 class="text-center">Game {{ game.gameID }}</h2>
             <div v-if="isPlayer1() == true">
-                <p><button class="btn btn-xs btn-success" v-on:click.prevent="startGame">Start game</button></p>
+                <div v-if="isGameStarted() == false">
+                    <p><button class="btn btn-xs btn-success" v-on:click.prevent="startGame">Start game</button></p>
+                </div>
             </div>
             <br>
         </div>
@@ -119,6 +121,9 @@
                     return true;
                 }
                 return false;
+            },
+            isGameStarted(){
+                return this.game.gameStarted;
             }
         }
     }

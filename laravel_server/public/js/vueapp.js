@@ -46267,6 +46267,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['game'],
@@ -46358,6 +46360,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return true;
             }
             return false;
+        },
+        isGameStarted: function isGameStarted() {
+            return this.game.gameStarted;
         }
     }
 });
@@ -46378,21 +46383,25 @@ var render = function() {
       _vm._v(" "),
       _vm.isPlayer1() == true
         ? _c("div", [
-            _c("p", [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-xs btn-success",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.startGame($event)
-                    }
-                  }
-                },
-                [_vm._v("Start game")]
-              )
-            ])
+            _vm.isGameStarted() == false
+              ? _c("div", [
+                  _c("p", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-xs btn-success",
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.startGame($event)
+                          }
+                        }
+                      },
+                      [_vm._v("Start game")]
+                    )
+                  ])
+                ])
+              : _vm._e()
           ])
         : _vm._e(),
       _vm._v(" "),
