@@ -31,6 +31,22 @@ class GameList {
     	return game;
     }
 
+    startGame(gameID) {
+        let game = this.gameByID(gameID);
+        if (game===null) {
+            return null;
+        }
+        console.log(game);
+        
+        if(game.playerCount > 1){
+            game.startGame();
+            return game;
+        }
+        return null;
+    }
+        
+        
+
     removeGame(gameID, socketID) {
     	let game = this.gameByID(gameID);
     	if (game===null) {

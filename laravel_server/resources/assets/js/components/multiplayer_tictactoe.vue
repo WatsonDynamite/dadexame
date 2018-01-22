@@ -26,7 +26,7 @@
 	export default {
         data: function(){
 			return {
-                title: 'Multiplayer TicTacToe',
+                title: 'Online BlackJack',
                 currentPlayer: 'Player X',
                 lobbyGames: [],
                 activeGames: [],
@@ -106,6 +106,9 @@
             },
             play(game, index){
                 this.$socket.emit('play', {gameID: game.gameID, index: index });   
+            },
+            startGame(game){
+                this.$socket.emit('start', {gameID: game.gameID});  
             },
             close(game){
                 this.$socket.emit('remove_game', {gameID: game.gameID });   

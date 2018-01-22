@@ -79,6 +79,14 @@ io.on('connection', function (socket) {
 		}
     });
 
+    socket.on('start', function (data){
+		let game = games.startGame(data.gameID);
+		//socket.start(game.gameID);
+		//io.to(game.gameID).emit('my_active_games_changed');
+		//io.emit('lobby_changed');
+		console.log('bom dia');
+    });
+
     socket.on('get_game', function (data){
 		let game = games.gameByID(data.gameID);
 		socket.emit('game_changed', game);

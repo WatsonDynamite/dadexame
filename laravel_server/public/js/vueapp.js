@@ -45740,7 +45740,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45816,7 +45816,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            title: 'Multiplayer TicTacToe',
+            title: 'Online BlackJack',
             currentPlayer: 'Player X',
             lobbyGames: [],
             activeGames: [],
@@ -45937,6 +45937,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         play: function play(game, index) {
             this.$socket.emit('play', { gameID: game.gameID, index: index });
+        },
+        startGame: function startGame(game) {
+            this.$socket.emit('start', { gameID: game.gameID });
         },
         close: function close(game) {
             this.$socket.emit('remove_game', { gameID: game.gameID });
@@ -46261,6 +46264,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['game'],
@@ -46343,6 +46349,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                 }
             }
+        },
+        startGame: function startGame() {
+            this.$parent.startGame(this.game);
+        },
+        isPlayer1: function isPlayer1() {
+            if (this.ownPlayerNumber == 1) {
+                return true;
+            }
+            return false;
         }
     }
 });
@@ -46360,6 +46375,26 @@ var render = function() {
       _c("h2", { staticClass: "text-center" }, [
         _vm._v("Game " + _vm._s(_vm.game.gameID))
       ]),
+      _vm._v(" "),
+      _vm.isPlayer1() == true
+        ? _c("div", [
+            _c("p", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-xs btn-success",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.startGame($event)
+                    }
+                  }
+                },
+                [_vm._v("Start game")]
+              )
+            ])
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c("br")
     ]),

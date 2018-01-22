@@ -2,6 +2,9 @@
 	<div class="gameseparator">
         <div>
             <h2 class="text-center">Game {{ game.gameID }}</h2>
+            <div v-if="isPlayer1() == true">
+                <p><button class="btn btn-xs btn-success" v-on:click.prevent="startGame">Start game</button></p>
+            </div>
             <br>
         </div>
         <div class="game-zone-content">       
@@ -107,6 +110,15 @@
                         }
                     }
                 }
+            },
+            startGame (){
+                this.$parent.startGame(this.game);
+            },
+            isPlayer1(){
+                if(this.ownPlayerNumber == 1){
+                    return true;
+                }
+                return false;
             }
         }
     }
