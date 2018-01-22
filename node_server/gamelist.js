@@ -26,8 +26,21 @@ class GameList {
     	if (game===null) {
     		return null;
     	}
-    	game.join(playerName);
-    	game.player2SocketID = socketID;
+        if(game.playerCount == 1){
+            game.join(playerName);
+            game.player2SocketID = socketID;
+        }else{
+            if(game.playerCount == 2){
+                game.join(playerName);
+                game.player3SocketID = socketID;
+            }else{
+                if(game.playerCount == 3){
+                    game.join(playerName);
+                    game.player4SocketID = socketID;
+                }
+            }
+        }
+    	
     	return game;
     }
 
@@ -65,7 +78,7 @@ class GameList {
     getConnectedGamesOf(socketID) {
     	let games = [];
     	for (var [key, value] of this.games) {
-    		if ((value.player1SocketID == socketID) || (value.player2SocketID == socketID)) {
+    		if ((value.player1SocketID == socketID) || (value.player2SocketID == socketID) || (value.player3SocketID == socketID) || (value.player4SocketID == socketID)) {
     			games.push(value);
     		}
 		}
@@ -76,7 +89,7 @@ class GameList {
     	let games = [];
     	for (var [key, value] of this.games) {
     		if ((!value.gameStarted) && (!value.gameEnded))  {
-    			if ((value.player1SocketID != socketID) && (value.player2SocketID != socketID)) {
+    			if ((value.player1SocketID != socketID) && (value.player2SocketID != socketID) && (value.player3SocketID != socketID) && (value.player4SocketID != socketID)) {
     				games.push(value);
     			}
     		}
