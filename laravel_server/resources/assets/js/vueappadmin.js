@@ -21,7 +21,7 @@ Vue.use(Auth);
 
 //const user = Vue.component('user', require('./components/user.vue'));
 const login = Vue.component('login', require('./components/admin_login.vue'));
-const login = Vue.component('dashboard', require('./components/dahsboard.vue'));
+//const login = Vue.component('dashboard', require('./components/dahsboard.vue'));
 
 
 const routes = [

@@ -14,8 +14,10 @@
                 <strong>{{ message }} &nbsp;&nbsp;&nbsp;&nbsp;<a v-show="game.gameEnded" v-on:click.prevent="closeGame">Close Game</a></strong>
             </div>
             <div class="board">
-                <div v-for="(piece, index) of game.board" >
-                    <img v-bind:src="pieceImageURL(piece)" v-on:click="clickPiece(index)">
+                <div v-for="(piece, index) of game.playerCards" >
+                    <div v-for="(card, index) of piece">
+                    <img v-bind:src="pieceImageURL(card)" v-on:click="clickPiece(index)">
+                    </div>
                 </div>
             </div>
             <hr>
