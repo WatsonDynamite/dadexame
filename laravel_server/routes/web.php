@@ -13,3 +13,4 @@
 
 Route::get('/','VueController@index');
 
+Route::get('/admin', 'VueController@admin');

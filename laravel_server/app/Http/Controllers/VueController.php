@@ -8,4 +8,8 @@ class VueController extends Controller
     {
         return view('vue.index');
     }
+
+    public function admin(){
+    	return view('admin.index');
+    }
 }

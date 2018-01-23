@@ -36,6 +36,7 @@ Route::patch('games/{id}/endgame/{winner}', 'GameControllerAPI@endgame');
 
 
 Route::post('login', 'LoginControllerAPI@login');
+Route::post('loginAdmin', 'LoginControllerAPI@loginAdmin');
 Route::middleware('auth:api')->post('logout', 'LoginControllerAPI@logout');
 
 
