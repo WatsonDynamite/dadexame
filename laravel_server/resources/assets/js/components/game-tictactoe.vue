@@ -1,7 +1,7 @@
 <template>
 	<div class="gameseparator">
         <div>
-            <h2 class="text-center">Game {{ game.gameID }}</h2>
+            <h2 class="text-center">Blackjack Game {{ game.gameID }}</h2>
             <div v-if="isPlayer1() == true">
                 <div v-if="isGameStarted() == false">
                     <p><button class="btn btn-xs btn-success" v-on:click.prevent="startGame">Start game</button></p>
@@ -13,12 +13,22 @@
             <div class="alert" :class="alerttype">
                 <strong>{{ message }} &nbsp;&nbsp;&nbsp;&nbsp;<a v-show="game.gameEnded" v-on:click.prevent="closeGame">Close Game</a></strong>
             </div>
-            <div class="board">
-                <div v-for="(piece, index) of game.playerCards" >
-                    <div v-for="(card, index) of piece">
-                    <img v-bind:src="pieceImageURL(card)" v-on:click="clickPiece(index)">
+            <div>
+                <div v-for="(hand, handIndex) of game.playerCards" >
+                <strong> {{ allPlayerNames[handIndex] }} </strong>
+                    <div class="board">
+                    <b v-for="(card, index) of hand">
+                    <img v-bind:src="renderCard(card, index, handIndex)">
+                    </b>
                     </div>
                 </div>
+            </div>
+            <div>
+                    <p><button class="btn btn-xs btn-success" v-on:click.prevent="">Pedir</button></p>
+                    <p>Valor: {{ currentHandValue }}</p>
+            </div>
+            <div>
+                    <p><button class="btn btn-xs btn-failure" v-on:click.prevent="">Fechar</button></p> 
             </div>
             <hr>
         </div>  
@@ -30,10 +40,25 @@
         props: ['game'],
         data: function(){
 			return {
-
+                
             }
         },
         computed: {
+            currentHandValue(){
+               var handValue = 0;
+               var playerNames = this.allPlayerNames;
+               var thisName = this.ownPlayerName;
+               var cardValueDelegate = this.getSingleCardValue;
+               this.game.playerCards.forEach(function(hand, index) {
+                  if(playerNames[index] === thisName){
+                      hand.forEach(function(card, index){
+                            handValue += cardValueDelegate(card);
+                      });
+                  }
+               });
+               console.log(handValue);
+               return handValue;
+            },
             ownPlayerNumber(){
                 if (this.game.player1SocketID == this.$parent.socketId) {
                     return 1;
@@ -57,6 +82,28 @@
                 if (ownNumber == 2)
                     return this.game.player1;
                 return "Unknown";
+            },
+            allPlayerNames(){
+             var names = [];
+             for(var i = 0; i < this.game.playerCount; i++){
+                switch(i){
+                    case 0:
+                            names.push(this.game.player1);
+                            break;
+                    case 1:
+                            names.push(this.game.player2);
+                            break;
+                    case 2:
+                            names.push(this.game.player3);
+                            break;
+                    case 3:
+                            names.push(this.game.player4);
+                            break;
+                    default:
+                            break;
+                }
+             }
+             return names;
             },
             message(){
                 if (!this.game.gameStarted) {
@@ -97,10 +144,28 @@
             }
         },
         methods: {
+            getSingleCardValue(card){
+                var cValue = Number(card.substr(1));
+                console.log(cValue);
+                if(cValue > 10){
+                    cValue = 10;
+                }
+                if(cValue == 1){
+                    cValue = 11;
+                }
+                return cValue;
+            },
             pieceImageURL (pieceNumber) {
                 var imgSrc = String(pieceNumber);
                 return 'img/' + imgSrc + '.png';
             },
+            renderCard(card, index, handIndex){
+                if(this.allPlayerNames[handIndex] != this.ownPlayerName && index > 0){
+                    return 'img/semFace.png';
+                }else{
+                    return this.pieceImageURL(card);
+                }
+            },  
             closeGame (){
                 this.$parent.close(this.game);
             },
@@ -117,6 +182,7 @@
             },
             startGame (){
                 this.$parent.startGame(this.game);
+                this.$parent.play(this.game, 0);
             },
             isPlayer1(){
                 if(this.ownPlayerNumber == 1){
@@ -126,7 +192,8 @@
             },
             isGameStarted(){
                 return this.game.gameStarted;
-            }
+            },
+            
         }
     }
 </script>
