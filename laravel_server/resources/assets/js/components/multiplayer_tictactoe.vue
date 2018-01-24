@@ -4,7 +4,6 @@
             <h3 class="text-center">{{ title }}</h3>
             <br>
             <h2>Current Player : {{ currentPlayer }}</h2>
-            <p>Set current player name <input v-model.trim="currentPlayer"></p>
             <p><em>Player name replaces authentication! Use different names on different browsers, and don't change it frequently.</em></p>
             <hr>
             <h3 class="text-center">Lobby</h3>
@@ -27,7 +26,7 @@
         data: function(){
 			return {
                 title: 'Online BlackJack',
-                currentPlayer: 'Player X',
+                currentPlayer: 'Loading...',
                 lobbyGames: [],
                 activeGames: [],
                 socketId: "",
@@ -112,6 +111,16 @@
             },
             close(game){
                 this.$socket.emit('remove_game', {gameID: game.gameID });   
+            },
+            playerName(){
+                const AuthStr = 'Bearer '.concat(this.$auth.getToken());
+                axios.get('http://exame.test/api/user', {headers: { Authorization: AuthStr} })
+                .then(response => {
+                    this.currentPlayer =  response.data.nickname;
+                })
+                .catch((error) => {
+                    this.currentPlayer = 'Missing';
+                });
             }
         },
         components: {
@@ -120,6 +129,7 @@
         },
         mounted() {
             this.loadLobby();
+            this.playerName();
         }
 
     }

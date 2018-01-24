@@ -45740,7 +45740,7 @@ exports = module.exports = __webpack_require__(39)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45808,7 +45808,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -45817,7 +45816,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             title: 'Online BlackJack',
-            currentPlayer: 'Player X',
+            currentPlayer: 'Loading...',
             lobbyGames: [],
             activeGames: [],
             socketId: ""
@@ -45943,6 +45942,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         close: function close(game) {
             this.$socket.emit('remove_game', { gameID: game.gameID });
+        },
+        playerName: function playerName() {
+            var _this = this;
+
+            var AuthStr = 'Bearer '.concat(this.$auth.getToken());
+            axios.get('http://exame.test/api/user', { headers: { Authorization: AuthStr } }).then(function (response) {
+                _this.currentPlayer = response.data.nickname;
+            }).catch(function (error) {
+                _this.currentPlayer = 'Missing';
+            });
         }
     },
     components: {
@@ -45951,6 +45960,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         this.loadLobby();
+        this.playerName();
     }
 });
 
@@ -46593,33 +46603,6 @@ var render = function() {
         _c("br"),
         _vm._v(" "),
         _c("h2", [_vm._v("Current Player : " + _vm._s(_vm.currentPlayer))]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("Set current player name "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model.trim",
-                value: _vm.currentPlayer,
-                expression: "currentPlayer",
-                modifiers: { trim: true }
-              }
-            ],
-            domProps: { value: _vm.currentPlayer },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.currentPlayer = $event.target.value.trim()
-              },
-              blur: function($event) {
-                _vm.$forceUpdate()
-              }
-            }
-          })
-        ]),
         _vm._v(" "),
         _vm._m(0),
         _vm._v(" "),
