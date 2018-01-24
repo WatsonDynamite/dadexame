@@ -7,7 +7,7 @@
             <p><em>Player name replaces authentication! Use different names on different browsers, and don't change it frequently.</em></p>
             <hr>
             <h3 class="text-center">Lobby</h3>
-            <p><button class="btn btn-xs btn-success" v-on:click.prevent="createGame">Create a New Game</button></p>
+            <p><button class="btn btn-xs btn-success" v-if="checkUsernameLoaded() == true" v-on:click.prevent="createGame">Create a New Game</button></p>
             <hr>
             <h4>Pending games (<a @click.prevent="loadLobby">Refresh</a>)</h4>
             <lobby :games="lobbyGames" @join-click="join"></lobby>
@@ -81,6 +81,9 @@
             },
         },        
         methods: {
+            checkUsernameLoaded(){
+              return !(this.currentPlayer === 'Loading...');
+            },
             loadLobby(){
                 this.$socket.emit('get_my_lobby_games');
             },
