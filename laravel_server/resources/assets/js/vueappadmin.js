@@ -21,7 +21,11 @@ Vue.use(Auth);
 
 //const user = Vue.component('user', require('./components/user.vue'));
 const login = Vue.component('login', require('./components/admin_login.vue'));
+<<<<<<< HEAD
+const dashboard = Vue.component('dashboard', require('./components/dashboard.vue'));
+=======
 //const login = Vue.component('dashboard', require('./components/dahsboard.vue'));
+>>>>>>> b764aff1e1e9b2f3ff76089a89b2d58727380b59
 
 
 const routes = [
@@ -56,8 +60,6 @@ router.beforeEach(
 const app = new Vue({
   router,
   data:{
-    player1:undefined,
-    player2: undefined,
   }
 }).$mount('#app');
 

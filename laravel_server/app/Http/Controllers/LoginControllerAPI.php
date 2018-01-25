@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 define('YOUR_SERVER_URL', 'http://exame.test');
 // Check "oauth_clients" table for next 2 values:
@@ -25,7 +26,10 @@ class LoginControllerAPI extends Controller
 			'exceptions' => false,
 		]);
 		$errorCode= $response->getStatusCode();
-		if ($errorCode=='200') {
+
+		$user = User::where('email', $request->email)->first();
+
+		if ($errorCode=='200' && ($user->confirmed == 1)) {
 			return json_decode((string) $response->getBody(), true);
 		} else {
 			return response()->json(
@@ -50,15 +54,13 @@ class LoginControllerAPI extends Controller
 		$errorCode= $response->getStatusCode();
 		$user = User::where('email',$request->email) -> first();
 
-		if ($errorCode=='200'&& ($user->admin == 1) ) {
+		if ($errorCode=='200' && $user->admin == 1 && $user->confirmed == 1) {
 			return json_decode((string) $response->getBody(), true);
 		} else {
 			return response()->json(
 				['msg'=>'User credentials are invalid'], $errorCode);
 		}
 	}
-
-
 
 
 	public function logout()

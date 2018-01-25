@@ -23,6 +23,7 @@ Route::get('users', 'UserControllerAPI@getUsers');
 Route::get('users/emailavailable', 'UserControllerAPI@emailAvailable');
 Route::get('users/{id}', 'UserControllerAPI@getUser');
 Route::post('users', 'UserControllerAPI@store');
+Route::get('verify/{confirmation_code}', 'UserControllerAPI@verify');
 Route::put('users/{id}', 'UserControllerAPI@update');
 Route::delete('users/{id}', 'UserControllerAPI@delete');
  

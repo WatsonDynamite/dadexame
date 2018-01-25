@@ -8,6 +8,7 @@ use Illuminate\Contracts\Support\Jsonable;
 use App\Http\Resources\User as UserResource;
 use Illuminate\Support\Facades\DB;
 
+use Mail;
 use App\User;
 use App\StoreUserRequest;
 use Hash;
@@ -28,6 +29,7 @@ class UserControllerAPI extends Controller
         return new UserResource(User::find($id));
     }
 
+/*
     public function store(Request $request)
     {
         $request->validate([
@@ -43,6 +45,62 @@ class UserControllerAPI extends Controller
         //mandar mail algures aqui
         return response()->json(new UserResource($user), 201);
     }
+*/
+
+    public function store(Request $request)
+    {
+        $request->validate([
+                'name' => 'required',
+                'nickname' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:3'
+            ]);
+
+        $confirmation_code = str_random(30);
+
+        $user = User::create([
+            'name' => $request->name,
+            'nickname' => $request->nickname,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'confirmation_code' => $confirmation_code
+        ]);
+
+        $data = [
+            'confirmation_code' => $user->confirmation_code,
+            'name' => $user->name
+        ];
+
+        Mail::send('emails.verify', $data, function($message) use($user) {
+            $message->to($user->email, $user->nickname)->subject('BlackJack Registration');
+        });
+
+        return $confirmation_code;
+    }
+
+    public function verify($confirmation_code)
+    {
+
+        if(!$confirmation_code)
+        {
+            throw new InvalidConfirmationCodeException;
+        }
+
+        $user = User::where('confirmation_code', $confirmation_code)->first();
+
+        if ( ! $user)
+        {
+            return view('errors.verificationError');
+        }
+
+        $user->confirmed = 1;
+        $user->confirmation_code = null;
+        $user->save();
+
+        return redirect('/#/login');
+
+    }
+
 
     public function update(Request $request, $id)
     {
