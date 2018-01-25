@@ -14,6 +14,9 @@
                 <strong>{{ message }} &nbsp;&nbsp;&nbsp;&nbsp;<a v-show="game.gameEnded" v-on:click.prevent="closeGame">Close Game</a></strong>
             </div>
             <div>
+            Tempo até à próxima jogada: {{ game.turnTimer }}
+            </div>
+            <div>
                 <div v-for="(hand, handIndex) of game.playerCards" >
                 <strong> {{ allPlayerNames[handIndex] }} </strong>
                     <div class="board">
@@ -24,11 +27,10 @@
                 </div>
             </div>
             <div>
-                    <p><button class="btn btn-xs btn-success" v-on:click.prevent="">Pedir</button></p>
-                    <p>Valor: {{ currentHandValue }}</p>
+                    <p><button class="btn btn-xs btn-success" v-if="currentHandValue < 21" v-on:click.prevent="game.queuePlay(this.ownPlayerNumber,'hit')">Pedir</button></p><p>Valor: {{ currentHandValue }}</p>
             </div>
             <div>
-                    <p><button class="btn btn-xs btn-failure" v-on:click.prevent="">Fechar</button></p> 
+                    <p><button class="btn btn-xs btn-failure" v-on:click.prevent="game.queuePlay(this.ownPlayerNumber,'fold')">Fechar</button></p> 
             </div>
             <hr>
         </div>  
@@ -40,7 +42,6 @@
         props: ['game'],
         data: function(){
 			return {
-                
             }
         },
         computed: {
@@ -155,6 +156,11 @@
                 }
                 return cValue;
             },
+            checkBust(){
+                if(this.currentHandValue > 21){
+                    this.game.queuePlay(this.ownPlayerNumber,'fold');
+                }
+            },
             pieceImageURL (pieceNumber) {
                 var imgSrc = String(pieceNumber);
                 return 'img/' + imgSrc + '.png';
@@ -183,6 +189,7 @@
             startGame (){
                 this.$parent.startGame(this.game);
                 this.$parent.play(this.game, 0);
+
             },
             isPlayer1(){
                 if(this.ownPlayerNumber == 1){

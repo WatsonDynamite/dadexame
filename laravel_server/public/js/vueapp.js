@@ -46294,6 +46294,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['game'],
@@ -46407,6 +46409,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
             return cValue;
         },
+        checkBust: function checkBust() {
+            if (this.currentHandValue > 21) {
+                this.game.queuePlay(this.ownPlayerNumber, 'fold');
+            }
+        },
         pieceImageURL: function pieceImageURL(pieceNumber) {
             var imgSrc = String(pieceNumber);
             return 'img/' + imgSrc + '.png';
@@ -46516,6 +46523,14 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
+      _c("div", [
+        _vm._v(
+          "\n            Tempo até à próxima jogada: " +
+            _vm._s(_vm.game.turnTimer) +
+            "\n            "
+        )
+      ]),
+      _vm._v(" "),
       _c(
         "div",
         _vm._l(_vm.game.playerCards, function(hand, handIndex) {
@@ -46541,20 +46556,22 @@ var render = function() {
       _vm._v(" "),
       _c("div", [
         _c("p", [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-xs btn-success",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                }
-              }
-            },
-            [_vm._v("Pedir")]
-          )
+          _vm.currentHandValue < 21
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-xs btn-success",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.game.queuePlay(this.ownPlayerNumber, "hit")
+                    }
+                  }
+                },
+                [_vm._v("Pedir")]
+              )
+            : _vm._e()
         ]),
-        _vm._v(" "),
         _c("p", [_vm._v("Valor: " + _vm._s(_vm.currentHandValue))])
       ]),
       _vm._v(" "),
@@ -46567,6 +46584,7 @@ var render = function() {
               on: {
                 click: function($event) {
                   $event.preventDefault()
+                  _vm.game.queuePlay(this.ownPlayerNumber, "fold")
                 }
               }
             },

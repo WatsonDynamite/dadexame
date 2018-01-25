@@ -15,6 +15,10 @@ class TicTacToeGame {
         this.deck = [];
         this.playerCards = [];
         this.playerCount = 1;
+        this.playerPoints = [];
+        this.queuedPlays = [];
+        this.timerID = 0;
+        this.turnTimer = 20;
     }
 
     join(playerName){
@@ -36,33 +40,60 @@ class TicTacToeGame {
             if(this.gameStarted == false){
                 this.gameStarted = true;
                 this.setup(this.playerCount);
+                this.startCountdown(this.turnTimer);
             }
         }
     }
-
+    
+    startCountdown(){
+        console.log("Timer: " + this.turnTimer);
+        var decDelegate = this.decrementTimer;
+        setInterval(decDelegate, 1000, 20);
+    }
+    
+    decrementTimer(timer){
+        timer--;
+        console.log(this.timer);
+    }
+    
+    queuePlay(playerNum, play){
+        queuedPlays[playerNum - 1] = play;
+    }
 
     setup(playercount){
         const cartas = ['1','2','3','4','5','6','7','8','9','10','11','12','13'];
         const naipes = ['c','e','o','p'];
         var tempdeck = [];
 
+        //preenche o baralho
         naipes.forEach(function(element) {
             cartas.forEach(function(element2) {
                 tempdeck.push(element + element2);
             });
         });
         this.deck = tempdeck;
+        //baralha
         this.deck = this.shuffle(this.deck);
 
+        //cria "mãos" vazias para cada jogador
         for(var p = 0; p < this.playerCount; p++){
             this.playerCards.push([]);
         }
 
+        //inicia os pontos a 0 para cada jogador
+        for(var p = 0; p < this.playerCount; p++){
+            this.playerPoints.push(0);
+        }
+        
+        //distribui as 2 cartas iniciais pelos jogadores
         for(var i= 0; i < 2; i++){
             for(var j = this.playerCount - 1; j > -1; j--){
                 this.playerCards[j].push(this.deck.pop());
             }
         }
+        
+        //inicia os 20 segundos de espera do turno
+        this.startCountdown();
     }
    
 
