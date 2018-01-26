@@ -9,7 +9,7 @@
         @yield('extrastyles') 
         <!-- Latest compiled and minified CSS & JS -->
         <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
-
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
         </head> 
         <body>
         <div class="container" id="app">

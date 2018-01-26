@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<h1>Administration Login</h1>
 		<div class="form-group">
 			<input
 			v-model="email"
@@ -17,7 +18,6 @@
 		</div>
 
 		<button @click="login">LOGIN</button>
-		<button @click="register">REGISTER</button>
 	</div>				
 
 
@@ -43,7 +43,9 @@ export default {
 			{
 				headers: { 'Content-Type': 'application/json', 'Accept': 'application/json'}
 			}).then(response=> {
-				this.$auth.setToken(response.data.access_token, response.data.expires_in + Date.now());
+				if(! response.data.access_token == undefined ){
+					this.$auth.setToken(response.data.access_token, response.data.expires_in + Date.now());
+				}
 				//console.log(response);
 				//console.log(this.$auth.getToken());
 				//console.log(this.$auth.isAuthenticated());

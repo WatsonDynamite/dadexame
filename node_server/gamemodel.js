@@ -40,20 +40,21 @@ class TicTacToeGame {
             if(this.gameStarted == false){
                 this.gameStarted = true;
                 this.setup(this.playerCount);
-                this.startCountdown(this.turnTimer);
             }
         }
     }
     
     startCountdown(){
         console.log("Timer: " + this.turnTimer);
+
         var decDelegate = this.decrementTimer;
-        setInterval(decDelegate, 1000, 20);
+        var self = this; 
+        setInterval(decDelegate, 1000, self);
     }
     
-    decrementTimer(timer){
-        timer--;
-        console.log(this.timer);
+    decrementTimer(self){
+        self.turnTimer--;
+        console.log("Timer : " + self.turnTimer);
     }
     
     queuePlay(playerNum, play){

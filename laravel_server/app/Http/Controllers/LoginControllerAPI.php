@@ -32,6 +32,10 @@ class LoginControllerAPI extends Controller
 		if ($errorCode=='200' && ($user->confirmed == 1)) {
 			return json_decode((string) $response->getBody(), true);
 		} else {
+			if($user->confirmed == 0){
+				return response()->json(
+				['msg'=>'User has not been confirmed'], $errorCode);
+			}
 			return response()->json(
 				['msg'=>'User credentials are invalid'], $errorCode);
 		}
@@ -54,9 +58,13 @@ class LoginControllerAPI extends Controller
 		$errorCode= $response->getStatusCode();
 		$user = User::where('email',$request->email) -> first();
 
-		if ($errorCode=='200' && $user->admin == 1 && $user->confirmed == 1) {
+		if ($errorCode=='200' && ($user->admin == 1) && ($user->confirmed == 1)) {
 			return json_decode((string) $response->getBody(), true);
 		} else {
+			if($user->confirmed == 0){
+				return response()->json(
+				['msg'=>'User has not been confirmed'], $errorCode);
+			}
 			return response()->json(
 				['msg'=>'User credentials are invalid'], $errorCode);
 		}

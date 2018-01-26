@@ -18,7 +18,9 @@
 
 		<button @click="login">LOGIN</button>
 		<button @click="register">REGISTER</button>
-	</div>				
+
+				
+	</div>	
 
 
 </template>
@@ -43,10 +45,15 @@ export default {
 			{
 				headers: { 'Content-Type': 'application/json', 'Accept': 'application/json'}
 			}).then(response=> {
-				this.$auth.setToken(response.data.access_token, response.data.expires_in + Date.now());
-				//console.log(response);
-				//console.log(this.$auth.getToken());
-				//console.log(this.$auth.isAuthenticated());
+
+				console.log('----------');
+				console.log(response);
+				console.log('----------');
+
+				if(! (response.data.access_token == undefined) ){
+					this.$auth.setToken(response.data.access_token, response.data.expires_in + Date.now());
+				}
+				
 				if(this.$auth.isAuthenticated()){
 					this.$router.push('multitictactoe');
 				}
