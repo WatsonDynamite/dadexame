@@ -22,12 +22,13 @@ Vue.use(Auth);
 //const user = Vue.component('user', require('./components/user.vue'));
 const login = Vue.component('login', require('./components/admin_login.vue'));
 const dashboard = Vue.component('dashboard', require('./components/dashboard.vue'));
+const usersList = Vue.component('usersList', require('./components/usersList.vue'));
 
 const routes = [
-  { path: '/', redirect: '/login' },
-  { path: '/login', component: login },
-  { path: '/dashboard', component: dashboard},
-  //{ path: '/users', component: user },
+  { path: '/', redirect: '/login'},
+  { path: '/login', component: login ,  meta:{forVisitors: true} },
+  { path: '/dashboard', component: dashboard,  meta:{forAuth: true}},
+  { path: '/usersList', component: usersList,  meta:{forAuth: true} },
 ];
 
 const router = new VueRouter({

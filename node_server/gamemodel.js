@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 
 class TicTacToeGame {
+
     constructor(ID, player1Name) {
         this.gameID = ID;
         this.gameEnded = false;
@@ -17,7 +18,6 @@ class TicTacToeGame {
         this.playerCount = 1;
         this.playerPoints = [];
         this.queuedPlays = [];
-        this.timerID = 0;
         this.turnTimer = 20;
     }
 
@@ -44,17 +44,23 @@ class TicTacToeGame {
         }
     }
     
+
     startCountdown(){
         console.log("Timer: " + this.turnTimer);
+ 
 
-        var decDelegate = this.decrementTimer;
-        var self = this; 
-        setInterval(decDelegate, 1000, self);
-    }
-    
-    decrementTimer(self){
-        self.turnTimer--;
-        console.log("Timer : " + self.turnTimer);
+        var self = this;
+        var timer_id = setInterval(function()
+            {
+                if(self.turnTimer > 0){
+                    self.turnTimer --;
+                    console.log("Timer : " + self.turnTimer);
+                }else{
+                    clearInterval(timer_id);
+                    console.log("Timer is stopped!");
+                    self.turnTimer = 20;
+                }
+            }, 1000, self);
     }
     
     queuePlay(playerNum, play){

@@ -43,19 +43,15 @@ export default {
 			{
 				headers: { 'Content-Type': 'application/json', 'Accept': 'application/json'}
 			}).then(response=> {
-				if(! response.data.access_token == undefined ){
+				console.log(response);
+				
+				if(! (response.data.access_token == undefined) ){
 					this.$auth.setToken(response.data.access_token, response.data.expires_in + Date.now());
 				}
-				//console.log(response);
-				//console.log(this.$auth.getToken());
-				//console.log(this.$auth.isAuthenticated());
 				if(this.$auth.isAuthenticated()){
 					this.$router.push('dashboard');
 				}
 			});
-		},
-		register:  function(){
-			this.$router.push('register');
 		}
 	},
 	mounted() {
