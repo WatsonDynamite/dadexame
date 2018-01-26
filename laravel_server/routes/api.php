@@ -17,15 +17,22 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('departments', 'DepartmentControllerAPI@index');
-
+//Route to return all users
 Route::get('users', 'UserControllerAPI@getUsers');
+//Route to Check email 
 Route::get('users/emailavailable', 'UserControllerAPI@emailAvailable');
+//Route to return specific Users
 Route::get('users/{id}', 'UserControllerAPI@getUser');
+//Route to Register User
 Route::post('users', 'UserControllerAPI@store');
+// Route to Confirm Register
 Route::get('verify/{confirmation_code}', 'UserControllerAPI@verify');
+//Route to Change User
 Route::put('users/{id}', 'UserControllerAPI@update');
+//Route to Delete User
 Route::delete('users/{id}', 'UserControllerAPI@delete');
+//Route to Block User
+Route::get('users/{id}/block', 'UserControllerAPI@blockUser');
  
 Route::get('games', 'GameControllerAPI@index');
 Route::get('games/lobby', 'GameControllerAPI@lobby');

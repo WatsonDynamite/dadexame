@@ -120,6 +120,17 @@ class UserControllerAPI extends Controller
         $user->delete();
         return response()->json(null, 204);
     }
+
+
+    public function blockUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->blocked = 1;
+        $user->save();
+        return "User Blocked";
+    }
+
+
     public function emailAvailable(Request $request)
     {
         $totalEmail = 1;
