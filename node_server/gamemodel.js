@@ -45,6 +45,7 @@ class TicTacToeGame {
         }
     }
 
+    /*
     drawCard(playerNumber){
         // se o jogo ja comecou
         if(this.gameStarted == true){
@@ -66,6 +67,11 @@ class TicTacToeGame {
                 }
             }
         }
+    */
+
+    drawCard(playerNumber){
+        this.playerCards[playerNumber - 1].push(this.deck.pop());
+    }
 
     startCountdown(){
         console.log("Timer: " + this.turnTimer);
@@ -78,6 +84,18 @@ class TicTacToeGame {
                 }else{
                     clearInterval(timer_id);
                     console.log("Timer is stopped!");
+                    // pede aos clientes as queued plays para este jogo
+                    self.queuedPlays.forEach(function(item, index) {
+                        if(item === 'fold'){
+                            self.playerFolds[index] = 1;
+                        }
+                        if(item === 'hit'){
+                            self.drawCard(index + 1);
+                        }
+                    });
+                    console.log(self);
+
+                    // ready next turn
                     self.turnTimer = 20;
                     self.playerTurn = 2;
                 }
@@ -85,7 +103,11 @@ class TicTacToeGame {
     }
     
     queuePlay(playerNum, play){
-        queuedPlays[playerNum - 1] = play;
+        this.queuedPlays[playerNum - 1] = play;
+
+        //later on we can add a return false if we implement an extra layer of security
+        //currently, the game itself on the client side is checking for folds
+        return true;
     }
 
     setup(playercount){
@@ -116,6 +138,11 @@ class TicTacToeGame {
         //os jogadores comecam o jogo não folded
         for(var p = 0; p < this.playerCount; p++){
             this.playerFolds.push(0);
+        }
+
+        //os no plays at first
+        for(var p = 0; p < this.playerCount; p++){
+            this.queuedPlays.push('none');
         }
         
         //distribui as 2 cartas iniciais pelos jogadores

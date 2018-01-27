@@ -35,6 +35,10 @@ let games = new GameList();
 io.on('connection', function (socket) {
     console.log('client has connected');
 
+    setInterval(function(){
+    	socket.emit('my_active_games_changed');
+    }, 500);
+
     socket.on('create_game', function (data){
     	let game = games.createGame(data.playerName, socket.id);
 		socket.join(game.gameID);
@@ -106,7 +110,7 @@ io.on('connection', function (socket) {
     	socket.emit('my_lobby_games', my_games);
     });
 
-    socket.on('draw_card', function (data){
+    socket.on('queuePlay', function (data){
 		let game = games.gameByID(data.gameID);
 		if (game === null) {
 			socket.emit('invalid_play', {'type': 'Invalid_Game', 'game': null});
@@ -126,7 +130,7 @@ io.on('connection', function (socket) {
 			socket.emit('invalid_play', {'type': 'Invalid_Player', 'game': game});
 			return;
 		}
-		if (game.drawCard(numPlayer)) {
+		if (game.queuePlay(numPlayer, data.playerOption)) {
 			io.to(game.gameID).emit('game_changed', game);
 		} else {
 			socket.emit('invalid_play', {'type': 'Invalid_Play', 'game': game});

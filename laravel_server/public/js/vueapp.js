@@ -45740,7 +45740,7 @@ exports = module.exports = __webpack_require__(39)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45958,6 +45958,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 _this.currentPlayer = 'Missing';
             });
+        },
+        queuePlay: function queuePlay(game, option) {
+            this.$socket.emit('queuePlay', { gameID: game.gameID, playerOption: option });
         }
     },
     components: {
@@ -46458,6 +46461,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         isGameStarted: function isGameStarted() {
             return this.game.gameStarted;
+        },
+        canPlayerHit: function canPlayerHit() {
+            if (!this.game.gameEnded) {
+                if (this.game.playerFolds[this.ownPlayerNumber - 1] == 0) {
+                    //se for o primeiro turno so pode ter 3 cartas
+                    //se for o segundo turno so pode ter 4 cartas
+                    if (this.game.playerTurn == 1) {
+                        if (this.game.playerCards[this.ownPlayerNumber - 1].length == 2) {
+                            return true;
+                        }
+                    } else {
+                        if (this.game.playerCards[this.ownPlayerNumber - 1].length == 3) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        },
+        fold: function fold() {
+            if (!this.game.gameEnded) {
+                this.$parent.queuePlay(this.game, 'fold');
+            }
+        },
+        hit: function hit() {
+            if (!this.game.gameEnded) {
+                this.$parent.queuePlay(this.game, 'hit');
+            }
         }
     }
 });
@@ -46563,7 +46594,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", [
         _c("p", [
-          _vm.currentHandValue < 21
+          _vm.currentHandValue < 21 || _vm.canPlayerHit == true
             ? _c(
                 "button",
                 {
@@ -46571,7 +46602,7 @@ var render = function() {
                   on: {
                     click: function($event) {
                       $event.preventDefault()
-                      _vm.game.queuePlay(this.ownPlayerNumber, "hit")
+                      _vm.hit($event)
                     }
                   }
                 },
@@ -46584,19 +46615,21 @@ var render = function() {
       _vm._v(" "),
       _c("div", [
         _c("p", [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-xs btn-failure",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.game.queuePlay(this.ownPlayerNumber, "fold")
-                }
-              }
-            },
-            [_vm._v("Fechar")]
-          )
+          _vm.game.playerFolds[this.ownPlayerNumber - 1] == 0
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-xs btn-failure",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.fold($event)
+                    }
+                  }
+                },
+                [_vm._v("Fechar")]
+              )
+            : _vm._e()
         ])
       ]),
       _vm._v(" "),

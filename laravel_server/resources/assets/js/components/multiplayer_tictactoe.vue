@@ -128,6 +128,9 @@
                     this.currentPlayer = 'Missing';
                 });
             },
+            queuePlay(game, option){
+                this.$socket.emit('queuePlay', {gameID: game.gameID, playerOption: option});
+            },
             /*
             updateTime(game){
                 //pede um refresh do jogo atual so para que o tempo seja atualizado

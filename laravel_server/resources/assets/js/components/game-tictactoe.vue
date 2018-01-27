@@ -27,10 +27,10 @@
                 </div>
             </div>
             <div>
-                    <p><button class="btn btn-xs btn-success" v-if="currentHandValue < 21" v-on:click.prevent="game.queuePlay(this.ownPlayerNumber,'hit')">Pedir</button></p><p>Valor: {{ currentHandValue }}</p>
+                    <p><button class="btn btn-xs btn-success" v-if="currentHandValue < 21 || canPlayerHit == true" v-on:click.prevent="hit">Pedir</button></p><p>Valor: {{ currentHandValue }}</p>
             </div>
             <div>
-                    <p><button class="btn btn-xs btn-failure" v-on:click.prevent="game.queuePlay(this.ownPlayerNumber,'fold')">Fechar</button></p> 
+                    <p><button class="btn btn-xs btn-failure" v-if="game.playerFolds[this.ownPlayerNumber - 1] == 0" v-on:click.prevent="fold">Fechar</button></p> 
             </div>
             <hr>
         </div>  
@@ -203,7 +203,34 @@
             isGameStarted(){
                 return this.game.gameStarted;
             },
-            
+            canPlayerHit(){
+                if (!this.game.gameEnded) {
+                    if(this.game.playerFolds[this.ownPlayerNumber - 1] == 0){
+                        //se for o primeiro turno so pode ter 3 cartas
+                        //se for o segundo turno so pode ter 4 cartas
+                        if(this.game.playerTurn == 1){
+                            if(this.game.playerCards[this.ownPlayerNumber - 1].length == 2){
+                                return true;
+                            }
+                        }else{
+                            if(this.game.playerCards[this.ownPlayerNumber - 1].length == 3){
+                                return true;
+                            }
+                        }
+                    }
+                }
+                return false;
+            },
+            fold(){
+                if (!this.game.gameEnded) {
+                    this.$parent.queuePlay(this.game, 'fold');
+                }
+            },
+            hit(){
+                if (!this.game.gameEnded) {
+                    this.$parent.queuePlay(this.game, 'hit');
+                }
+            },
         }
     }
 </script>
