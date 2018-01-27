@@ -45740,7 +45740,7 @@ exports = module.exports = __webpack_require__(39)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45939,6 +45939,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         play: function play(game, index) {
             this.$socket.emit('play', { gameID: game.gameID, index: index });
+        },
+        drawCard: function drawCard(game) {
+            this.$socket.emit('draw_Card', { gameID: game.gameID });
         },
         startGame: function startGame(game) {
             this.$socket.emit('start', { gameID: game.gameID });
@@ -46440,8 +46443,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         startGame: function startGame() {
+            //start the game, set it up, etc
             this.$parent.startGame(this.game);
+            //why do we tell it to play?
             this.$parent.play(this.game, 0);
+            //start asking for timings
+            //this.$parent.updateTime(this.game);
         },
         isPlayer1: function isPlayer1() {
             if (this.ownPlayerNumber == 1) {

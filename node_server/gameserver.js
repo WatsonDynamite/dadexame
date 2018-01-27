@@ -88,8 +88,12 @@ io.on('connection', function (socket) {
     });
 
     socket.on('get_game', function (data){
-		let game = games.gameByID(data.gameID);
-		socket.emit('game_changed', game);
+		//let game = games.gameByID(data.gameID);
+		//io.to(game.gameID).emit('game_changed', game);
+
+		//socket.emit('game_changed', game);
+    
+		socket.emit('my_active_games_changed');
     });
 
     socket.on('get_my_activegames', function (data){
@@ -100,6 +104,34 @@ io.on('connection', function (socket) {
     socket.on('get_my_lobby_games', function (){
     	var my_games= games.getLobbyGamesOf(socket.id);
     	socket.emit('my_lobby_games', my_games);
+    });
+
+    socket.on('draw_card', function (data){
+		let game = games.gameByID(data.gameID);
+		if (game === null) {
+			socket.emit('invalid_play', {'type': 'Invalid_Game', 'game': null});
+			return;
+		}
+		var numPlayer = 0;
+		if (game.player1SocketID == socket.id) {
+			numPlayer = 1;
+		} else if (game.player2SocketID == socket.id) {
+			numPlayer = 2;
+		} else if (game.player3SocketID == socket.id) {
+			numPlayer = 3;
+		} else if (game.player4SocketID == socket.id) {
+			numPlayer = 4;
+		} 
+		if (numPlayer === 0) {
+			socket.emit('invalid_play', {'type': 'Invalid_Player', 'game': game});
+			return;
+		}
+		if (game.drawCard(numPlayer)) {
+			io.to(game.gameID).emit('game_changed', game);
+		} else {
+			socket.emit('invalid_play', {'type': 'Invalid_Play', 'game': game});
+			return;
+		}
     });
 
 });

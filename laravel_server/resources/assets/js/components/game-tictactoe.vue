@@ -187,9 +187,12 @@
                 }
             },
             startGame (){
+                //start the game, set it up, etc
                 this.$parent.startGame(this.game);
+                //why do we tell it to play?
                 this.$parent.play(this.game, 0);
-
+                //start asking for timings
+                //this.$parent.updateTime(this.game);
             },
             isPlayer1(){
                 if(this.ownPlayerNumber == 1){

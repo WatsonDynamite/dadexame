@@ -17,6 +17,7 @@ class TicTacToeGame {
         this.playerCards = [];
         this.playerCount = 1;
         this.playerPoints = [];
+        this.playerFolds = [];
         this.queuedPlays = [];
         this.turnTimer = 20;
     }
@@ -43,12 +44,31 @@ class TicTacToeGame {
             }
         }
     }
-    
+
+    drawCard(playerNumber){
+        // se o jogo ja comecou
+        if(this.gameStarted == true){
+            // se o jogador nao tiver dado fold
+            if(this.playerFolds[playerNumber - 1] == 0){
+                    //se for o 1 turno, so pode ter 3 cartas
+                    //se for o 2 turno, pode ter o maximo de 4
+                    if(this.playerTurn == 1){
+                        if(this.playerCards[playerNumber - 1].length == 2){
+                            this.playerCards[playerNumber - 1].push(this.deck.pop());
+
+                            console.log(this.playerCards);
+                        }
+                    }else{
+                        if(this.playerCards[playerNumber - 1].length == 3){
+                            this.playerCards[playerNumber - 1].push(this.deck.pop());
+                        }
+                    }
+                }
+            }
+        }
 
     startCountdown(){
         console.log("Timer: " + this.turnTimer);
- 
-
         var self = this;
         var timer_id = setInterval(function()
             {
@@ -59,6 +79,7 @@ class TicTacToeGame {
                     clearInterval(timer_id);
                     console.log("Timer is stopped!");
                     self.turnTimer = 20;
+                    self.playerTurn = 2;
                 }
             }, 1000, self);
     }
@@ -90,6 +111,11 @@ class TicTacToeGame {
         //inicia os pontos a 0 para cada jogador
         for(var p = 0; p < this.playerCount; p++){
             this.playerPoints.push(0);
+        }
+
+        //os jogadores comecam o jogo não folded
+        for(var p = 0; p < this.playerCount; p++){
+            this.playerFolds.push(0);
         }
         
         //distribui as 2 cartas iniciais pelos jogadores

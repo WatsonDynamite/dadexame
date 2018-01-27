@@ -109,6 +109,9 @@
             play(game, index){
                 this.$socket.emit('play', {gameID: game.gameID, index: index });   
             },
+            drawCard(game){
+                this.$socket.emit('draw_Card', {gameID: game.gameID});
+            },
             startGame(game){
                 this.$socket.emit('start', {gameID: game.gameID});  
             },
@@ -124,7 +127,13 @@
                 .catch((error) => {
                     this.currentPlayer = 'Missing';
                 });
-            }
+            },
+            /*
+            updateTime(game){
+                //pede um refresh do jogo atual so para que o tempo seja atualizado
+                this.$socket.emit('get_game', {gameID: game.gameID });   
+            },
+            */
         },
         components: {
             'lobby': Lobby,

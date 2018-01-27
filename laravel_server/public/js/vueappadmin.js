@@ -45328,14 +45328,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1__auth_auth_js__["a" /* default */]);
 //const user = Vue.component('user', require('./components/user.vue'));
 var login = Vue.component('login', __webpack_require__(69));
 var dashboard = Vue.component('dashboard', __webpack_require__(72));
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 var usersList = Vue.component('usersList', __webpack_require__(75));
->>>>>>> 792571d986a1e100e7af6dac2d077dd295bbe383
-=======
-var usersList = Vue.component('usersList', __webpack_require__(75));
->>>>>>> 792571d986a1e100e7af6dac2d077dd295bbe383
 
 var routes = [{ path: '/', redirect: '/login' }, { path: '/login', component: login, meta: { forVisitors: true } }, { path: '/dashboard', component: dashboard, meta: { forAuth: true } }, { path: '/usersList', component: usersList, meta: { forAuth: true } }];
 
