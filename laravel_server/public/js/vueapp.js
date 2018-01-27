@@ -46449,7 +46449,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //start the game, set it up, etc
             this.$parent.startGame(this.game);
             //why do we tell it to play?
-            this.$parent.play(this.game, 0);
+            //this.$parent.play(this.game, 0);
             //start asking for timings
             //this.$parent.updateTime(this.game);
         },
@@ -46463,8 +46463,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.game.gameStarted;
         },
         canPlayerHit: function canPlayerHit() {
-            if (!this.game.gameEnded) {
-                if (this.game.playerFolds[this.ownPlayerNumber - 1] == 0) {
+            if (!this.game.gameEnded && this.currentHandValue < 21) {
+                if (this.game.playerFolds[this.ownPlayerNumber - 1] == 1) {
+                    return false;
+                } else {
                     //se for o primeiro turno so pode ter 3 cartas
                     //se for o segundo turno so pode ter 4 cartas
                     if (this.game.playerTurn == 1) {
@@ -46594,7 +46596,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", [
         _c("p", [
-          _vm.currentHandValue < 21 || _vm.canPlayerHit == true
+          _vm.canPlayerHit == true
             ? _c(
                 "button",
                 {

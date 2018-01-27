@@ -45,61 +45,56 @@ class TicTacToeGame {
         }
     }
 
-    /*
     drawCard(playerNumber){
-        // se o jogo ja comecou
-        if(this.gameStarted == true){
-            // se o jogador nao tiver dado fold
-            if(this.playerFolds[playerNumber - 1] == 0){
-                    //se for o 1 turno, so pode ter 3 cartas
-                    //se for o 2 turno, pode ter o maximo de 4
-                    if(this.playerTurn == 1){
-                        if(this.playerCards[playerNumber - 1].length == 2){
-                            this.playerCards[playerNumber - 1].push(this.deck.pop());
-
-                            console.log(this.playerCards);
-                        }
-                    }else{
-                        if(this.playerCards[playerNumber - 1].length == 3){
-                            this.playerCards[playerNumber - 1].push(this.deck.pop());
-                        }
-                    }
-                }
-            }
-        }
-    */
-
-    drawCard(playerNumber){
+        //client is the one checking if a card can be drawn
         this.playerCards[playerNumber - 1].push(this.deck.pop());
     }
 
     startCountdown(){
+        if(this.playerTurn == 3){
+            console.log("bOM DIA :)");
+            return;
+        }
         console.log("Timer: " + this.turnTimer);
         var self = this;
         var timer_id = setInterval(function()
-            {
-                if(self.turnTimer > 0){
-                    self.turnTimer --;
-                    console.log("Timer : " + self.turnTimer);
-                }else{
-                    clearInterval(timer_id);
-                    console.log("Timer is stopped!");
-                    // pede aos clientes as queued plays para este jogo
-                    self.queuedPlays.forEach(function(item, index) {
-                        if(item === 'fold'){
-                            self.playerFolds[index] = 1;
-                        }
-                        if(item === 'hit'){
-                            self.drawCard(index + 1);
-                        }
-                    });
-                    console.log(self);
-
-                    // ready next turn
-                    self.turnTimer = 20;
-                    self.playerTurn = 2;
+        {
+            var contNrPlays = 0;
+            self.queuedPlays.forEach(function(item, index) {
+                if(item != 'none'){
+                    contNrPlays ++;
                 }
-            }, 1000, self);
+            });
+
+            if(self.turnTimer > 0 && contNrPlays != self.playerCount){
+                self.turnTimer --;
+                console.log("Timer : " + self.turnTimer);
+            }else{
+                clearInterval(timer_id);
+                console.log("Timer is stopped!");
+                // pede aos clientes as queued plays para este jogo
+                self.queuedPlays.forEach(function(item, index) {
+                    if(item === 'fold'){
+                        self.playerFolds[index] = 1;
+                    }
+                    if(item === 'hit'){
+                        self.drawCard(index + 1);
+                    }
+                });
+                
+
+                // ready next turn
+                self.turnTimer = 20;
+                self.playerTurn++;
+                for(var p = 0; p < self.playerCount; p++){
+                    self.queuedPlays[p] = 'none';
+                }
+
+                console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                console.log(self);
+                self.startCountdown();
+            }
+        }, 1000, self);
     }
     
     queuePlay(playerNum, play){
@@ -140,7 +135,7 @@ class TicTacToeGame {
             this.playerFolds.push(0);
         }
 
-        //os no plays at first
+        //no plays at first
         for(var p = 0; p < this.playerCount; p++){
             this.queuedPlays.push('none');
         }
@@ -155,7 +150,7 @@ class TicTacToeGame {
         //inicia os 20 segundos de espera do turno
         this.startCountdown();
     }
-   
+
 
     shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
@@ -171,18 +166,18 @@ class TicTacToeGame {
             array[randomIndex] = temporaryValue;
         }
 
-    return array;
+        return array;
     }
 
     hasRow(value){
         return  ((this.board[0]==value) && (this.board[1]==value) && (this.board[2]==value)) || 
-                ((this.board[3]==value) && (this.board[4]==value) && (this.board[5]==value)) || 
-                ((this.board[6]==value) && (this.board[7]==value) && (this.board[8]==value)) || 
-                ((this.board[0]==value) && (this.board[3]==value) && (this.board[6]==value)) || 
-                ((this.board[1]==value) && (this.board[4]==value) && (this.board[7]==value)) || 
-                ((this.board[2]==value) && (this.board[5]==value) && (this.board[8]==value)) || 
-                ((this.board[0]==value) && (this.board[4]==value) && (this.board[8]==value)) || 
-                ((this.board[2]==value) && (this.board[4]==value) && (this.board[6]==value));
+        ((this.board[3]==value) && (this.board[4]==value) && (this.board[5]==value)) || 
+        ((this.board[6]==value) && (this.board[7]==value) && (this.board[8]==value)) || 
+        ((this.board[0]==value) && (this.board[3]==value) && (this.board[6]==value)) || 
+        ((this.board[1]==value) && (this.board[4]==value) && (this.board[7]==value)) || 
+        ((this.board[2]==value) && (this.board[5]==value) && (this.board[8]==value)) || 
+        ((this.board[0]==value) && (this.board[4]==value) && (this.board[8]==value)) || 
+        ((this.board[2]==value) && (this.board[4]==value) && (this.board[6]==value));
     }  
 
     checkGameEnded(){

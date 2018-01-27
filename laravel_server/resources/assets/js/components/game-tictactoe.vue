@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div>
-                    <p><button class="btn btn-xs btn-success" v-if="currentHandValue < 21 || canPlayerHit == true" v-on:click.prevent="hit">Pedir</button></p><p>Valor: {{ currentHandValue }}</p>
+                    <p><button class="btn btn-xs btn-success" v-if="canPlayerHit == true" v-on:click.prevent="hit">Pedir</button></p><p>Valor: {{ currentHandValue }}</p>
             </div>
             <div>
                     <p><button class="btn btn-xs btn-failure" v-if="game.playerFolds[this.ownPlayerNumber - 1] == 0" v-on:click.prevent="fold">Fechar</button></p> 
@@ -190,7 +190,7 @@
                 //start the game, set it up, etc
                 this.$parent.startGame(this.game);
                 //why do we tell it to play?
-                this.$parent.play(this.game, 0);
+                //this.$parent.play(this.game, 0);
                 //start asking for timings
                 //this.$parent.updateTime(this.game);
             },
@@ -204,8 +204,10 @@
                 return this.game.gameStarted;
             },
             canPlayerHit(){
-                if (!this.game.gameEnded) {
-                    if(this.game.playerFolds[this.ownPlayerNumber - 1] == 0){
+                if (!this.game.gameEnded && this.currentHandValue < 21) {
+                    if(this.game.playerFolds[this.ownPlayerNumber - 1] == 1){
+                        return false;
+                    }else{
                         //se for o primeiro turno so pode ter 3 cartas
                         //se for o segundo turno so pode ter 4 cartas
                         if(this.game.playerTurn == 1){
@@ -217,6 +219,7 @@
                                 return true;
                             }
                         }
+
                     }
                 }
                 return false;
