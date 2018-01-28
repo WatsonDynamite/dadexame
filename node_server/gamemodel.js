@@ -11,7 +11,8 @@ class TicTacToeGame {
         this.player3= '';
         this.player4= '';
         this.playerTurn = 1;
-        this.winner = 0;
+        this.winner = [];
+        this.winnerNames = "";
         this.board = [0,0,0,0,0,0,0,0,0];
         this.deck = [];
         this.playerCards = [];
@@ -45,14 +46,112 @@ class TicTacToeGame {
         }
     }
 
-    drawCard(playerNumber){
+    drawCard(playerCount){
         //client is the one checking if a card can be drawn
-        this.playerCards[playerNumber - 1].push(this.deck.pop());
+        this.playerCards[playerCount - 1].push(this.deck.pop());
     }
+
+    endGame(){
+        var totalPoints = [];
+        var handValues = [];
+        var cardValueDelegate = this.getSingleCardValue;
+        this.gameEnded = true;
+        this.playerCards.forEach(function(hand, index1) {
+            handValues.push(0);
+            hand.forEach(function(card, index2){
+                handValues[index1] += cardValueDelegate(card);
+            });
+        });
+
+        console.log(handValues);
+
+        handValues.forEach(function(value, index){
+            if(value > 21){
+                handValues[index] = 0; //bust
+            }
+        });
+
+        var winnerValue = Math.max.apply(null, handValues);
+        var results = [];
+        var numWinners = 0;
+        handValues.forEach(function(value, index){
+            if(value == winnerValue){
+                results[index] = "winner";
+                if(winnerValue == 21){
+                    results[index] = "winnerBonus";
+                }
+                numWinners++;
+            }else
+            if(value == 0){
+                results[index] = "bust";
+            }else{
+                results[index] = "lose";
+            }
+
+
+        });
+
+        console.log("winner value: " + winnerValue);
+        console.log("hand values: " + handValues);
+        console.log("results: " + results);
+        var self = this;
+        results.forEach(function(value, index){
+            if(value == "winner"){
+                if(numWinners > 1){
+                    self.playerPoints[index] = 50;
+                }else if(numWinners == 1){
+                    self.playerPoints[index] = 100;
+                }
+                self.winner[index] = 1;
+            }
+            if(value == "winnerBonus"){
+                if(numWinners > 1){
+                    self.playerPoints[index] = 100;
+                }else if(numWinners == 1){
+                    self.playerPoints[index] = 150;
+                }
+                self.winner.push(index + 1);
+            }
+            if(value == "bust" || value == "lose"){
+                self.playerPoints[index] == 0;
+            }
+
+        });
+
+        console.log("playerpoints: " + this.playerPoints);
+        console.log("winner: " + this.winner);
+        
+
+    }
+
+    getSingleCardValue(card){
+        var cValue = Number(card.substr(1));
+        //calcula valor de cada carta
+        //console.log(cValue);
+        if(cValue > 10){
+            cValue = 10;
+                }
+        if(cValue == 1){
+            cValue = 11;
+        }
+        return cValue;
+    }
+
+    winnerNames(){
+            var winnerAux = "";
+                this.game.winner.forEach(function(value, index){
+                    if(winnerNames != ""){
+                        winnerNames += " and ";
+                    }
+                    winnerNames += allPlayerNames[value - 1];
+                });
+                this.winnerNames = winnerAux;
+            }
 
     startCountdown(){
         if(this.playerTurn == 3){
             console.log("bOM DIA :)");
+            this.endGame();
             return;
         }
         console.log("Timer: " + this.turnTimer);
@@ -79,6 +178,9 @@ class TicTacToeGame {
                     }
                     if(item === 'hit'){
                         self.drawCard(index + 1);
+                    }
+                    if(item === 'none'){
+                        self.playerFolds[index] = 1;
                     }
                 });
                 
@@ -181,6 +283,7 @@ class TicTacToeGame {
     }  
 
     checkGameEnded(){
+        /*
         if (this.hasRow(1)) {
             this.winner = 1;
             this.gameEnded = true;
@@ -194,6 +297,8 @@ class TicTacToeGame {
             this.gameEnded = true;
             return true;
         }
+        return false;
+        */
         return false;
     }
 

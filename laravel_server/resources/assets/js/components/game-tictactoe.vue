@@ -27,10 +27,11 @@
                 </div>
             </div>
             <div>
-                    <p><button class="btn btn-xs btn-success" v-if="canPlayerHit == true" v-on:click.prevent="hit">Pedir</button></p><p>Valor: {{ currentHandValue }}</p>
+                    <p><button class="btn btn-xs btn-success" v-if="canPlayerHit() == true" v-on:click.prevent="hit">Pedir</button></p>
+                    <p>Meu Valor: {{ currentHandValue }}</p>
             </div>
             <div>
-                    <p><button class="btn btn-xs btn-failure" v-if="game.playerFolds[this.ownPlayerNumber - 1] == 0" v-on:click.prevent="fold">Fechar</button></p> 
+                    <p><button class="btn btn-xs btn-failure" v-if="game.playerFolds[this.ownPlayerNumber - 1] == 0 && this.currentHandValue <= 21" v-on:click.prevent="fold">Fechar</button></p> 
             </div>
             <hr>
         </div>  
@@ -45,6 +46,7 @@
             }
         },
         computed: {
+            
             currentHandValue(){
                var handValue = 0;
                var playerNames = this.allPlayerNames;
@@ -57,7 +59,7 @@
                       });
                   }
                });
-               console.log(handValue);
+               //console.log(handValue);
                return handValue;
             },
             ownPlayerNumber(){
@@ -110,19 +112,16 @@
                 if (!this.game.gameStarted) {
                     return "Game has not started yet";
                 } else if (this.game.gameEnded) {
-                    if (this.game.winner == this.ownPlayerNumber) {
-                        return "Game has ended. You Win.";
-                    } else if (this.game.winner == 0) {
-                        return "Game has ended. There was a tie.";
+                    if (this.game.winner[this.ownPlayerNumber - 1] == 1) {
+                        if(this.game.winner.length > 1){
+                             return "Game has ended. You Win, and Tied. Winners: "+ this.game.winnerNames() + "Score: " + this.game.playerPoints[this.ownPlayerNumber - 1];
+                        }
+                        return "Game has ended. You Win. Score: " + this.game.playerPoints[this.ownPlayerNumber - 1];
+                    } else if (this.game.winner.length > 1) {
+                        return "Game has ended. There was a tie. Score: " + this.game.playerPoints[this.ownPlayerNumber - 1];
                     } 
-                    return "Game has ended and " + this.adversaryPlayerName + " has won. You lost.";
-                } else {
-                    if (this.game.playerTurn == this.ownPlayerNumber) {
-                        return "It's your turn";
-                    } else {
-                        return "It's " + this.adversaryPlayerName + " turn";
-                    }
-                }
+                    return "Game has ended and " + this.game.winnerNames() + " won. You lost.";
+                } 
                 return "Game is inconsistent";
             },
             alerttype(){
@@ -145,9 +144,22 @@
             }
         },
         methods: {
+            winnerName(){
+                var winnerNames = "";
+                this.game.winner.forEach(function(value, index){
+                    if(winnerNames != ""){
+                        winnerNames += " and ";
+                    }
+                    if(value == 1){
+                        winnerNames += allPlayerNames[index];
+                    }
+                });
+                return winnerNames;
+            },
             getSingleCardValue(card){
                 var cValue = Number(card.substr(1));
-                console.log(cValue);
+                //calcula valor de cada carta
+                //console.log(cValue);
                 if(cValue > 10){
                     cValue = 10;
                 }
@@ -167,6 +179,9 @@
             },
             renderCard(card, index, handIndex){
                 if(this.allPlayerNames[handIndex] != this.ownPlayerName && index > 0){
+                    if(this.game.gameEnded){
+                        return this.pieceImageURL(card);
+                    }
                     return 'img/semFace.png';
                 }else{
                     return this.pieceImageURL(card);
@@ -204,22 +219,25 @@
                 return this.game.gameStarted;
             },
             canPlayerHit(){
-                if (!this.game.gameEnded && this.currentHandValue < 21) {
-                    if(this.game.playerFolds[this.ownPlayerNumber - 1] == 1){
-                        return false;
-                    }else{
-                        //se for o primeiro turno so pode ter 3 cartas
-                        //se for o segundo turno so pode ter 4 cartas
-                        if(this.game.playerTurn == 1){
-                            if(this.game.playerCards[this.ownPlayerNumber - 1].length == 2){
-                                return true;
-                            }
-                        }else{
-                            if(this.game.playerCards[this.ownPlayerNumber - 1].length == 3){
-                                return true;
+                if (!this.game.gameEnded) {
+                    if(this.isGameStarted() == true){
+                        if(this.currentHandValue < 21){
+                            if(this.game.playerFolds[this.ownPlayerNumber - 1] == 1){
+                                return false;
+                            }else{
+                                //se for o primeiro turno so pode ter 3 cartas
+                                //se for o segundo turno so pode ter 4 cartas
+                                if(this.game.playerTurn == 1){
+                                    if(this.game.playerCards[this.ownPlayerNumber - 1].length == 2){
+                                        return true;
+                                    }
+                                }else{
+                                    if(this.game.playerCards[this.ownPlayerNumber - 1].length == 3){
+                                        return true;
+                                    }
+                                }
                             }
                         }
-
                     }
                 }
                 return false;
