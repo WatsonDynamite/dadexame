@@ -20,6 +20,8 @@ class DeckControllerAPI extends Controller
 
     public function getDeck($id)
     {
+        $card = Card::where('deck_id', $id)->first();
+        return CardResource::collection(Card::all()->where('deck_id', $id));
         
     }
 
@@ -35,16 +37,18 @@ class DeckControllerAPI extends Controller
 
     public function store(Request $request){
 
+
     	if($request->hasFile('image')){
 
-    		$request->file('image');
-    		$storage_path = Storage::putFile('public', $request->file('image'));
+            $request->file('image');
+
+    		$storage_path = Storage::putFile('public/decks/'.$request->deck.'/', $request->file('image'));
     		
     		$card = Card::create([
             
-            'value' => 'Ace',
-            'suite' => 'Club',
-            'deck_id' => '1',
+            'value' => $request->value,
+            'suite' => $request->suite,
+            'deck_id' => Deck::where('name',$request->deck)->first()->id,
             'path' => $storage_path
         	]);
         	$card->save();

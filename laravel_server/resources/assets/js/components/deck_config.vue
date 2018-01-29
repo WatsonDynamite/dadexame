@@ -28,15 +28,16 @@
 	            <td v-if="deck.complete == 1">Yes</td>
 	            <td v-if="deck.complete == 0">No</td>
 	            <td>
-	            	<a class="waves-effect waves-light btn" v-on:click.prevent=""><i class="medium material-icons">details</i></a>
+	            	<a class="waves-effect waves-light btn" v-on:click.prevent="previewCard(deck)"><i class="medium material-icons">details</i></a>
 	                <a class="waves-effect waves-light btn" v-on:click.prevent="changeDeckStatus(deck)"><i class="medium material-icons">do_not_disturb</i></a>
 	                <!--<a class="waves-effect waves-light btn" v-on:click.prevent="deleteUser(user)"><i class="medium material-icons">delete</i></a> -->
 	            </td>
 	        </tr>
 	    </tbody>
-	</table>
+	</table><br>
+		<card-preview :selectedTableDeck="selectedTableDeck" v-if="showPreview"></card-preview>
 
-
+		<br><br>	
 		<h4>Upload Card Image</h4>
 		<div class="card-panel teal darken-1">
 
@@ -51,19 +52,19 @@
 		    	</div>
 			</div><br>
 
-			<select v-for="deck in decks" :key="deck.id" class="browser-default">
-		    <option value="" disabled selected>Deck</option>
-		    <option value="deckName">{{ deck.name }}</option>
+			<select class="browser-default" v-model="selectedDeck">
+		    <option disabled selected>Deck</option>
+		    <option v-for="deck in decks">{{ deck.name }}</option>
 		  </select><br>
 
-		  <select class="browser-default">
-		    <option value="" disabled selected>Suite</option>
-		    <option v-for="suite in suites" value="deckName">{{ suite }}</option>
+		  <select class="browser-default" v-model="selectedSuite"> 
+		    <option disabled selected>Suite</option>
+		    <option v-for="suite in suites">{{ suite }}</option>
 		  </select><br>
 
-		  <select class="browser-default">
-		    <option value="" disabled selected>Value</option>
-		    <option v-for="value in values" value="deckName">{{ value }}</option>
+		  <select class="browser-default" v-model="selectedValue">
+		    <option disabled selected>Value</option>
+		    <option v-for="value in values">{{ value }}</option>
 		  </select><br>
 
 		</form>
@@ -73,8 +74,11 @@
 </template>
 
  <script type="text/javascript">
+import CardPreview from './card_preview.vue';
 
 export default {
+	
+
 	data: function() {
 		return{
 			values: ['Ace','2','3','4','5','6','7','8','9','10','Jack','Queen','King'],
@@ -84,6 +88,13 @@ export default {
 			decks: null,
 			editingDeck: null,
 			cardFile: null,
+			/////Deck Preview /////////////////
+			showPreview: false,
+			selectedTableDeck: 0,
+			/////Upload Card Variables/////////
+			selectedSuite: null,
+			selectedDeck: null,
+			selectedValue: null
 		}
 	},
 
@@ -92,14 +103,16 @@ export default {
 
 			axios.get('http://exame.test/api/decks')
 			.then(response => {
-				console.log(response.data.data);
 				this.decks = response.data.data;
                 });
+		},
+		previewCard: function(deck){
+			this.selectedTableDeck = deck.id;
+			(this.showPreview == true) ? this.showPreview = false : this.showPreview = true;
 		},
 		changeDeckStatus: function(deck){
 			axios.get('http://exame.test/api/decks/'+deck.id+'/changeStatus')
 				.then(response => {
-					console.log(response);
                     this.getDecks();
                 });
 		},
@@ -107,12 +120,13 @@ export default {
 			var formData = new FormData();
 			var imagefile = document.querySelector('#file');
 			formData.append("image", imagefile.files[0]);
-
+			formData.append("deck", this.selectedDeck);
+			formData.append("suite", this.selectedSuite);
+			formData.append("value", this.selectedValue);
 			axios.post('http://exame.test/api/decks',formData,{
 				'Content-Type': 'multipart/form-data'	
 			})
 			.then(response => {
-				console.log(response)
                 });
 		},
 		deleteCard: function(user){
@@ -121,6 +135,9 @@ export default {
                 });
 		}
 	},
+	components: {
+	    	'card-preview': CardPreview
+	    },
 	computed:{    
         },
 	mounted() {
