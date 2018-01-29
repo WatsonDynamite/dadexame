@@ -2,7 +2,7 @@
 	<div>
 
 		<div class="navbar">
-			<div class="card-panel teal darken-1">
+			<div class="card-panel blue-grey darken-3">
 				<a @click="showUsers" class="waves-effect waves-light btn">Users</a>
 				<a @click="showAppConfig" class="waves-effect waves-light btn">App Configurations</a>
 				<a @click="showStats" class="waves-effect waves-light btn">Statistics</a>

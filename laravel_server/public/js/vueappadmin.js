@@ -47104,7 +47104,7 @@ var render = function() {
     "div",
     [
       _c("div", { staticClass: "navbar" }, [
-        _c("div", { staticClass: "card-panel teal darken-1" }, [
+        _c("div", { staticClass: "card-panel blue-grey darken-3" }, [
           _c(
             "a",
             {
