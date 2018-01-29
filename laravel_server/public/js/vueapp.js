@@ -45774,7 +45774,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45911,6 +45911,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                 }
             }
+        },
+        givePoints: function givePoints(game) {
+            var numPlayer = 0;
+
+            if (game.player1 == this.currentPlayer) {
+                numPlayer = 1;
+            } else if (game.player2 == this.currentPlayer) {
+                numPlayer = 2;
+            } else if (game.player3 == this.currentPlayer) {
+                numPlayer = 3;
+            } else if (game.player4 == this.currentPlayer) {
+                numPlayer = 4;
+            }
+
+            //if this player is one of the winners
+            if (game.winner.includes(this.currentPlayer)) {
+                console.log("give points to: " + this.currentPlayer + " and his number " + numPlayer);
+
+                //Get his token
+                var AuthStr = 'Bearer '.concat(this.$auth.getToken());
+
+                //his points from this game
+                var points = 0;
+                //his games played
+                var games = 0;
+
+                //get the points he has right now and the games he's played
+                axios.get('http://exame.test/api/user', { headers: { Authorization: AuthStr } }).then(function (response) {
+                    points = response.data.total_points;
+                    games = response.data.total_games_played;
+                }).catch(function (error) {
+                    console.log("Error fetching user data");
+                });
+
+                //print out some data
+                console.log("You've played " + games + " games so far");
+                games++;
+                console.log("with this game, you've played  " + games);
+                console.log("right now you have " + points + " points");
+                console.log("you won " + game.playerPoints[numPlayer - 1] + " points");
+                points = points + game.playerPoints[numPlayer - 1];
+                console.log("Now you have a total of " + points + " points");
+
+                //UPDATE authenticated user's PARAMETERS
+                axios.put('http://exame.test/api/user', {
+                    total_points: points,
+                    total_games_played: games
+                }, {
+                    headers: { 'Authorization': AuthStr,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json' }
+                }).then(function (response) {
+                    console.log("User updated with success!");
+                }).catch(function (error) {
+                    console.log("Error while trying to update user");
+                });
+            }
         }
     },
     methods: {
@@ -45962,6 +46019,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         queuePlay: function queuePlay(game, option) {
             this.$socket.emit('queuePlay', { gameID: game.gameID, playerOption: option });
+        },
+        askForPoints: function askForPoints(game) {
+            this.$socket.emit('askForPoints', { gameID: game.gameID });
         }
     },
     components: {
@@ -46376,6 +46436,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 if (this.game.gameEnded) {
                     messageStr = "Game has ended ";
+
+                    if (this.game.arePointsGiven == 0) {
+                        this.$parent.askForPoints(this.game);
+                    }
+
                     if (this.game.winner.includes(this.ownPlayerName)) {
                         messageStr += "and you WON ";
                         if (this.game.winner.length > 1) {

@@ -72,11 +72,73 @@
                         break;
                     }
                 }
-                for (var activeGame of this. activeGames) {
+                for (var activeGame of this.activeGames) {
                     if (game.gameID == activeGame.gameID) {
                         Object.assign(activeGame, game);
                         break;
                     }
+                }
+            },
+            givePoints(game){
+                var numPlayer = 0;
+
+                if (game.player1 == this.currentPlayer) {
+                    numPlayer = 1;
+                } else if (game.player2 == this.currentPlayer) {
+                    numPlayer = 2;
+                } else if (game.player3 == this.currentPlayer) {
+                    numPlayer = 3;
+                } else if (game.player4 == this.currentPlayer) {
+                    numPlayer = 4;
+                }
+
+                
+                //if this player is one of the winners
+                if(game.winner.includes(this.currentPlayer)){
+                    console.log("give points to: " + this.currentPlayer + " and his number " + numPlayer);
+
+                    //Get his token
+                    const AuthStr = 'Bearer '.concat(this.$auth.getToken());
+
+                    //his points from this game
+                    var points = 0;
+                    //his games played
+                    var games = 0;
+
+                    //get the points he has right now and the games he's played
+                    axios.get('http://exame.test/api/user', {headers: { Authorization: AuthStr} })
+                    .then(response => {
+                        points =  response.data.total_points;
+                        games =  response.data.total_games_played;
+                    })
+                    .catch((error) => {
+                        console.log("Error fetching user data");
+                    });
+
+                    //print out some data
+                    console.log("You've played " + games + " games so far");
+                    games++;
+                    console.log("with this game, you've played  " + games);
+                    console.log("right now you have "+ points + " points");
+                    console.log("you won " + game.playerPoints[numPlayer -1] + " points");
+                    points = points + game.playerPoints[numPlayer -1];
+                    console.log("Now you have a total of "+ points +" points");
+
+                    //UPDATE authenticated user's PARAMETERS
+                    axios.put('http://exame.test/api/user',
+                    {
+                        total_points: points,
+                        total_games_played: games
+                    },
+                    {
+                        headers: { 'Authorization': AuthStr,
+                                   'Content-Type': 'application/json',
+                                   'Accept': 'application/json' }
+                    }).then(function(response){
+                        console.log("User updated with success!");
+                    }).catch((error) => {
+                        console.log("Error while trying to update user");
+                    });
                 }
             },
         },        
@@ -131,12 +193,9 @@
             queuePlay(game, option){
                 this.$socket.emit('queuePlay', {gameID: game.gameID, playerOption: option});
             },
-            /*
-            updateTime(game){
-                //pede um refresh do jogo atual so para que o tempo seja atualizado
-                this.$socket.emit('get_game', {gameID: game.gameID });   
+            askForPoints(game){
+                this.$socket.emit('askForPoints', {gameID: game.gameID});
             },
-            */
         },
         components: {
             'lobby': Lobby,

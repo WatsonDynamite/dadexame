@@ -138,4 +138,17 @@ io.on('connection', function (socket) {
 		}
     });
 
+    socket.on('askForPoints', function (data){
+    	
+		let game = games.gameByID(data.gameID);
+		if (game === null) {
+			socket.emit('invalid_play', {'type': 'Invalid_Game', 'game': null});
+			return;
+		}
+		if(game.arePointsGiven == 0){
+			game.givePoints();
+			io.to(game.gameID).emit('givePoints', game);
+		}	
+    });
+
 });

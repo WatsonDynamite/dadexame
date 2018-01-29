@@ -60,7 +60,12 @@ Route::middleware('auth:api')->get('user', function() {
     return response()->json(request()->user());
 });
 
+///////////////////////UPDATE USER/////////////////////
+Route::middleware('auth:api')->put('user', function() {
+	return response() -> json(['msg'=>'User atualizado'], 200);
+});
 
+ 
 Route::get('teste', function(){
 	return response()->json(['msg'=>'Só um teste'], 200);
 });
