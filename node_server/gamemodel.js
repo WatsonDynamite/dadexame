@@ -186,6 +186,8 @@ class TicTacToeGame {
                     contNrPlays ++;
                 }
             });
+            
+            console.log("queuedPlays: " + self.queuedPlays + "\ncontNrPlays: " + contNrPlays);
 
             if(self.turnTimer > 0 && contNrPlays != self.playerCount){
                 self.turnTimer --;
@@ -211,7 +213,9 @@ class TicTacToeGame {
                 self.turnTimer = 20;
                 self.playerTurn++;
                 for(var p = 0; p < self.playerCount; p++){
+                if(self.queuedPlays[p] != 'fold'){
                     self.queuedPlays[p] = 'none';
+                    }
                 }
 
                 console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
