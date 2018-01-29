@@ -46030,11 +46030,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(82)
 /* template */
-<<<<<<< HEAD
-var __vue_template__ = __webpack_require__(99)
-=======
 var __vue_template__ = __webpack_require__(94)
->>>>>>> 3a4eceeac0622a7e13b7e2b9b9c868df9b357d65
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -46754,11 +46750,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(92)
 /* template */
-<<<<<<< HEAD
-var __vue_template__ = __webpack_require__(98)
-=======
 var __vue_template__ = __webpack_require__(93)
->>>>>>> 3a4eceeac0622a7e13b7e2b9b9c868df9b357d65
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -46803,8 +46795,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__card_preview_vue__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__card_preview_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__card_preview_vue__);
 //
 //
 //
@@ -46879,12 +46869,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-
 	data: function data() {
 		return {
 			values: ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'],
@@ -46893,14 +46880,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			nrIncompleteDecks: 0,
 			decks: null,
 			editingDeck: null,
-			cardFile: null,
-			/////Deck Preview /////////////////
-			showPreview: false,
-			selectedTableDeck: 0,
-			/////Upload Card Variables/////////
-			selectedSuite: null,
-			selectedDeck: null,
-			selectedValue: null
+			cardFile: null
 		};
 	},
 
@@ -46909,17 +46889,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this = this;
 
 			axios.get('http://exame.test/api/decks').then(function (response) {
+				console.log(response.data.data);
 				_this.decks = response.data.data;
 			});
-		},
-		previewCard: function previewCard(deck) {
-			this.selectedTableDeck = deck.id;
-			this.showPreview == true ? this.showPreview = false : this.showPreview = true;
 		},
 		changeDeckStatus: function changeDeckStatus(deck) {
 			var _this2 = this;
 
 			axios.get('http://exame.test/api/decks/' + deck.id + '/changeStatus').then(function (response) {
+				console.log(response);
 				_this2.getDecks();
 			});
 		},
@@ -46927,19 +46905,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var formData = new FormData();
 			var imagefile = document.querySelector('#file');
 			formData.append("image", imagefile.files[0]);
-			formData.append("deck", this.selectedDeck);
-			formData.append("suite", this.selectedSuite);
-			formData.append("value", this.selectedValue);
+
 			axios.post('http://exame.test/api/decks', formData, {
 				'Content-Type': 'multipart/form-data'
-			}).then(function (response) {});
+			}).then(function (response) {
+				console.log(response);
+			});
 		},
 		deleteCard: function deleteCard(user) {
 			axios.delete('http://exame.test/api/decks/' + user.id).then(function (response) {});
 		}
-	},
-	components: {
-		'card-preview': __WEBPACK_IMPORTED_MODULE_0__card_preview_vue___default.a
 	},
 	computed: {},
 	mounted: function mounted() {
@@ -46949,158 +46924,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 93 */
-<<<<<<< HEAD
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(94)
-}
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(96)
-/* template */
-var __vue_template__ = __webpack_require__(97)
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/card_preview.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2d2d2056", Component.options)
-  } else {
-    hotAPI.reload("data-v-2d2d2056", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 94 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(95);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("5957898c", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2d2d2056\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./card_preview.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2d2d2056\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./card_preview.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 95 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.previewImage{\n\twidth: 100px;\n\theight: 150px;\n}\n.previewBox{\n\tdisplay: inline-block;\n\tpadding: 10px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 96 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['selectedTableDeck'],
-	data: function data() {
-		return {
-			previewCards: []
-		};
-	},
-
-	methods: {
-		getDeckCards: function getDeckCards() {
-			var _this = this;
-
-			axios.get('http://exame.test/api/decks/' + this.selectedTableDeck).then(function (response) {
-				_this.previewCards = response.data.data;
-
-				var path;
-				_this.previewCards.forEach(function (card, index) {
-					path = card.path;
-					card.path = path.replace("public/", "storage/");
-				});
-
-				console.log(_this.previewCards);
-			});
-		}
-	},
-	computed: {},
-	mounted: function mounted() {
-		this.getDeckCards();
-	}
-});
-
-/***/ }),
-/* 97 */
-=======
->>>>>>> 3a4eceeac0622a7e13b7e2b9b9c868df9b357d65
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47108,220 +46931,125 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h4", [_vm._v("Preview Deck")]),
+    _c("h2", [_vm._v("BlackJack App Deck Manager")]),
     _vm._v(" "),
     _c("div", { staticClass: "card-panel teal darken-1" }, [
       _c("div", { staticClass: "card-content white-text" }, [
-        _c(
-          "div",
-          _vm._l(_vm.previewCards, function(card, index) {
-            return _c("div", { staticClass: "previewBox" }, [
-              _c("p", [
-                _vm._v(_vm._s(card.suite) + " - " + _vm._s(card.value))
-              ]),
-              _vm._v(" "),
-              _c("img", {
-                staticClass: "responsive-img previewImage",
-                attrs: { src: card.path }
-              })
-            ])
-          })
-        )
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2d2d2056", module.exports)
-  }
-}
-
-/***/ }),
-/* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h2", [_vm._v("BlackJack App Deck Manager")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-panel teal darken-1" }, [
-        _c("div", { staticClass: "card-content white-text" }, [
-          _c("p", [
-            _vm._v("Nr of Complete Decks: " + _vm._s(_vm.nrCompleteDecks))
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v("Nr of Incomplete Decks: " + _vm._s(_vm.nrIncompleteDecks))
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("table", { staticClass: "table table-striped" }, [
-        _vm._m(0),
+        _c("p", [
+          _vm._v("Nr of Complete Decks: " + _vm._s(_vm.nrCompleteDecks))
+        ]),
         _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.decks, function(deck) {
-            return _c(
-              "tr",
-              { key: deck.id, class: { activerow: _vm.editingDeck === deck } },
-              [
-                _c("td", [_vm._v(_vm._s(deck.name))]),
-                _vm._v(" "),
-                deck.active == 1 ? _c("td", [_vm._v("Active")]) : _vm._e(),
-                _vm._v(" "),
-                deck.active == 0 ? _c("td", [_vm._v("Disabled")]) : _vm._e(),
-                _vm._v(" "),
-                deck.complete == 1 ? _c("td", [_vm._v("Yes")]) : _vm._e(),
-                _vm._v(" "),
-                deck.complete == 0 ? _c("td", [_vm._v("No")]) : _vm._e(),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "waves-effect waves-light btn",
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          _vm.previewCard(deck)
-                        }
+        _c("p", [
+          _vm._v("Nr of Incomplete Decks: " + _vm._s(_vm.nrIncompleteDecks))
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-striped" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.decks, function(deck) {
+          return _c(
+            "tr",
+            { key: deck.id, class: { activerow: _vm.editingDeck === deck } },
+            [
+              _c("td", [_vm._v(_vm._s(deck.name))]),
+              _vm._v(" "),
+              deck.active == 1 ? _c("td", [_vm._v("Active")]) : _vm._e(),
+              _vm._v(" "),
+              deck.active == 0 ? _c("td", [_vm._v("Disabled")]) : _vm._e(),
+              _vm._v(" "),
+              deck.complete == 1 ? _c("td", [_vm._v("Yes")]) : _vm._e(),
+              _vm._v(" "),
+              deck.complete == 0 ? _c("td", [_vm._v("No")]) : _vm._e(),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "waves-effect waves-light btn",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
                       }
-                    },
-                    [
-                      _c("i", { staticClass: "medium material-icons" }, [
-                        _vm._v("details")
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "waves-effect waves-light btn",
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          _vm.changeDeckStatus(deck)
-                        }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "medium material-icons" }, [
+                      _vm._v("details")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "waves-effect waves-light btn",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.changeDeckStatus(deck)
                       }
-                    },
-                    [
-                      _c("i", { staticClass: "medium material-icons" }, [
-                        _vm._v("do_not_disturb")
-                      ])
-                    ]
-                  )
-                ])
-              ]
-            )
-          })
-        )
-      ]),
-      _c("br"),
-      _vm._v(" "),
-      _vm.showPreview
-        ? _c("card-preview", {
-            attrs: { selectedTableDeck: _vm.selectedTableDeck }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _c("br"),
-      _c("br"),
-      _vm._v(" "),
-      _c("h4", [_vm._v("Upload Card Image")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-panel teal darken-1" }, [
-        _c("form", { attrs: { action: "#" } }, [
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "medium material-icons" }, [
+                      _vm._v("do_not_disturb")
+                    ])
+                  ]
+                )
+              ])
+            ]
+          )
+        })
+      )
+    ]),
+    _vm._v(" "),
+    _c("h4", [_vm._v("Upload Card Image")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-panel teal darken-1" }, [
+      _c(
+        "form",
+        { attrs: { action: "#" } },
+        [
           _vm._m(1),
           _c("br"),
           _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.selectedDeck,
-                  expression: "selectedDeck"
-                }
-              ],
-              staticClass: "browser-default",
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.selectedDeck = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
-            [
-              _c("option", { attrs: { disabled: "", selected: "" } }, [
-                _vm._v("Deck")
-              ]),
-              _vm._v(" "),
-              _vm._l(_vm.decks, function(deck) {
-                return _c("option", [_vm._v(_vm._s(deck.name))])
-              })
-            ],
-            2
-          ),
+          _vm._l(_vm.decks, function(deck) {
+            return _c(
+              "select",
+              { key: deck.id, staticClass: "browser-default" },
+              [
+                _c(
+                  "option",
+                  { attrs: { value: "", disabled: "", selected: "" } },
+                  [_vm._v("Deck")]
+                ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "deckName" } }, [
+                  _vm._v(_vm._s(deck.name))
+                ])
+              ]
+            )
+          }),
           _c("br"),
           _vm._v(" "),
           _c(
             "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.selectedSuite,
-                  expression: "selectedSuite"
-                }
-              ],
-              staticClass: "browser-default",
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.selectedSuite = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
+            { staticClass: "browser-default" },
             [
-              _c("option", { attrs: { disabled: "", selected: "" } }, [
-                _vm._v("Suite")
-              ]),
+              _c(
+                "option",
+                { attrs: { value: "", disabled: "", selected: "" } },
+                [_vm._v("Suite")]
+              ),
               _vm._v(" "),
               _vm._l(_vm.suites, function(suite) {
-                return _c("option", [_vm._v(_vm._s(suite))])
+                return _c("option", { attrs: { value: "deckName" } }, [
+                  _vm._v(_vm._s(suite))
+                ])
               })
             ],
             2
@@ -47330,58 +47058,37 @@ var render = function() {
           _vm._v(" "),
           _c(
             "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.selectedValue,
-                  expression: "selectedValue"
-                }
-              ],
-              staticClass: "browser-default",
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.selectedValue = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
+            { staticClass: "browser-default" },
             [
-              _c("option", { attrs: { disabled: "", selected: "" } }, [
-                _vm._v("Value")
-              ]),
+              _c(
+                "option",
+                { attrs: { value: "", disabled: "", selected: "" } },
+                [_vm._v("Value")]
+              ),
               _vm._v(" "),
               _vm._l(_vm.values, function(value) {
-                return _c("option", [_vm._v(_vm._s(value))])
+                return _c("option", { attrs: { value: "deckName" } }, [
+                  _vm._v(_vm._s(value))
+                ])
               })
             ],
             2
           ),
           _c("br")
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "waves-effect waves-light btn",
-            on: { click: _vm.uploadCard }
-          },
-          [_vm._v("Upload Card")]
-        )
-      ])
-    ],
-    1
-  )
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "waves-effect waves-light btn",
+          on: { click: _vm.uploadCard }
+        },
+        [_vm._v("Upload Card")]
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -47430,11 +47137,7 @@ if (false) {
 }
 
 /***/ }),
-<<<<<<< HEAD
-/* 99 */
-=======
 /* 94 */
->>>>>>> 3a4eceeac0622a7e13b7e2b9b9c868df9b357d65
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
