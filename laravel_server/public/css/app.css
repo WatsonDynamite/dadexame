@@ -8357,7 +8357,7 @@ button.close {
 }
 
 .board {
-  max-width: 276px;
+  max-width: 600px;
   margin: 0 auto;
   border-style: solid;
   border-width: 0px 0 0 0px;
@@ -8374,8 +8374,8 @@ button.close {
 }
 
 .board img {
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 72px;
   margin: 5px;
   padding: 6;
   border-style: none;
