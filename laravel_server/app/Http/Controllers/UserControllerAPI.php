@@ -15,6 +15,18 @@ use Hash;
 
 class UserControllerAPI extends Controller
 {
+
+    public function updateUser(Request $request){
+
+        $user = User::where('id', $request->user()->id)->first();
+        $user->total_points = $user->total_points + $request->total_points;
+        $user->total_games_played = $user->total_games_played + 1;
+
+        $user->save();
+        return "User Updated";
+    }
+
+
     public function getUsers(Request $request)
     {
         if ($request->has('page')) {

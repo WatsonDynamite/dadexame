@@ -61,9 +61,7 @@ Route::middleware('auth:api')->get('user', function() {
 });
 
 ///////////////////////UPDATE USER/////////////////////
-Route::middleware('auth:api')->put('user', function() {
-	return response() -> json(['msg'=>'User atualizado'], 200);
-});
+Route::middleware('auth:api')->put('user', 'UserControllerAPI@updateUser');
 
  
 Route::get('teste', function(){
