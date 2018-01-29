@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h2>BlackJack App Configuration</h2>
-
+		<br>
 		<div class="card-panel teal darken-1">
 			<div class="card-content white-text">
               

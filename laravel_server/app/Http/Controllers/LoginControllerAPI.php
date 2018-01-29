@@ -61,7 +61,7 @@ class LoginControllerAPI extends Controller
 		$errorCode= $response->getStatusCode();
 		$user = User::where('email',$request->email) -> first();
 
-		if ($errorCode=='200' && ($user->admin == 1) && ($user->blocked == 1)) {
+		if ($errorCode=='200' && ($user->admin == 1) && ($user->blocked == 0)) {
 			return json_decode((string) $response->getBody(), true);
 		} else {
 			if($user->confirmed == 0){

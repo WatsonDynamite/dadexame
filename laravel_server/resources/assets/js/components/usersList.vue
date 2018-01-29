@@ -19,10 +19,12 @@
 	            <td>{{ user.name }}</td>
 	            <td>{{ user.nickname }}</td>
 	            <td>{{ user.email }}</td>
-	            <td>{{ user.blocked }}</td>
+	            <td v-if="user.blocked == 1">Yes</td>
+	            <td v-if="user.blocked == 0">No</td>
 	            <td>
-	                <a class="btn btn-xs btn-danger" v-on:click.prevent="blockUser(user)">Block</a>
-	                <a class="btn btn-xs btn-danger" v-on:click.prevent="deleteUser(user)">Delete</a>
+	                <a class="waves-effect waves-light btn" v-on:click.prevent=""><i class="medium material-icons">details</i></a>
+	                <a class="waves-effect waves-light btn" v-on:click.prevent="blockUser(user)"><i class="medium material-icons">do_not_disturb</i></a>
+	                <a class="waves-effect waves-light btn" v-on:click.prevent="deleteUser(user)"><i class="medium material-icons">delete</i></a>
 	            </td>
 	        </tr>
 	    </tbody>
@@ -51,10 +53,7 @@ export default {
 
 			axios.get('http://exame.test/api/users')
 			.then(function (response) {
-			    console.log(response.data.data);
 			    self.users = response.data.data;
-			    console.log("-------USERS------" );
-			    console.log(self.users);
 			});
 		},
 		deleteUser: function(user){

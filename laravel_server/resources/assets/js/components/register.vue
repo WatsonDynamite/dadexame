@@ -1,40 +1,32 @@
 <template>
 	<div>
-		<div class="form-group">
-			<input
-			v-model="name"
-			class="form-control"
-			type="name"
-			placeHolder="Name">
-		</div>
 
-		<div class="form-group">
-			<input
-			v-model="nickname"
-			class="form-control"
-			type="NickName"
-			placeHolder="Nickname">
+		<div class="loginForm">
+			<div class="card-panel blue-grey darken-3">
+				<div class="card-content white-text">
+	              <h1>Login - BlackJack App</h1>
+					<br>
+				<div class="input-field">
+					<input v-model="name" class="validate" type="text" placeHolder="Email">
+				</div>
+				<div class="input-field">
+					<input v-model="nickname" class="validate" type="text" placeHolder="Email">
+				</div>
+				<div class="input-field">
+					<input v-model="email" class="validate" type="email" placeHolder="Email">
+				</div>
+				<div class="input-field">
+					<input v-model="password" class="validate" type="password" placeHolder="secret">
+				</div>
+			</div><br>
+			<div class="card-action">
+			<div class="divider"></div><br>
+			<button class="btn waves-effect waves-light" @click="register">Register</button>
+			<br>
+			</div>	
+			</div>	
 		</div>
-
-		<div class="form-group">
-			<input
-			v-model="email"
-			class="form-control"
-			type="email"
-			placeHolder="Email">
-		</div>
-
-		<div class="form-group">
-			<input
-			v-model="password"
-			class="form-control"
-			type="password"
-			placeHolder="secret">
-		</div>
-		<button @click="register">REGISTER</button>
 	</div>				
-
-
 </template>
 
 <script type="text/javascript">
@@ -71,3 +63,14 @@ export default {
 }
 
 </script>
+
+<style type="text/css" media="screen">
+	
+	.loginForm{
+		width: 70%;
+		padding-top: 15%;
+		padding-left: 25%;
+
+	}
+	
+</style>

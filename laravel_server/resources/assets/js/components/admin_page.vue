@@ -9,7 +9,7 @@
 				<a @click="showDeckConfig" class="waves-effect waves-light btn">Decks</a>
 			</div>	
 		</div>
-		<users-list :users="users" v-if="index == 1" @edit-click="editUser" @delete-click="deleteUser" @message="childMessage" ref="usersListRef"></users-list>
+		<users-list :users="users" v-if="index == 1" ref="usersListRef"></users-list>
 		<stats v-if="index ==2" ></stats>
 		<app-config v-if="index == 3"></app-config>
 		<deck-config v-if="index == 4"></deck-config>		

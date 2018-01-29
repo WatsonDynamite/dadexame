@@ -21,13 +21,13 @@ Vue.use(Auth);
 
 //const user = Vue.component('user', require('./components/user.vue'));
 const login = Vue.component('login', require('./components/admin_login.vue'));
-const dashboard = Vue.component('dashboard', require('./components/dashboard.vue'));
+const adminPage = Vue.component('adminPage', require('./components/admin_page.vue'));
 const usersList = Vue.component('usersList', require('./components/usersList.vue'));
 
 const routes = [
   { path: '/', redirect: '/login'},
   { path: '/login', component: login ,  meta:{forVisitors: true} },
-  { path: '/dashboard', component: dashboard,  meta:{forAuth: true}},
+  { path: '/adminPage', component: adminPage,  meta:{forAuth: true}},
   { path: '/usersList', component: usersList,  meta:{forAuth: true} },
 ];
 
@@ -40,7 +40,7 @@ router.beforeEach(
     if(to.matched.some(record => record.meta.forVisitors)) {
       if(Vue.auth.isAuthenticated()){
         next({
-          path: '/dashboard'
+          path: '/adminPage'
         })
       } else next () 
     } else if(to.matched.some(record => record.meta.forAuth)) {

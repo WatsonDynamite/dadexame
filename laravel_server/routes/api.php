@@ -16,7 +16,7 @@ use Illuminate\Contracts\Support\Jsonable;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+///////////////////////USERS//////////////////////
 //Route to return all users
 Route::get('users', 'UserControllerAPI@getUsers');
 //Route to Check email 
@@ -34,6 +34,7 @@ Route::delete('users/{id}', 'UserControllerAPI@delete');
 //Route to Block User
 Route::get('users/{id}/block', 'UserControllerAPI@blockUser');
  
+///////////////////////GAMES//////////////////////
 Route::get('games', 'GameControllerAPI@index');
 Route::get('games/lobby', 'GameControllerAPI@lobby');
 Route::get('games/status/{status}', 'GameControllerAPI@gamesStatus');
@@ -42,7 +43,16 @@ Route::post('games', 'GameControllerAPI@store');
 Route::patch('games/{id}/join-start', 'GameControllerAPI@joinAndStart');
 Route::patch('games/{id}/endgame/{winner}', 'GameControllerAPI@endgame');
 
+/////////////////////DECKS//////////////////////////
+Route::get('decks', 'DeckControllerAPI@getDecks');
+Route::get('decks/{id}', 'DeckControllerAPI@getDeck');
+Route::get('decks/{id}/changeStatus', 'DeckControllerAPI@changeDeckStatus');
+Route::post('decks', 'DeckControllerAPI@store');
 
+///////////////////////CONFIG//////////////////////
+Route::get('configs', 'ConfigControllerAPI@getConfigInfo');
+
+///////////////////////LOGIN//////////////////////
 Route::post('login', 'LoginControllerAPI@login');
 Route::post('loginAdmin', 'LoginControllerAPI@loginAdmin');
 Route::middleware('auth:api')->post('logout', 'LoginControllerAPI@logout');

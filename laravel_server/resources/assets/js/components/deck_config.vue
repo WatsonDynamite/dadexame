@@ -4,8 +4,10 @@
 
 
 		<div class="card-panel teal darken-1">
+			<div class="card-content white-text">
 			<p>Nr of Complete Decks: {{ nrCompleteDecks }}</p>
 			<p>Nr of Incomplete Decks: {{ nrIncompleteDecks }}</p>
+			</div>
 		</div>
 			
 		<table class="table table-striped">
@@ -52,17 +54,17 @@
 			<select v-for="deck in decks" :key="deck.id" class="browser-default">
 		    <option value="" disabled selected>Deck</option>
 		    <option value="deckName">{{ deck.name }}</option>
-		  </select><br><br>
+		  </select><br>
 
 		  <select class="browser-default">
 		    <option value="" disabled selected>Suite</option>
 		    <option v-for="suite in suites" value="deckName">{{ suite }}</option>
-		  </select><br><br>
+		  </select><br>
 
 		  <select class="browser-default">
 		    <option value="" disabled selected>Value</option>
 		    <option v-for="value in values" value="deckName">{{ value }}</option>
-		  </select><br><br>
+		  </select><br>
 
 		</form>
 			<a @click="uploadCard" class="waves-effect waves-light btn">Upload Card</a>

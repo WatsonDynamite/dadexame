@@ -125,7 +125,7 @@ class UserControllerAPI extends Controller
     public function blockUser($id)
     {
         $user = User::findOrFail($id);
-        $user->blocked = 1;
+        ($user->blocked == 1) ? $user->blocked =0 : $user->blocked =1;   
         $user->save();
         return "User Blocked";
     }
