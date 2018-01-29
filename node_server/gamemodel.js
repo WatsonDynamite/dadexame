@@ -12,7 +12,6 @@ class TicTacToeGame {
         this.player4= '';
         this.playerTurn = 1;
         this.winner = [];
-        this.winnerNames = "";
         this.board = [0,0,0,0,0,0,0,0,0];
         this.deck = [];
         this.playerCards = [];
@@ -75,7 +74,7 @@ class TicTacToeGame {
         var results = [];
         var numWinners = 0;
         handValues.forEach(function(value, index){
-            if(value == winnerValue){
+            if(value == winnerValue && winnerValue != 0){
                 results[index] = "winner";
                 if(winnerValue == 21){
                     results[index] = "winnerBonus";
@@ -102,7 +101,7 @@ class TicTacToeGame {
                 }else if(numWinners == 1){
                     self.playerPoints[index] = 100;
                 }
-                self.winner[index] = 1;
+                self.winner.push(self.allPlayerNames()[index]);
             }
             if(value == "winnerBonus"){
                 if(numWinners > 1){
@@ -110,7 +109,7 @@ class TicTacToeGame {
                 }else if(numWinners == 1){
                     self.playerPoints[index] = 150;
                 }
-                self.winner.push(index + 1);
+                self.winner.push(self.allPlayerNames()[index]);
             }
             if(value == "bust" || value == "lose"){
                 self.playerPoints[index] == 0;
@@ -136,6 +135,29 @@ class TicTacToeGame {
         }
         return cValue;
     }
+
+    allPlayerNames(){
+             var names = [];
+             for(var i = 0; i < this.playerCount; i++){
+                switch(i){
+                    case 0:
+                            names.push(this.player1);
+                            break;
+                    case 1:
+                            names.push(this.player2);
+                            break;
+                    case 2:
+                            names.push(this.player3);
+                            break;
+                    case 3:
+                            names.push(this.player4);
+                            break;
+                    default:
+                            break;
+                }
+             }
+             return names;
+            }
 
     winnerNames(){
             var winnerAux = "";

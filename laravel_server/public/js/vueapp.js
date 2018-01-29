@@ -46369,20 +46369,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return names;
         },
         message: function message() {
+            var messageStr = "";
+
             if (!this.game.gameStarted) {
-                return "Game has not started yet";
-            } else if (this.game.gameEnded) {
-                if (this.game.winner[this.ownPlayerNumber - 1] == 1) {
-                    if (this.game.winner.length > 1) {
-                        return "Game has ended. You Win, and Tied. Winners: " + this.game.winnerNames() + "Score: " + this.game.playerPoints[this.ownPlayerNumber - 1];
+                messageStr = "Game has not started yet";
+            } else {
+                if (this.game.gameEnded) {
+                    messageStr = "Game has ended ";
+                    if (this.game.winner.includes(this.ownPlayerName)) {
+                        messageStr += "and you WON ";
+                        if (this.game.winner.length > 1) {
+                            messageStr += "with a push, tied with ";
+                            var self = this;
+                            this.game.winner.forEach(function (value, index) {
+                                if (value != self.ownPlayerName) {
+                                    messageStr += value;
+                                    messageStr += ", ";
+                                }
+                            });
+                            messageStr += "(50 points)";
+                        } else {
+                            messageStr += "(100 points)";
+                        }
+                    } else {
+                        if (this.currentHandValue > 21) {
+                            messageStr += "and you lost due to";
+                        } else {
+                            messageStr += "and you Lost, (0 points)";
+                        }
                     }
-                    return "Game has ended. You Win. Score: " + this.game.playerPoints[this.ownPlayerNumber - 1];
-                } else if (this.game.winner.length > 1) {
-                    return "Game has ended. There was a tie. Score: " + this.game.playerPoints[this.ownPlayerNumber - 1];
+                } else {
+                    messageStr = "Game is in progress (turn " + this.game.playerTurn + "), ";
+                    if (this.game.playerFolds[this.ownPlayerNumber - 1] == 1) {
+                        messageStr += "you folded 1st turn";
+                    } else {
+                        messageStr += "current choice: ";
+                        messageStr += this.game.queuedPlays[this.ownPlayerNumber - 1];
+                    }
                 }
-                return "Game has ended and " + this.game.winnerNames() + " won. You lost.";
             }
-            return "Game is inconsistent";
+
+            if (this.currentHandValue == 21) {
+                messageStr += ", BLACKJACK(50 extra points)";
+            }
+            if (this.currentHandValue > 21) {
+                messageStr += " BUST (0 points)";
+            }
+
+            return messageStr;
         },
         alerttype: function alerttype() {
             if (!this.game.gameStarted) {
@@ -46461,12 +46495,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         startGame: function startGame() {
-            //start the game, set it up, etc
             this.$parent.startGame(this.game);
-            //why do we tell it to play?
-            //this.$parent.play(this.game, 0);
-            //start asking for timings
-            //this.$parent.updateTime(this.game);
         },
         isPlayer1: function isPlayer1() {
             if (this.ownPlayerNumber == 1) {
