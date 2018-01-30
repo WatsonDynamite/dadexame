@@ -12,7 +12,6 @@ class TicTacToeGame {
         this.player4= '';
         this.playerTurn = 1;
         this.winner = [];
-        this.board = [0,0,0,0,0,0,0,0,0];
         this.deck = [];
         this.playerCards = [];
         this.playerCount = 1;
@@ -131,7 +130,7 @@ class TicTacToeGame {
         //console.log(cValue);
         if(cValue > 10){
             cValue = 10;
-                }
+        }
         if(cValue == 1){
             cValue = 11;
         }
@@ -303,45 +302,12 @@ class TicTacToeGame {
         return array;
     }
 
-    hasRow(value){
-        return  ((this.board[0]==value) && (this.board[1]==value) && (this.board[2]==value)) || 
-        ((this.board[3]==value) && (this.board[4]==value) && (this.board[5]==value)) || 
-        ((this.board[6]==value) && (this.board[7]==value) && (this.board[8]==value)) || 
-        ((this.board[0]==value) && (this.board[3]==value) && (this.board[6]==value)) || 
-        ((this.board[1]==value) && (this.board[4]==value) && (this.board[7]==value)) || 
-        ((this.board[2]==value) && (this.board[5]==value) && (this.board[8]==value)) || 
-        ((this.board[0]==value) && (this.board[4]==value) && (this.board[8]==value)) || 
-        ((this.board[2]==value) && (this.board[4]==value) && (this.board[6]==value));
-    }  
+  
 
     checkGameEnded(){
-        /*
-        if (this.hasRow(1)) {
-            this.winner = 1;
-            this.gameEnded = true;
-            return true;
-        } else if (this.hasRow(2)) {
-            this.winner = 2;
-            this.gameEnded = true;
-            return true;
-        } else if (this.isBoardComplete()) {
-            this.winner = 0;
-            this.gameEnded = true;
-            return true;
-        }
-        return false;
-        */
-        return false;
+       return this.gameEnded;
     }
 
-    isBoardComplete(){
-        for (let value of this.board) {
-            if (value === 0) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     play(playerNumber, index){
         if (!this.gameStarted) {
