@@ -45774,7 +45774,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45932,9 +45932,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         join: function join(game) {
-            if (game.player1 == this.currentPlayer) {
-                alert('Cannot join a game because your name is the same as Player 1');
+            if (game.player1 == this.currentPlayer || game.player2 == this.currentPlayer || game.player3 == this.currentPlayer || game.player4 == this.currentPlayer) {
+                alert('Cannot join a game because there already is a player with your name in this lobby');
                 return;
+            }
+            if (game.playerCount == 4) {
+                alert('This lobby is full.');
             }
             this.$socket.emit('join_game', { gameID: game.gameID, playerName: this.currentPlayer });
         },
@@ -46061,7 +46064,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -46070,6 +46073,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 /* 53 */
 /***/ (function(module, exports) {
 
+//
+//
+//
+//
 //
 //
 //
@@ -46121,6 +46128,10 @@ var render = function() {
           _vm._v(" "),
           _c("td", [_vm._v(_vm._s(game.player1))]),
           _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(game.playerCount) + "/4")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(game.dateCreated) + " ")]),
+          _vm._v(" "),
           _c("td", [
             _c(
               "a",
@@ -46151,6 +46162,10 @@ var staticRenderFns = [
         _c("th", [_vm._v("ID")]),
         _vm._v(" "),
         _c("th", [_vm._v("Player 1")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Player Count")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Created at:")]),
         _vm._v(" "),
         _c("th", [_vm._v("Actions")])
       ])
@@ -46528,7 +46543,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                 }
             }
-            this.fold();
             return false;
         },
         fold: function fold() {

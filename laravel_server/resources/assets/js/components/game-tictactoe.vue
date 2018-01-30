@@ -269,7 +269,6 @@
                         }
                     }
                 }
-                this.fold();
                 return false;
             },
             fold(){

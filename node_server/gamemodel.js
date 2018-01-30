@@ -20,6 +20,7 @@ class TicTacToeGame {
         this.playerFolds = [];
         this.queuedPlays = [];
         this.turnTimer = 20;
+        this.dateCreated = new Date().toLocaleString();
     }
 
     join(playerName){
