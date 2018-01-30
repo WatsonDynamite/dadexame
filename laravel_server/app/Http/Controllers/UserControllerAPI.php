@@ -139,7 +139,28 @@ class UserControllerAPI extends Controller
         $user = User::findOrFail($id);
         ($user->blocked == 1) ? $user->blocked =0 : $user->blocked =1;   
         $user->save();
-        return "User Blocked";
+
+        $data = [
+            'name' => $user->name
+        ];
+
+
+        if($user->blocked == 0){
+            Mail::send('emails.blockUser', $data, function($message) use($user) {
+            $message->to($user->email, $user->nickname)->subject('BlackJack Registration');
+            });
+
+            return "User Blocked";
+
+        }else{
+            Mail::send('emails.unblockUser', $data, function($message) use($user) {
+            $message->to($user->email, $user->nickname)->subject('BlackJack Registration');
+            });
+
+            return "User Unblocked";
+        }
+
+
     }
 
 

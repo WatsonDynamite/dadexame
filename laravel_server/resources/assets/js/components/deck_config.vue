@@ -38,9 +38,32 @@
 		<card-preview :selectedTableDeck="selectedTableDeck" v-if="showPreview"></card-preview>
 
 		<br><br>	
+		<h4>Create New Deck</h4>
+		<div class="card-panel teal darken-1">
+			<div class="card-content white-text">
+
+				<form action="#">
+					<p>Deck Name:</p>
+					<input v-model="newDeckTitle" type="text">
+				    <div class="file-field input-field">
+				      <div class="btn">
+				        <span>File</span>
+				        <input type="file" name="image" id="deckfile">
+				      </div>
+				      <div class="file-path-wrapper">
+				        <input class="file-path validate" type="text">
+				      </div>
+				    </div>
+				    <a @click="createDeck" class="waves-effect waves-light btn">Create Deck</a>
+				</form>
+			</div>
+		</div>
+
+
+		<br><br>	
 		<h4>Upload Card Image</h4>
 		<div class="card-panel teal darken-1">
-
+			<div class="card-content white-text">
 		<form action="#">
 		    <div class="file-field input-field">
 		    <div class="btn">
@@ -51,24 +74,25 @@
 		        	<input class="file-path validate" type="text">
 		    	</div>
 			</div><br>
-
+			<p>Deck:</p>
 			<select class="browser-default" v-model="selectedDeck">
 		    <option disabled selected>Deck</option>
 		    <option v-for="deck in decks">{{ deck.name }}</option>
 		  </select><br>
-
+		  <p>Suite:</p>
 		  <select class="browser-default" v-model="selectedSuite"> 
-		    <option disabled selected>Suite</option>
+		    <option disabled selected style="color:#000">Suite</option>
 		    <option v-for="suite in suites">{{ suite }}</option>
 		  </select><br>
-
+		  <p>Value:</p>
 		  <select class="browser-default" v-model="selectedValue">
-		    <option disabled selected>Value</option>
+		    <option disabled selected >Value</option>
 		    <option v-for="value in values">{{ value }}</option>
 		  </select><br>
 
 		</form>
 			<a @click="uploadCard" class="waves-effect waves-light btn">Upload Card</a>
+		</div>
 		</div>
 	</div>
 </template>
@@ -88,6 +112,7 @@ export default {
 			decks: null,
 			editingDeck: null,
 			cardFile: null,
+			newDeckTitle: '',
 			/////Deck Preview /////////////////
 			showPreview: false,
 			selectedTableDeck: 0,
@@ -100,15 +125,24 @@ export default {
 
 	methods: {
 		getDecks: function() {
-
 			axios.get('http://exame.test/api/decks')
 			.then(response => {
 				this.decks = response.data.data;
-                });
+				var self = this;
+				this.decks.forEach( function(deck, index) {
+					console.log(deck);
+					(deck.complete == 0) ? self.nrIncompleteDecks++ : self.nrCompleteDecks++;
+				});
+
+            });
 		},
 		previewCard: function(deck){
-			this.selectedTableDeck = deck.id;
-			(this.showPreview == true) ? this.showPreview = false : this.showPreview = true;
+
+			if(this.selectedTableDeck == deck.id){
+				(this.showPreview == true) ? this.showPreview = false : this.showPreview = true;
+			}else{
+				this.selectedTableDeck = deck.id;
+			}
 		},
 		changeDeckStatus: function(deck){
 			axios.get('http://exame.test/api/decks/'+deck.id+'/changeStatus')
@@ -117,22 +151,50 @@ export default {
                 });
 		},
 		uploadCard: function() {
-			var formData = new FormData();
-			var imagefile = document.querySelector('#file');
-			formData.append("image", imagefile.files[0]);
-			formData.append("deck", this.selectedDeck);
-			formData.append("suite", this.selectedSuite);
-			formData.append("value", this.selectedValue);
-			axios.post('http://exame.test/api/decks',formData,{
-				'Content-Type': 'multipart/form-data'	
-			})
-			.then(response => {
-                });
+			if(this.validateUploadForm()){
+				var formData = new FormData();
+				var imagefile = document.querySelector('#file');
+				formData.append("image", imagefile.files[0]);
+				formData.append("deck", this.selectedDeck);
+				formData.append("suite", this.selectedSuite);
+				formData.append("value", this.selectedValue);
+				axios.post('http://exame.test/api/cards',formData,{
+					'Content-Type': 'multipart/form-data'	
+
+				})
+				.then(response => {
+					this.forcePreview();
+	                });
+			}
 		},
 		deleteCard: function(user){
             axios.delete('http://exame.test/api/decks/'+user.id)
                 .then(response => {
                 });
+		},
+		createDeck: function(){
+			if(! this.newDeckTitle == ''){
+				var formData = new FormData();
+				var imagefile = document.querySelector('#deckfile');
+				formData.append("image", imagefile.files[0]);
+				formData.append("name", this.newDeckTitle);
+				axios.post('http://exame.test/api/decks',formData,{
+					'Content-Type': 'multipart/form-data'	
+				})
+				.then(response => {
+					this.newDeckTitle = '';
+					this.getDecks();
+	            });
+			}
+		},validateUploadForm: function(){
+			if((this.values.includes(this.selectedValue)) || 
+					(this.suites.includes(this.selectedSuite)) )
+			{
+				return true
+
+			}else{ 
+				return false;
+			}
 		}
 	},
 	components: {
@@ -146,3 +208,9 @@ export default {
 }
 
 </script>
+
+<style type="text/css" media="screen">
+	select{
+		color: #000;
+	}
+</style>

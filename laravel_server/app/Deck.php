@@ -16,7 +16,8 @@ class Deck extends Model
     protected $fillable = [
         'name',
         'active',
-        'complete'
+        'complete',
+        'hidden_face_image_path'
     ];
 
 }

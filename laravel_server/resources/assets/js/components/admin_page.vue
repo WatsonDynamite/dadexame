@@ -26,7 +26,7 @@
 		data: function(){
 			return { 
 		        users: [],
-		        index: 0
+		        index: 1
 		    }
 		},
 	    methods: {

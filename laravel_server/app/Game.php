@@ -13,9 +13,9 @@ class Game extends Model
      */
     protected $fillable = [
         'status',
-        'player1',
-        'player2',
-        'winner',
+        'total_players',
+        'created_by',
+        'deck_used',
     ];
     public function getWinnerName()
     {

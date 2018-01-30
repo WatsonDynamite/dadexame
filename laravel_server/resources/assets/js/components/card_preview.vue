@@ -36,6 +36,8 @@ export default {
 				this.previewCards.forEach( function(card, index) {
 					path = card.path;
 					card.path = path.replace("public/","storage/");
+					card.path = 'http://exame.test/' + card.path;
+					console.log('PATH: ' + card.path);
 				});
 
 				console.log(this.previewCards);	

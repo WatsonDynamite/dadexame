@@ -13,6 +13,7 @@ use Illuminate\Contracts\Support\Jsonable;
 |
 */
 
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -47,7 +48,8 @@ Route::patch('games/{id}/endgame/{winner}', 'GameControllerAPI@endgame');
 Route::get('decks', 'DeckControllerAPI@getDecks');
 Route::get('decks/{id}', 'DeckControllerAPI@getDeck');
 Route::get('decks/{id}/changeStatus', 'DeckControllerAPI@changeDeckStatus');
-Route::post('decks', 'DeckControllerAPI@store');
+Route::post('decks', 'DeckControllerAPI@newDeck');
+Route::post('cards', 'DeckControllerAPI@newCard');
 
 ///////////////////////CONFIG//////////////////////
 Route::get('configs', 'ConfigControllerAPI@getConfigInfo');
