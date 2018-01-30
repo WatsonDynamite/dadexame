@@ -49,9 +49,9 @@ io.on('connection', function (socket) {
 
     socket.on('join_game', function (data){
     	let game = games.joinGame(data.gameID, data.playerName, socket.id);
-		socket.join(game.gameID);
-		io.to(game.gameID).emit('my_active_games_changed');
-		io.emit('lobby_changed');
+            socket.join(game.gameID);
+            io.to(game.gameID).emit('my_active_games_changed');
+            io.emit('lobby_changed');
     });
 
     socket.on('remove_game', function (data){

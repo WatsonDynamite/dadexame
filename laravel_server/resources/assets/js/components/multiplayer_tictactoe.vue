@@ -162,9 +162,12 @@
                 }
             },
             join(game){
-                if (game.player1 == this.currentPlayer) {
-                    alert('Cannot join a game because your name is the same as Player 1');
+                if (game.player1 == this.currentPlayer || game.player2 == this.currentPlayer || game.player3 == this.currentPlayer || game.player4 == this.currentPlayer) {
+                    alert('Cannot join a game because there already is a player with your name in this lobby');
                     return;
+                }
+                if(game.playerCount == 4){
+                    alert('This lobby is full.');
                 }
                 this.$socket.emit('join_game', {gameID: game.gameID, playerName: this.currentPlayer });   
             },

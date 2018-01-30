@@ -4,6 +4,8 @@
 	        <tr>
 	            <th>ID</th>
 	            <th>Player 1</th>
+                <th>Player Count</th>
+                <th>Created at:</th>
 	            <th>Actions</th>
 	        </tr>
 	    </thead>
@@ -11,6 +13,8 @@
 	        <tr v-for="game in games"  :key="game.gameID">
 	            <td>{{ game.gameID }}</td>
 	            <td>{{ game.player1 }}</td>
+                <td>{{ game.playerCount }}/4</td>
+                <td>{{ game.dateCreated }} </td>
 	            <td>
 	                <a class="btn btn-xs btn-primary" v-on:click.prevent="join(game)">Join</a>
 	            </td>
@@ -27,7 +31,7 @@
             join(game) {
             	this.$emit('join-click', game);
             },		
-        },		
+        }
 	}
 </script>
 
