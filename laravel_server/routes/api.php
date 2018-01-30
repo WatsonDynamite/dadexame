@@ -60,7 +60,10 @@ Route::middleware('auth:api')->get('user', function() {
     return response()->json(request()->user());
 });
 
+///////////////////////UPDATE USER/////////////////////
+Route::middleware('auth:api')->put('user', 'UserControllerAPI@updateUser');
 
+ 
 Route::get('teste', function(){
 	return response()->json(['msg'=>'Só um teste'], 200);
 });

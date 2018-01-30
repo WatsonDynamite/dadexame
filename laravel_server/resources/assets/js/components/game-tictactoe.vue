@@ -116,6 +116,11 @@
                 } else {
                     if(this.game.gameEnded) {
                         messageStr = "Game has ended ";
+
+                        if(this.game.arePointsGiven == 0){
+                            this.$parent.askForPoints(this.game);
+                        }
+                        
                         if(this.game.winner.includes(this.ownPlayerName)){
                             messageStr += "and you WON ";
                             if(this.game.winner.length > 1){

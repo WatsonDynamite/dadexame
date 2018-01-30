@@ -21,6 +21,7 @@ class TicTacToeGame {
         this.queuedPlays = [];
         this.turnTimer = 20;
         this.dateCreated = new Date().toLocaleString();
+        this.arePointsGiven = 0;
     }
 
     join(playerName){
@@ -135,6 +136,10 @@ class TicTacToeGame {
             cValue = 11;
         }
         return cValue;
+    }
+
+    givePoints(){
+        this.arePointsGiven = 1;
     }
 
     allPlayerNames(){
