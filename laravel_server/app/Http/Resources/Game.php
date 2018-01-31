@@ -17,10 +17,10 @@ class Game extends Resource
         return [
             'id' => $this->id,
             'status' => $this->status,
-            'player1' => $this->player1,
-            'player2' => $this->player2,
-            'winner' => $this->winner,
-            'winnerName' => $this->getWinnerName(),
+            'total_players' => $this->total_players,
+            'created_by' => $this->created_by,
+            'deck_used' => $this->deck_used,
+            'created_at' => $this->created_at
         ];
         return parent::toArray($request);
     }

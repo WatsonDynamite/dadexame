@@ -46030,17 +46030,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(82)
 /* template */
-<<<<<<< HEAD
-var __vue_template__ = __webpack_require__(94)
-||||||| merged common ancestors
-<<<<<<< HEAD
-var __vue_template__ = __webpack_require__(99)
-=======
-var __vue_template__ = __webpack_require__(94)
->>>>>>> 3a4eceeac0622a7e13b7e2b9b9c868df9b357d65
-=======
-var __vue_template__ = __webpack_require__(99)
->>>>>>> dd7df32f6c9ff05ebfac8a828b40a4c0194415c0
+var __vue_template__ = __webpack_require__(101)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -46684,36 +46674,107 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
-		return {};
+		return {
+			topPlayersPoints: [],
+			topPlayersGames: [],
+			topPlayersBestAvg: [],
+			totalNrPlayers: 0,
+			totalNrPlayedGames: 0
+		};
 	},
 
 	methods: {
-		getDecks: function getDecks() {
+		getStats: function getStats() {
 			var _this = this;
 
-			axios.get('http://exame.test/api/decks').then(function (response) {
-				console.log(response.data.data);
-				_this.decks = response.data.data;
+			axios.get('http://exame.test/api/stats/totalPlayers').then(function (response) {
+				_this.totalNrPlayers = response.data;
+				console.log(response.data);
 			});
-		},
-		uploadCard: function uploadCard() {
-			var formData = new FormData();
-			var imagefile = document.querySelector('#file');
-			formData.append("image", imagefile.files[0]);
 
-			axios.post('http://exame.test/api/decks', formData, {
-				'Content-Type': 'multipart/form-data'
-			}).then(function (response) {
-				console.log(response);
+			axios.get('http://exame.test/api/stats/totalGames').then(function (response) {
+				_this.totalNrPlayedGames = response.data;
+				console.log(response.data);
+			});
+
+			axios.get('http://exame.test/api/stats/topPlayersMorePoints').then(function (response) {
+				_this.topPlayersPoints = response.data.data;
+				console.log(response.data);
+			});
+
+			axios.get('http://exame.test/api/stats/topPlayersMoreGames').then(function (response) {
+				_this.topPlayersGames = response.data.data;
+				console.log(response.data);
+			});
+
+			axios.get('http://exame.test/api/stats/topPlayersBestAvg').then(function (response) {
+				_this.topPlayersBestAvg = response.data.data;
+				console.log(response.data);
 			});
 		}
 	},
 	computed: {},
-	mounted: function mounted() {}
+	mounted: function mounted() {
+		this.getStats();
+	}
 });
 
 /***/ }),
@@ -46724,20 +46785,132 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("h2", [_vm._v("BlackJack App Statistics")]),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c("h4", [_vm._v("Total nr of players: " + _vm._s(_vm.totalNrPlayers))]),
+    _c("br"),
+    _vm._v(" "),
+    _c("h4", [
+      _vm._v("Total nr of games played: " + _vm._s(_vm.totalNrPlayedGames))
+    ]),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c("h4", [_vm._v("Top 5 Highscores")]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-striped" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.topPlayersPoints, function(user) {
+          return _c("tr", { key: user.id }, [
+            _c("td", [_vm._v(_vm._s(user.name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(user.nickname))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(user.total_points))])
+          ])
+        })
+      )
+    ]),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c("h4", [_vm._v("Top 5 Players with the most games played")]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-striped" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.topPlayersGames, function(user) {
+          return _c("tr", { key: user.id }, [
+            _c("td", [_vm._v(_vm._s(user.name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(user.nickname))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(user.total_games_played))])
+          ])
+        })
+      )
+    ]),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c("h4", [_vm._v("Top 5 Players with the best Avg")]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-striped" }, [
+      _vm._m(2),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.topPlayersBestAvg, function(user) {
+          return _c("tr", { key: user.id }, [
+            _c("td", [_vm._v(_vm._s(user.name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(user.nickname))]),
+            _vm._v(" "),
+            _c("td", [
+              _vm._v(
+                _vm._s(
+                  Number(
+                    (user.total_points / user.total_games_played).toFixed(1)
+                  )
+                )
+              )
+            ])
+          ])
+        })
+      )
+    ]),
+    _c("br"),
+    _c("br")
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("h2", [_vm._v("BlackJack App Statistics")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-lg-2" }, [
-          _c("div", { attrs: { id: "test-circle" } })
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nickname")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Highscore")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nickname")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Games Played")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nickname")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Avg")])
       ])
     ])
   }
@@ -46758,23 +46931,13 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(108)
+  __webpack_require__(92)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(92)
+var __vue_script__ = __webpack_require__(94)
 /* template */
-<<<<<<< HEAD
-var __vue_template__ = __webpack_require__(93)
-||||||| merged common ancestors
-<<<<<<< HEAD
-var __vue_template__ = __webpack_require__(98)
-=======
-var __vue_template__ = __webpack_require__(93)
->>>>>>> 3a4eceeac0622a7e13b7e2b9b9c868df9b357d65
-=======
-var __vue_template__ = __webpack_require__(98)
->>>>>>> dd7df32f6c9ff05ebfac8a828b40a4c0194415c0
+var __vue_template__ = __webpack_require__(100)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -46815,11 +46978,51 @@ module.exports = Component.exports
 
 /***/ }),
 /* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(93);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("1069cf8c", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-192234eb\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./deck_config.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-192234eb\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./deck_config.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\nselect{\n\tcolor: #000;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 94 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__card_preview_vue__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__card_preview_vue__ = __webpack_require__(95);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__card_preview_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__card_preview_vue__);
 //
 //
@@ -47027,22 +47230,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 93 */
-<<<<<<< HEAD
-||||||| merged common ancestors
-<<<<<<< HEAD
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(94)
+  __webpack_require__(96)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(96)
+var __vue_script__ = __webpack_require__(98)
 /* template */
-var __vue_template__ = __webpack_require__(97)
+var __vue_template__ = __webpack_require__(99)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -47082,13 +47282,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 94 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(95);
+var content = __webpack_require__(97);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -47108,7 +47308,7 @@ if(false) {
 }
 
 /***/ }),
-/* 95 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -47122,7 +47322,7 @@ exports.push([module.i, "\n.previewImage{\n\twidth: 100px;\n\theight: 150px;\n}\
 
 
 /***/ }),
-/* 96 */
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47166,6 +47366,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this.previewCards.forEach(function (card, index) {
 					path = card.path;
 					card.path = path.replace("public/", "storage/");
+					card.path = 'http://exame.test/' + card.path;
+					console.log('PATH: ' + card.path);
 				});
 
 				console.log(_this.previewCards);
@@ -47179,9 +47381,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 97 */
-=======
->>>>>>> 3a4eceeac0622a7e13b7e2b9b9c868df9b357d65
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47223,200 +47423,7 @@ if (false) {
 }
 
 /***/ }),
-/* 98 */
-=======
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(94)
-}
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(96)
-/* template */
-var __vue_template__ = __webpack_require__(97)
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/card_preview.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2d2d2056", Component.options)
-  } else {
-    hotAPI.reload("data-v-2d2d2056", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 94 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(95);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("5957898c", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2d2d2056\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./card_preview.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2d2d2056\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./card_preview.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 95 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.previewImage{\n\twidth: 100px;\n\theight: 150px;\n}\n.previewBox{\n\tdisplay: inline-block;\n\tpadding: 10px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 96 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['selectedTableDeck'],
-	data: function data() {
-		return {
-			previewCards: []
-		};
-	},
-
-	methods: {
-		getDeckCards: function getDeckCards() {
-			var _this = this;
-
-			axios.get('http://exame.test/api/decks/' + this.selectedTableDeck).then(function (response) {
-				_this.previewCards = response.data.data;
-
-				var path;
-				_this.previewCards.forEach(function (card, index) {
-					path = card.path;
-					card.path = path.replace("public/", "storage/");
-				});
-
-				console.log(_this.previewCards);
-			});
-		}
-	},
-	computed: {},
-	mounted: function mounted() {
-		this.getDeckCards();
-	}
-});
-
-/***/ }),
-/* 97 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h4", [_vm._v("Preview Deck")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-panel teal darken-1" }, [
-      _c("div", { staticClass: "card-content white-text" }, [
-        _c(
-          "div",
-          _vm._l(_vm.previewCards, function(card, index) {
-            return _c("div", { staticClass: "previewBox" }, [
-              _c("p", [
-                _vm._v(_vm._s(card.suite) + " - " + _vm._s(card.value))
-              ]),
-              _vm._v(" "),
-              _c("img", {
-                staticClass: "responsive-img previewImage",
-                attrs: { src: card.path }
-              })
-            ])
-          })
-        )
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2d2d2056", module.exports)
-  }
-}
-
-/***/ }),
-/* 98 */
->>>>>>> dd7df32f6c9ff05ebfac8a828b40a4c0194415c0
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47781,17 +47788,7 @@ if (false) {
 }
 
 /***/ }),
-<<<<<<< HEAD
-/* 94 */
-||||||| merged common ancestors
-<<<<<<< HEAD
-/* 99 */
-=======
-/* 94 */
->>>>>>> 3a4eceeac0622a7e13b7e2b9b9c868df9b357d65
-=======
-/* 99 */
->>>>>>> dd7df32f6c9ff05ebfac8a828b40a4c0194415c0
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47863,247 +47860,6 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-da070308", module.exports)
   }
 }
-
-/***/ }),
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(104)
-}
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(106)
-/* template */
-var __vue_template__ = __webpack_require__(107)
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/card_preview.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2d2d2056", Component.options)
-  } else {
-    hotAPI.reload("data-v-2d2d2056", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 104 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(105);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("5957898c", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2d2d2056\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./card_preview.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2d2d2056\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./card_preview.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 105 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.previewImage{\n\twidth: 100px;\n\theight: 150px;\n}\n.previewBox{\n\tdisplay: inline-block;\n\tpadding: 10px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 106 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['selectedTableDeck'],
-	data: function data() {
-		return {
-			previewCards: []
-		};
-	},
-
-	methods: {
-		getDeckCards: function getDeckCards() {
-			var _this = this;
-
-			axios.get('http://exame.test/api/decks/' + this.selectedTableDeck).then(function (response) {
-				_this.previewCards = response.data.data;
-
-				var path;
-				_this.previewCards.forEach(function (card, index) {
-					path = card.path;
-					card.path = path.replace("public/", "storage/");
-					card.path = 'http://exame.test/' + card.path;
-					console.log('PATH: ' + card.path);
-				});
-
-				console.log(_this.previewCards);
-			});
-		}
-	},
-	computed: {},
-	mounted: function mounted() {
-		this.getDeckCards();
-	}
-});
-
-/***/ }),
-/* 107 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h4", [_vm._v("Preview Deck")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-panel teal darken-1" }, [
-      _c("div", { staticClass: "card-content white-text" }, [
-        _c(
-          "div",
-          _vm._l(_vm.previewCards, function(card, index) {
-            return _c("div", { staticClass: "previewBox" }, [
-              _c("p", [
-                _vm._v(_vm._s(card.suite) + " - " + _vm._s(card.value))
-              ]),
-              _vm._v(" "),
-              _c("img", {
-                staticClass: "responsive-img previewImage",
-                attrs: { src: card.path }
-              })
-            ])
-          })
-        )
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2d2d2056", module.exports)
-  }
-}
-
-/***/ }),
-/* 108 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(109);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("1069cf8c", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-192234eb\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./deck_config.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-192234eb\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./deck_config.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 109 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\nselect{\n\tcolor: #000;\n}\n", ""]);
-
-// exports
-
 
 /***/ })
 /******/ ]);
