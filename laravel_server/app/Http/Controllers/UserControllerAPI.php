@@ -147,14 +147,14 @@ class UserControllerAPI extends Controller
 
         if($user->blocked == 0){
             Mail::send('emails.blockUser', $data, function($message) use($user) {
-            $message->to($user->email, $user->nickname)->subject('BlackJack Registration');
+            $message->to($user->email, $user->nickname)->subject('BlackJack Update');
             });
 
             return "User Blocked";
 
         }else{
             Mail::send('emails.unblockUser', $data, function($message) use($user) {
-            $message->to($user->email, $user->nickname)->subject('BlackJack Registration');
+            $message->to($user->email, $user->nickname)->subject('BlackJack Update');
             });
 
             return "User Unblocked";

@@ -65,7 +65,21 @@ Route::middleware('auth:api')->get('user', function() {
 ///////////////////////UPDATE USER/////////////////////
 Route::middleware('auth:api')->put('user', 'UserControllerAPI@updateUser');
 
+
+/////////////////////STATISTICS////////////////////////
+//get total nr of players
+Route::get('stats/totalPlayers','StatControllerAPI@totalPlayers');
+//get total nr of played games
+Route::get('stats/totalGames','StatControllerAPI@totalGames');
+//get top 5 players with most games
+Route::get('stats/topPlayersMoreGames','StatControllerAPI@topPlayersMoreGames');
+//get top 5 players with most points
+Route::get('stats/topPlayersMorePoints','StatControllerAPI@topPlayersMorePoints');
+//get top 5 players with best average
+Route::get('stats/topPlayersBestAvg','StatControllerAPI@topPlayersBestAvg');
  
+
+
 Route::get('teste', function(){
 	return response()->json(['msg'=>'Só um teste'], 200);
 });

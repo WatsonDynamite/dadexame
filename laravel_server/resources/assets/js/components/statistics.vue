@@ -2,18 +2,73 @@
 	
 	<div>
 
-		<h2>BlackJack App Statistics</h2>
+		<h2>BlackJack App Statistics</h2><br><br>
 
-		<div class="row">
-			<div class="col-lg-2">
-			    <div id="test-circle"></div>
-			</div>
-		</div>
+		<h4>Total nr of players: {{ totalNrPlayers }}</h4><br>
+		
+		<h4>Total nr of games played: {{ totalNrPlayedGames }}</h4><br><br>
+
+		<h4>Top 5 Highscores</h4>
+		<table class="table table-striped">
+		    <thead>
+		        <tr>
+		            <th>Name</th>
+		            <th>Nickname</th>
+		            <th>Highscore</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+
+		        <tr v-for="user in topPlayersPoints"  :key="user.id">
+		            <td>{{ user.name }}</td>
+		            <td>{{ user.nickname }}</td>
+		            <td>{{ user.total_points }}</td>
+		        </tr>
+		    </tbody>
+		</table><br><br>
+
+		<h4>Top 5 Players with the most games played</h4>
+		<table class="table table-striped">
+		    <thead>
+		        <tr>
+		            <th>Name</th>
+		            <th>Nickname</th>
+		            <th>Games Played</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+
+		        <tr v-for="user in topPlayersGames"  :key="user.id">
+		            <td>{{ user.name }}</td>
+		            <td>{{ user.nickname }}</td>
+		            <td>{{ user.total_games_played }}</td>
+		        </tr>
+		    </tbody>
+		</table><br><br>
+
+
+		<h4>Top 5 Players with the best Avg</h4>
+		<table class="table table-striped">
+		    <thead>
+		        <tr>
+		            <th>Name</th>
+		            <th>Nickname</th>
+		            <th>Avg</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+
+		        <tr v-for="user in topPlayersBestAvg"  :key="user.id">
+		            <td>{{ user.name }}</td>
+		            <td>{{ user.nickname }}</td>
+		            <td>{{ Number((user.total_points/user.total_games_played).toFixed(1)) }}</td>
+		        </tr>
+		    </tbody>
+		</table><br><br>
 
 
 	</div>
 </template>
-
 <!--
 Stats:
 
@@ -30,40 +85,58 @@ Stats:
 	most used decks 
 
 	-->
-
  <script type="text/javascript">
 
 export default {
 	data: function() {
 		return{
+			topPlayersPoints: [],
+			topPlayersGames: [],
+			topPlayersBestAvg: [],
+			totalNrPlayers: 0,
+			totalNrPlayedGames: 0
 		}
 	},
 
 	methods: {
-		getDecks: function() {
+		getStats: function() {
 
-			axios.get('http://exame.test/api/decks')
+			axios.get('http://exame.test/api/stats/totalPlayers')
 			.then(response => {
-				console.log(response.data.data);
-				this.decks = response.data.data;
-                });
-		},
-		uploadCard: function() {
-			var formData = new FormData();
-			var imagefile = document.querySelector('#file');
-			formData.append("image", imagefile.files[0]);
+				this.totalNrPlayers = response.data;
+				console.log(response.data);
+            });
 
-			axios.post('http://exame.test/api/decks',formData,{
-				'Content-Type': 'multipart/form-data'	
-			})
+            axios.get('http://exame.test/api/stats/totalGames')
 			.then(response => {
-				console.log(response)
-                });
+				this.totalNrPlayedGames = response.data;
+				console.log(response.data);
+            });
+
+			axios.get('http://exame.test/api/stats/topPlayersMorePoints')
+			.then(response => {
+				this.topPlayersPoints = response.data.data;
+				console.log(response.data);
+            });
+
+            axios.get('http://exame.test/api/stats/topPlayersMoreGames')
+			.then(response => {
+				this.topPlayersGames = response.data.data;
+				console.log(response.data);
+            });
+
+			axios.get('http://exame.test/api/stats/topPlayersBestAvg')
+			.then(response => {
+				this.topPlayersBestAvg = response.data.data;
+				console.log(response.data);
+            });
+
 		}
 	},
 	computed:{    
         },
 	mounted() {
+		this.getStats();
 	}
 }
 
