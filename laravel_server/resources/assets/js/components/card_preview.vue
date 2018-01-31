@@ -28,7 +28,7 @@ export default {
 
 	methods: {
 		getDeckCards: function() {
-			axios.get('http://exame.test/api/decks/' + this.selectedTableDeck )
+			axios.get('http://exame.test/api/decks/' + this.selectedTableDeck)
 			.then(response => {
 				this.previewCards = response.data.data;
 

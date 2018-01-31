@@ -46551,18 +46551,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.game.queuePlay(this.ownPlayerNumber, 'fold');
             }
         },
-        pieceImageURL: function pieceImageURL(pieceNumber) {
+        cardImageURL: function cardImageURL(pieceNumber) {
+            /*
             var imgSrc = String(pieceNumber);
-            return 'img/' + imgSrc + '.png';
+            return '' + imgSrc + '.png';
+            */
+
+            return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + "/" + pieceNumber + ".png";
         },
         renderCard: function renderCard(card, index, handIndex) {
             if (this.allPlayerNames[handIndex] != this.ownPlayerName && index > 0) {
                 if (this.game.gameEnded) {
-                    return this.pieceImageURL(card);
+                    return this.cardImageURL(card);
                 }
-                return 'img/semFace.png';
+                return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + '/semFace.png';
             } else {
-                return this.pieceImageURL(card);
+                return this.cardImageURL(card);
             }
         },
         closeGame: function closeGame() {
@@ -46611,6 +46615,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             }
                         }
                     }
+                    this.fold();
                 }
             }
             return false;
@@ -46647,19 +46652,21 @@ var render = function() {
             _vm.isGameStarted() == false
               ? _c("div", [
                   _c("p", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-xs btn-success",
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            _vm.startGame($event)
-                          }
-                        }
-                      },
-                      [_vm._v("Start game")]
-                    )
+                    _vm.game.playerCount > 1 && _vm.game.deckToUse != undefined
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-xs btn-success",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.startGame($event)
+                              }
+                            }
+                          },
+                          [_vm._v("Start game")]
+                        )
+                      : _vm._e()
                   ])
                 ])
               : _vm._e()

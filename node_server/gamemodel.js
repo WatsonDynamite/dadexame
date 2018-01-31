@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
 
+
 class TicTacToeGame {
 
     constructor(ID, player1Name) {
@@ -21,8 +22,35 @@ class TicTacToeGame {
         this.turnTimer = 20;
         this.dateCreated = new Date().toLocaleString();
         this.arePointsGiven = 0;
+        this.deckToUse = this.getDecks();
+    }
+    
+    getDecks(){
+        var axios = require("axios");
+        var self = this;
+        var activeDecks = [];
+        axios.get('http://exame.test/api/decks/')
+			.then(response => {
+				var decks = response.data.data;
+
+				decks.forEach( function(deck, index) {
+                        if(deck.active === 1){
+                            activeDecks[index] = [deck.id, deck.name];
+                            console.log("Found active deck:" + deck.name);
+                            console.log("active decks: " + activeDecks);
+                            self.pickRandomDeck(activeDecks);
+                        }
+				});
+            });
+        
+        
     }
 
+    pickRandomDeck(activeDecks){
+        this.deckToUse = activeDecks[Math.floor(Math.random() * activeDecks.length)];
+    }
+    
+    
     join(playerName){
         //this.setup();
         if(this.playerCount == 1){
@@ -162,7 +190,7 @@ class TicTacToeGame {
                 }
              }
              return names;
-            }
+    }
 
     winnerNames(){
             var winnerAux = "";
@@ -173,11 +201,11 @@ class TicTacToeGame {
                     winnerNames += allPlayerNames[value - 1];
                 });
                 this.winnerNames = winnerAux;
-            }
+    }
 
     startCountdown(){
         if(this.playerTurn == 3){
-            console.log("bOM DIA :)");
+            console.log("Acabou o jogo.");
             this.endGame();
             return;
         }
@@ -209,6 +237,7 @@ class TicTacToeGame {
                         self.drawCard(index + 1);
                     }
                     if(item === 'none'){
+                        item == 'fold';
                         self.playerFolds[index] = 1;
                     }
                 });
@@ -223,7 +252,7 @@ class TicTacToeGame {
                     }
                 }
 
-                console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                console.log("proximo turno");
                 console.log(self);
                 self.startCountdown();
             }
@@ -242,7 +271,9 @@ class TicTacToeGame {
         const cartas = ['1','2','3','4','5','6','7','8','9','10','11','12','13'];
         const naipes = ['c','e','o','p'];
         var tempdeck = [];
-
+        
+       
+        
         //preenche o baralho
         naipes.forEach(function(element) {
             cartas.forEach(function(element2) {
@@ -279,6 +310,8 @@ class TicTacToeGame {
                 this.playerCards[j].push(this.deck.pop());
             }
         }
+        
+        console.log("deck: " + this.deckToUse);
         
         //inicia os 20 segundos de espera do turno
         this.startCountdown();
