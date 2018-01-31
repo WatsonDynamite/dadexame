@@ -1,6 +1,6 @@
 <template>
-	<div>
         <div>
+            <p><button class="btn btn-xs btn-failure" v-on:click.prevent="logout"> Logout </button></p>
             <h3 class="text-center">{{ title }}</h3>
             <br>
             <h2>Current Player : {{ currentPlayer }}</h2>
@@ -143,6 +143,11 @@
             },
         },        
         methods: {
+            logout(){
+                this.$router.push('/');
+                this.$auth.destroyToken();
+            },
+            
             checkUsernameLoaded(){
               return !(this.currentPlayer === 'Loading...');
             },

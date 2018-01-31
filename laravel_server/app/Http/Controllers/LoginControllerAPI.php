@@ -82,5 +82,6 @@ class LoginControllerAPI extends Controller
 		\Auth::guard('api')->user()->token()->revoke();
 		\Auth::guard('api')->user()->token()->delete();
 		return response()->json(['msg'=>'Token revoked'], 200);
+        
 	}
 }
