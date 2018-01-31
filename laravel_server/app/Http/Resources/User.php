@@ -19,7 +19,9 @@ class User extends Resource
             'name' => $this->name,
             'nickname' => $this->nickname,
             'email' => $this->email,
-            'blocked' => $this->blocked
+            'blocked' => $this->blocked,
+            'total_games_played' => $this->total_games_played,
+            'total_points' => $this->total_points
         ];
     }
 }

@@ -14,7 +14,6 @@ class StatControllerAPI extends Controller
 
 	public function totalGames(Request $request)
 	{	
-        
     }
 
 
