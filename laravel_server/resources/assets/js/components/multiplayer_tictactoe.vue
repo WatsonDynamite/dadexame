@@ -1,6 +1,6 @@
 <template>
         <div>
-            <p><button class="btn btn-xs btn-failure" v-on:click.prevent="logout"> Logout </button></p>
+            <p><button class="btn btn-xs btn-failure" v-on:click.prevent="logout"> Logout </button><button class="btn btn-xs btn-failure" v-on:click.prevent="goToProfile">My Profile</button></p>
             <h3 class="text-center">{{ title }}</h3>
             <br>
             <h2>Current Player : {{ currentPlayer }}</h2>
@@ -8,7 +8,6 @@
             <hr>
             <h3 class="text-center">Lobby</h3>
             <p><button class="btn btn-xs btn-success" v-if="checkUsernameLoaded() == true" v-on:click.prevent="createGame">Create a New Game</button></p>
-            <p><button class="btn btn-xs btn-success" v-if="checkUsernameLoaded() == true" v-on:click.prevent="goToProfile">My Profile</button></p>
             <hr>
             <h4>Pending games (<a @click.prevent="loadLobby">Refresh</a>)</h4>
             <lobby :games="lobbyGames" @join-click="join"></lobby>
