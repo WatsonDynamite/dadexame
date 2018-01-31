@@ -64,7 +64,15 @@ Route::middleware('auth:api')->get('user', function() {
 });
 
 ///////////////////////UPDATE USER/////////////////////
-Route::middleware('auth:api')->put('user', 'UserControllerAPI@updateUser');
+//updates the user after a game is finished
+Route::middleware('auth:api')->put('user', 'UserControllerAPI@gamePoints');
+//updates user when he edits himself (no password)
+Route::middleware('auth:api')->put('user/profile', 'UserControllerAPI@updateUser');
+//updates user password
+Route::middleware('auth:api')->put('user/pass', 'UserControllerAPI@updatePass');
+//delete own user
+Route::middleware('auth:api')->delete('user', 'UserControllerAPI@deleteUser');
+
 
 
 /////////////////////STATISTICS////////////////////////

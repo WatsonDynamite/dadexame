@@ -45603,7 +45603,7 @@ module.exports = function listToStyles (parentId, list) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(44);
-module.exports = __webpack_require__(71);
+module.exports = __webpack_require__(74);
 
 
 /***/ }),
@@ -45643,11 +45643,12 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_socket_io___default.a, 'http://192.168.1
 var multiplayerGame = Vue.component('multiplayergame', __webpack_require__(46));
 var login = Vue.component('login', __webpack_require__(61));
 var register = Vue.component('register', __webpack_require__(66));
+var playerManagement = Vue.component('playerManagement', __webpack_require__(71));
 
 var routes = [{ path: '/', redirect: '/login' }, { path: '/login', component: login }, { path: '/register', component: register, meta: { forVisitors: true } },
 //{ path: '/users', component: user },
 //{ path: '/singletictactoe', component: singleplayer_game },
-{ path: '/multitictactoe', component: multiplayerGame, meta: { forAuth: true } }];
+{ path: '/multitictactoe', component: multiplayerGame, meta: { forAuth: true } }, { path: '/playermanagement', component: playerManagement, meta: { forAuth: true } }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
   routes: routes
@@ -45774,7 +45775,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45971,6 +45972,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
+        logout: function logout() {
+            this.$router.push('/');
+            this.$auth.destroyToken();
+        },
         checkUsernameLoaded: function checkUsernameLoaded() {
             return !(this.currentPlayer === 'Loading...');
         },
@@ -45987,6 +45992,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 this.$socket.emit('create_game', { playerName: this.currentPlayer });
             }
+        },
+        goToProfile: function goToProfile() {
+            this.$router.push('playermanagement');
         },
         join: function join(game) {
             if (game.player1 == this.currentPlayer || game.player2 == this.currentPlayer || game.player3 == this.currentPlayer || game.player4 == this.currentPlayer) {
@@ -46328,7 +46336,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.gameseparator[data-v-3d129664]{\n    border-style: solid;\n    border-width: 2px 0 0 0;\n    border-color: black;\n}\n", ""]);
+exports.push([module.i, "\n.gameseparator[data-v-3d129664]{\r\n    border-style: solid;\r\n    border-width: 2px 0 0 0;\r\n    border-color: black;\n}\r\n", ""]);
 
 // exports
 
@@ -46546,18 +46554,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.game.queuePlay(this.ownPlayerNumber, 'fold');
             }
         },
-        pieceImageURL: function pieceImageURL(pieceNumber) {
+        cardImageURL: function cardImageURL(pieceNumber) {
+            /*
             var imgSrc = String(pieceNumber);
-            return 'img/' + imgSrc + '.png';
+            return '' + imgSrc + '.png';
+            */
+
+            return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + "/" + pieceNumber + ".png";
         },
         renderCard: function renderCard(card, index, handIndex) {
             if (this.allPlayerNames[handIndex] != this.ownPlayerName && index > 0) {
                 if (this.game.gameEnded) {
-                    return this.pieceImageURL(card);
+                    return this.cardImageURL(card);
                 }
-                return 'img/semFace.png';
+                return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + '/semFace.png';
             } else {
-                return this.pieceImageURL(card);
+                return this.cardImageURL(card);
             }
         },
         closeGame: function closeGame() {
@@ -46606,6 +46618,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             }
                         }
                     }
+                    this.fold();
                 }
             }
             return false;
@@ -46642,19 +46655,21 @@ var render = function() {
             _vm.isGameStarted() == false
               ? _c("div", [
                   _c("p", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-xs btn-success",
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            _vm.startGame($event)
-                          }
-                        }
-                      },
-                      [_vm._v("Start game")]
-                    )
+                    _vm.game.playerCount > 1 && _vm.game.deckToUse != undefined
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-xs btn-success",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.startGame($event)
+                              }
+                            }
+                          },
+                          [_vm._v("Start game")]
+                        )
+                      : _vm._e()
                   ])
                 ])
               : _vm._e()
@@ -46787,71 +46802,98 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      [
-        _c("h3", { staticClass: "text-center" }, [_vm._v(_vm._s(_vm.title))]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("h2", [_vm._v("Current Player : " + _vm._s(_vm.currentPlayer))]),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _c("h3", { staticClass: "text-center" }, [_vm._v("Lobby")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm.checkUsernameLoaded() == true
-            ? _c(
-                "button",
-                {
-                  staticClass: "btn btn-xs btn-success",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.createGame($event)
-                    }
-                  }
-                },
-                [_vm._v("Create a New Game")]
-              )
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _c("h4", [
-          _vm._v("Pending games ("),
-          _c(
-            "a",
-            {
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.loadLobby($event)
-                }
+  return _c(
+    "div",
+    [
+      _c("p", [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-xs btn-failure",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.logout($event)
               }
-            },
-            [_vm._v("Refresh")]
-          ),
-          _vm._v(")")
-        ]),
-        _vm._v(" "),
-        _c("lobby", {
-          attrs: { games: _vm.lobbyGames },
-          on: { "join-click": _vm.join }
-        }),
-        _vm._v(" "),
-        _vm._l(_vm.activeGames, function(game) {
-          return [_c("game", { attrs: { game: game } })]
-        })
-      ],
-      2
-    )
-  ])
+            }
+          },
+          [_vm._v(" Logout ")]
+        ),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-xs btn-failure",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.goToProfile($event)
+              }
+            }
+          },
+          [_vm._v("My Profile")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("h3", { staticClass: "text-center" }, [_vm._v(_vm._s(_vm.title))]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("h2", [_vm._v("Current Player : " + _vm._s(_vm.currentPlayer))]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("h3", { staticClass: "text-center" }, [_vm._v("Lobby")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm.checkUsernameLoaded() == true
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-xs btn-success",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.createGame($event)
+                  }
+                }
+              },
+              [_vm._v("Create a New Game")]
+            )
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("h4", [
+        _vm._v("Pending games ("),
+        _c(
+          "a",
+          {
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.loadLobby($event)
+              }
+            }
+          },
+          [_vm._v("Refresh")]
+        ),
+        _vm._v(")")
+      ]),
+      _vm._v(" "),
+      _c("lobby", {
+        attrs: { games: _vm.lobbyGames },
+        on: { "join-click": _vm.join }
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.activeGames, function(game) {
+        return [_c("game", { attrs: { game: game } })]
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function() {
@@ -47470,6 +47512,685 @@ if (false) {
 
 /***/ }),
 /* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(72)
+/* template */
+var __vue_template__ = __webpack_require__(73)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/playerManagement.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-115aa67e", Component.options)
+  } else {
+    hotAPI.reload("data-v-115aa67e", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            title: "My Profile",
+            nickname: "Loading...",
+            name: "Loading...",
+            email: "Loading...",
+            newNickname: "Loading...",
+            newName: "Loading...",
+            newEmail: "Loading...",
+            newPassword: "",
+            oldPassword: "",
+            editingUser: false,
+            editingPassword: false,
+            showSuccess: false,
+            successMessage: " ",
+            showError: false,
+            errorMessage: " ",
+            deleteUser: false
+        };
+    },
+    methods: {
+        goBack: function goBack() {
+            this.$router.push('multitictactoe');
+        },
+        checkLoaded: function checkLoaded() {
+            return !(this.nickname === 'Loading...');
+        },
+        saveUser: function saveUser() {
+            var AuthStr = 'Bearer '.concat(this.$auth.getToken());
+            var self = this;
+            axios.put('http://exame.test/api/user/profile', {
+                name: self.newName,
+                email: self.newEmail,
+                nickname: self.newNickname
+            }, {
+                headers: { 'Authorization': AuthStr,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json' }
+            }).then(function (response) {
+                self.editingUser = false;
+                self.showSuccess = true;
+                self.showError = false;
+                self.successMessage = "User profile updated successfully";
+                self.loadPlayer();
+            }).catch(function (error) {
+                self.editingUser = false;
+                self.showSuccess = false;
+                self.showError = true;
+                self.errorMessage = "Unable to update user profile";
+                self.loadPlayer();
+            });
+        },
+        savePassword: function savePassword() {
+            var AuthStr = 'Bearer '.concat(this.$auth.getToken());
+            var self = this;
+            axios.put('http://exame.test/api/user/pass', {
+                newPassword: self.newPassword,
+                oldPassword: self.oldPassword
+            }, {
+                headers: { 'Authorization': AuthStr,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json' }
+            }).then(function (response) {
+                if (response.data == "Wrong Password") {
+                    self.editingPassword = false;
+                    self.showSuccess = false;
+                    self.showError = true;
+                    self.errorMessage = "Unable to update password";
+                    self.oldPassword = "";
+                    self.newPassword = "";
+                    self.loadPlayer();
+                } else {
+                    self.editingPassword = false;
+                    self.showSuccess = true;
+                    self.showError = false;
+                    self.successMessage = "Password updated successfully";
+                    self.oldPassword = "";
+                    self.newPassword = "";
+                    self.loadPlayer();
+                }
+                console.log(response.data);
+            }).catch(function (error) {
+                self.editingPassword = false;
+                self.showSuccess = false;
+                self.showError = true;
+                self.errorMessage = "Unable to update password";
+                self.oldPassword = "";
+                self.newPassword = "";
+                self.loadPlayer();
+                console.log(error);
+            });
+        },
+        confirmDelete: function confirmDelete() {
+            var AuthStr = 'Bearer '.concat(this.$auth.getToken());
+            var self = this;
+            axios.delete('http://exame.test/api/user', {
+                headers: { 'Authorization': AuthStr }
+            }).then(function (response) {
+                self.$router.push('/');
+                self.$auth.destroyToken();
+                console.log(response.data);
+            }).catch(function (error) {
+                self.deleteUser = false;
+                self.showSuccess = false;
+                self.showError = true;
+                self.errorMessage = "Unable to delete user profile";
+                console.log(error);
+            });
+        },
+        cancelEdit: function cancelEdit() {
+            this.showSuccess = false;
+            this.errorMessage = false;
+            this.editingUser = false;
+            this.newName = this.name;
+            this.newNickname = this.nickname;
+            this.newEmail = this.email;
+        },
+        cancelPassword: function cancelPassword() {
+            this.showSuccess = false;
+            this.errorMessage = false;
+            this.editingPassword = false;
+            this.newPassword = "";
+            this.oldPassword = "";
+        },
+        cancelDelete: function cancelDelete() {
+            this.deleteUser = false;
+        },
+        loadPlayer: function loadPlayer() {
+            var _this = this;
+
+            var AuthStr = 'Bearer '.concat(this.$auth.getToken());
+            axios.get('http://exame.test/api/user', { headers: { Authorization: AuthStr } }).then(function (response) {
+                _this.name = response.data.name;
+                _this.nickname = response.data.nickname;
+                _this.email = response.data.email;
+                _this.newName = response.data.name;
+                _this.newNickname = response.data.nickname;
+                _this.newEmail = response.data.email;
+            }).catch(function (error) {
+                _this.nickname = 'Error';
+            });
+        }
+    },
+    mounted: function mounted() {
+        this.loadPlayer();
+    }
+});
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("p", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-xs btn-failure",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              _vm.goBack($event)
+            }
+          }
+        },
+        [_vm._v("Return to Lobby")]
+      )
+    ]),
+    _vm._v(" "),
+    _c("h2", { staticClass: "text-center" }, [_vm._v(_vm._s(_vm.title))]),
+    _vm._v(" "),
+    _vm.checkLoaded() == false
+      ? _c("div", { staticClass: "text-center" }, [
+          _c("h3", [_vm._v("Loading...")])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showSuccess
+      ? _c("div", { staticClass: "alert alert-success" }, [
+          _c("strong", [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.successMessage) +
+                "\n            "
+            )
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showError
+      ? _c("div", { staticClass: "alert alert-danger" }, [
+          _c("strong", [
+            _vm._v(
+              "\n                " + _vm._s(_vm.errorMessage) + "\n            "
+            )
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.checkLoaded() == true
+      ? _c("div", { staticClass: "jumbotron" }, [
+          _c("h3", [_vm._v("Nickname : " + _vm._s(_vm.nickname))]),
+          _vm._v(" "),
+          _c("h3", [_vm._v("Name : " + _vm._s(_vm.name))]),
+          _vm._v(" "),
+          _c("h3", [_vm._v("Email : " + _vm._s(_vm.email))]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn waves-effect waves-light",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.editingUser = true
+                }
+              }
+            },
+            [_vm._v("Edit")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn waves-effect waves-light",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.editingPassword = true
+                }
+              }
+            },
+            [_vm._v("Change Password")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn waves-effect waves-light",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.deleteUser = true
+                }
+              }
+            },
+            [_vm._v("Delete Account")]
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.editingUser
+      ? _c("div", { staticClass: "jumbotron" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "inputNickname" } }, [
+              _vm._v("Nickname")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.newNickname,
+                  expression: "newNickname"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Nickname" },
+              domProps: { value: _vm.newNickname },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.newNickname = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "inputName" } }, [_vm._v("Name")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.newName,
+                  expression: "newName"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Full Name" },
+              domProps: { value: _vm.newName },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.newName = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "inputEmail" } }, [_vm._v("Email")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.newEmail,
+                  expression: "newEmail"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "email", placeholder: "Email address" },
+              domProps: { value: _vm.newEmail },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.newEmail = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-default",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.saveUser()
+                  }
+                }
+              },
+              [_vm._v("Save")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-default",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.cancelEdit()
+                  }
+                }
+              },
+              [_vm._v("Cancel")]
+            )
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.editingPassword
+      ? _c("div", { staticClass: "jumbotron" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "inputPassword" } }, [
+              _vm._v("New Password")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.newPassword,
+                  expression: "newPassword"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "password", placeholder: "" },
+              domProps: { value: _vm.newPassword },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.newPassword = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "inputPasswordOld" } }, [
+              _vm._v("Old Password")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.oldPassword,
+                  expression: "oldPassword"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "" },
+              domProps: { value: _vm.oldPassword },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.oldPassword = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-default",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.savePassword()
+                }
+              }
+            },
+            [_vm._v("Save")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-default",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.cancelPassword()
+                }
+              }
+            },
+            [_vm._v("Cancel")]
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.deleteUser
+      ? _c("div", { staticClass: "jumbotron" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _vm._m(3),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-default",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.confirmDelete()
+                }
+              }
+            },
+            [_vm._v("I'm sure")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-default",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.cancelDelete()
+                }
+              }
+            },
+            [_vm._v("Cancel")]
+          )
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("em", [_vm._v("Type in the fields you want to change.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("em", [
+        _vm._v(
+          "In order to change your password, you must type your current one."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("em", [_vm._v("Once your account is deleted all data will be lost")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_c("em", [_vm._v("Are you sure you want to delete?")])])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-115aa67e", module.exports)
+  }
+}
+
+/***/ }),
+/* 74 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

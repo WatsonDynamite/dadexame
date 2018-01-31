@@ -16,7 +16,7 @@ use Hash;
 class UserControllerAPI extends Controller
 {
 
-    public function updateUser(Request $request){
+    public function gamePoints(Request $request){
 
         $user = User::where('id', $request->user()->id)->first();
         $user->total_points = $user->total_points + $request->total_points;
@@ -24,6 +24,36 @@ class UserControllerAPI extends Controller
 
         $user->save();
         return "User Updated";
+    }
+
+    public function updateUser(Request $request){
+
+        $user = User::where('id', $request->user()->id)->first();
+        $user->name = $request->name;
+        $user->nickname = $request->nickname;
+        $user->email = $request->email;
+
+        $user->save();
+        return "User Updated";
+    }
+
+    public function deleteUser(Request $request)
+    {
+        $user = User::where('id', $request->user()->id)->first();
+        $user->delete();
+        return response()->json(null, 204);
+    }
+
+    public function updatePass(Request $request){
+
+        $user = User::where('id', $request->user()->id)->first();
+
+        if(Hash::check($request->oldPassword, $user->password)){
+            $user->password = Hash::make($request->newPassword);
+            $user->save();
+            return "Password Updated";
+        }
+        return "Wrong Password";
     }
 
 

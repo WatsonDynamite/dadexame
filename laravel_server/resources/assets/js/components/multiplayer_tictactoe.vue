@@ -1,6 +1,6 @@
 <template>
-	<div>
         <div>
+            <p><button class="btn btn-xs btn-failure" v-on:click.prevent="logout"> Logout </button><button class="btn btn-xs btn-failure" v-on:click.prevent="goToProfile">My Profile</button></p>
             <h3 class="text-center">{{ title }}</h3>
             <br>
             <h2>Current Player : {{ currentPlayer }}</h2>
@@ -143,6 +143,11 @@
             },
         },        
         methods: {
+            logout(){
+                this.$router.push('/');
+                this.$auth.destroyToken();
+            },
+            
             checkUsernameLoaded(){
               return !(this.currentPlayer === 'Loading...');
             },
@@ -160,6 +165,9 @@
                 else {
                     this.$socket.emit('create_game', { playerName: this.currentPlayer });   
                 }
+            },
+            goToProfile(){
+                this.$router.push('playermanagement');
             },
             join(game){
                 if (game.player1 == this.currentPlayer || game.player2 == this.currentPlayer || game.player3 == this.currentPlayer || game.player4 == this.currentPlayer) {

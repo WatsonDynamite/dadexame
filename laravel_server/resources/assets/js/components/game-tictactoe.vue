@@ -4,7 +4,7 @@
             <h2 class="text-center">Blackjack Game {{ game.gameID }}</h2>
             <div v-if="isPlayer1() == true">
                 <div v-if="isGameStarted() == false">
-                    <p><button class="btn btn-xs btn-success" v-on:click.prevent="startGame">Start game</button></p>
+                    <p><button class="btn btn-xs btn-success" v-if="game.playerCount > 1 && game.deckToUse != undefined" v-on:click.prevent="startGame">Start game</button></p>
                 </div>
             </div>
             <br>
@@ -212,18 +212,22 @@
                     this.game.queuePlay(this.ownPlayerNumber,'fold');
                 }
             },
-            pieceImageURL (pieceNumber) {
+            cardImageURL (pieceNumber) {
+                /*
                 var imgSrc = String(pieceNumber);
-                return 'img/' + imgSrc + '.png';
+                return '' + imgSrc + '.png';
+                */
+                
+                return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + "/" + pieceNumber + ".png";
             },
             renderCard(card, index, handIndex){
                 if(this.allPlayerNames[handIndex] != this.ownPlayerName && index > 0){
                     if(this.game.gameEnded){
-                        return this.pieceImageURL(card);
+                        return this.cardImageURL(card);
                     }
-                    return 'img/semFace.png';
+                    return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + '/semFace.png';
                 }else{
-                    return this.pieceImageURL(card);
+                    return this.cardImageURL(card);
                 }
             },  
             closeGame (){
@@ -272,6 +276,7 @@
                                 }
                             }
                         }
+                        this.fold();
                     }
                 }
                 return false;
