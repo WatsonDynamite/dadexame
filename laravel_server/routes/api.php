@@ -53,6 +53,7 @@ Route::post('cards', 'DeckControllerAPI@newCard');
 
 ///////////////////////CONFIG//////////////////////
 Route::get('configs', 'ConfigControllerAPI@getConfigInfo');
+Route::post('configs', 'ConfigControllerAPI@setConfigInfo');
 
 ///////////////////////LOGIN//////////////////////
 Route::post('login', 'LoginControllerAPI@login');

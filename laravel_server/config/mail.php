@@ -7,8 +7,7 @@ return [
     'port' => env('MAIL_PORT', 587),
     'from' => ['address' => 'blackjackdadexame@gmail.com', 'name' => 'blackjackdadexame'],
     'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-
-    //Maybe here is your problem
+    
     'username' => env('MAIL_USERNAME','blackjackdadexame@gmail.com'),
     'password' => env('MAIL_PASSWORD', 'secret123'),
     'sendmail' => '/usr/sbin/sendmail -bs',
