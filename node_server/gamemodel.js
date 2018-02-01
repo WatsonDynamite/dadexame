@@ -23,12 +23,38 @@ class TicTacToeGame {
         this.dateCreated = new Date().toLocaleString();
         this.arePointsGiven = 0;
         this.deckToUse = this.getDecks();
+        this.idInDB = 0;
+        
+        
+        
     }
     
+    //on game creation
+    uploadGameOnCreate(){
+        var axios = require('axios');
+        var self = this;
+          axios.post('http://exame.test/api/games',
+			{
+				created_by: self.player1,
+				total_players: self.playerCount,
+				deck_used: self.deckToUse[0]
+			},
+			{
+				headers: { 'Content-Type': 'application/json', 'Accept': 'application/json'}
+			})
+               .then(response=> {
+                   console.log("response: " + response.data.id);
+				self.idInDB = response.data.id;
+                                });
+    }
+    
+    
+    
     getDecks(){
-        var axios = require("axios");
+        
         var self = this;
         var activeDecks = [];
+        var axios = require("axios");
         axios.get('http://exame.test/api/decks/')
 			.then(response => {
 				var decks = response.data.data;
@@ -39,8 +65,13 @@ class TicTacToeGame {
                             console.log("Found active deck:" + deck.name);
                             console.log("active decks: " + activeDecks);
                             self.pickRandomDeck(activeDecks);
+                            
                         }
 				});
+                
+                //now that decks are generated, upload game data to database
+                           
+                     self.uploadGameOnCreate();
             });
         
         
@@ -70,6 +101,12 @@ class TicTacToeGame {
             if(this.gameStarted == false){
                 this.gameStarted = true;
                 this.setup(this.playerCount);
+                var axios = require('axios');
+                var self = this;
+                axios.patch('http://exame.test/api/games/' + self.idInDB + '/startGame')
+                .then(response=> {
+                    console.log("response: " + response.data);
+                });
             }
         }
     }
@@ -148,6 +185,59 @@ class TicTacToeGame {
 
         console.log("playerpoints: " + this.playerPoints);
         console.log("winner: " + this.winner);
+        
+        
+        //registar utilizador e jogos na DB
+        //teria sido mais fácil se guardássemos os users em array...
+        for(var i = 0; i < this.playerCount; i++){
+            var axios = require('axios');
+            var isWinner = 0;
+            switch(i){
+                case 0:
+                   if(self.winner.includes(self.player1)){
+                       isWinner = 1;
+                   }
+                   axios.post('http://exame.test/api/games/' + this.idInDB + '/registerGameUser',
+                    {
+                    user: self.player1,
+                    is_winner: isWinner
+                    });
+                   
+                   
+                    break;
+                case 1:
+                    if(self.winner.includes(self.player2)){
+                       isWinner = 1;
+                    }
+                    axios.post('http://exame.test/api/games/' + this.idInDB + '/registerGameUser',
+                    {
+                    user: self.player2,
+                    is_winner: isWinner
+                    });
+                    break;
+                case 2:
+                    if(self.winner.includes(self.player3)){
+                       isWinner = 1;
+                    }
+                    axios.post('http://exame.test/api/games/' + this.idInDB + '/registerGameUser',
+                    {
+                    user: self.player3,
+                    is_winner: isWinner
+                    });
+                    break;
+                case 3:
+                    if(self.winner.includes(self.player4)){
+                       isWinner = 1;
+                    }
+                    axios.post('http://exame.test/api/games/' + this.idInDB + '/registerGameUser',
+                    {
+                    user: self.player4,
+                    is_winner: isWinner
+                    });
+                    break;
+            }
+        }
+        
         
 
     }
