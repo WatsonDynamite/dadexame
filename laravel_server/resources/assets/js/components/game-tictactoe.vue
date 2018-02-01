@@ -234,7 +234,7 @@
                     if(this.game.gameEnded){
                         return this.cardImageURL(card);
                     }
-                    return "http://188.166.86.13/exame.test/storage/decks/" + this.game.deckToUse[1] + '/semFace.png';
+                    return "http://188.166.86.13/storage/decks/" + this.game.deckToUse[1] + '/semFace.png';
                 }else{
                     return this.cardImageURL(card);
                 }
