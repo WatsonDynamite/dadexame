@@ -5,6 +5,10 @@
         <div class="text-center" v-if="checkLoaded() == false">
             <h3>Loading...</h3>
         </div>
+
+        <h5>Total Points: {{total_points}}</h5><br>
+        <h5>Total Games: {{total_games}}</h5><br>
+        <h5>Avg: {{average}}</h5><br>
         <div class="jumbotron" v-if="checkLoaded() == true">
             <h3>Nickname : {{ nickname }}</h3>
             <h3>Name : {{ name }}</h3>
@@ -96,6 +100,9 @@
                     showError: false,
                     errorMessage: " ",
                     deleteUser: false,
+                    total_points: 0,
+                    total_games: 0,
+                    average: 0
                 }
             },
             methods: {
@@ -226,6 +233,10 @@
 
                     axios.get('http://188.166.86.13/api/stats/userStats', {headers: { Authorization: AuthStr} })
                     .then(response => {
+                        this.total_points = response.data.points;
+                        this.total_games = response.data.games;
+                        this.average = response.data.avg;
+
                     })
                     .catch((error) => {
                     });
