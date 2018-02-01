@@ -61,6 +61,9 @@ export default {
                 });
 		},
 		setConfig(){
+<<<<<<< HEAD
+			axios.post('http://exame.test/api/configs')
+=======
 			axios.post('http://exame.test/api/configs',{
 				driver: this.platform_email_properties.driver,
 				host: this.platform_email_properties.host,
@@ -70,6 +73,7 @@ export default {
 				email: this.configs.platform_email
 
 			})
+>>>>>>> 4a78de9569e54a8121a72bccd04ba51b5211c133
 			.then(response => {
 				console.log(response);
 			});

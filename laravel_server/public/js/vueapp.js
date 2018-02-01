@@ -45603,7 +45603,7 @@ module.exports = function listToStyles (parentId, list) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(44);
-module.exports = __webpack_require__(74);
+module.exports = __webpack_require__(64);
 
 
 /***/ }),
@@ -45641,10 +45641,10 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_socket_io___default.a, 'http://192.168.1
 //const user = Vue.component('user', require('./components/user.vue'));
 //const singleplayer_game = Vue.component('singlegame', require('./components/singleplayer_tictactoe.vue'));
 var multiplayerGame = Vue.component('multiplayergame', __webpack_require__(46));
-var login = Vue.component('login', __webpack_require__(61));
-var register = Vue.component('register', __webpack_require__(66));
-var playerManagement = Vue.component('playerManagement', __webpack_require__(71));
-var statistics = Vue.component('statistics', __webpack_require__(113));
+var login = Vue.component('login', __webpack_require__(51));
+var register = Vue.component('register', __webpack_require__(56));
+var playerManagement = Vue.component('playerManagement', __webpack_require__(61));
+var statistics = Vue.component('statistics', __webpack_require__(116));
 
 var routes = [{ path: '/', redirect: '/login' }, { path: '/login', component: login }, { path: '/register', component: register, meta: { forVisitors: true } },
 //{ path: '/users', component: user },
@@ -45702,7 +45702,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(49)
 /* template */
-var __vue_template__ = __webpack_require__(60)
+var __vue_template__ = __webpack_require__(50)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -45787,9 +45787,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lobby_vue__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lobby_vue__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lobby_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__lobby_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__game_tictactoe_vue__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__game_tictactoe_vue__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__game_tictactoe_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__game_tictactoe_vue__);
 //
 //
@@ -46050,755 +46050,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(51)
-}
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(53)
-/* template */
-var __vue_template__ = __webpack_require__(54)
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-70eb8669"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/lobby.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-70eb8669", Component.options)
-  } else {
-    hotAPI.reload("data-v-70eb8669", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(52);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("3d1fc83e", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-70eb8669\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./lobby.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-70eb8669\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./lobby.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports) {
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-// Component code (not registered)
-module.exports = {
-    props: ['games'],
-    methods: {
-        join: function join(game) {
-            this.$emit('join-click', game);
-        }
-    }
-};
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("table", { staticClass: "table table-striped" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "tbody",
-      _vm._l(_vm.games, function(game) {
-        return _c("tr", { key: game.gameID }, [
-          _c("td", [_vm._v(_vm._s(game.gameID))]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(game.player1))]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(game.playerCount) + "/4")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(game.dateCreated) + " ")]),
-          _vm._v(" "),
-          _c("td", [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-xs btn-primary",
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.join(game)
-                  }
-                }
-              },
-              [_vm._v("Join")]
-            )
-          ])
-        ])
-      })
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Player 1")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Player Count")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Created at:")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Actions")])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-70eb8669", module.exports)
-  }
-}
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(56)
-}
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(58)
-/* template */
-var __vue_template__ = __webpack_require__(59)
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-3d129664"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/game-tictactoe.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3d129664", Component.options)
-  } else {
-    hotAPI.reload("data-v-3d129664", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(57);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("b3b45de2", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3d129664\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./game-tictactoe.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3d129664\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./game-tictactoe.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.gameseparator[data-v-3d129664]{\n    border-style: solid;\n    border-width: 2px 0 0 0;\n    border-color: black;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 58 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['game'],
-    data: function data() {
-        return {};
-    },
-    computed: {
-        currentHandValue: function currentHandValue() {
-            var handValue = 0;
-            var playerNames = this.allPlayerNames;
-            var thisName = this.ownPlayerName;
-            var cardValueDelegate = this.getSingleCardValue;
-            this.game.playerCards.forEach(function (hand, index) {
-                if (playerNames[index] === thisName) {
-                    hand.forEach(function (card, index) {
-                        handValue += cardValueDelegate(card);
-                    });
-                }
-            });
-            //console.log(handValue);
-            return handValue;
-        },
-        ownPlayerNumber: function ownPlayerNumber() {
-            if (this.game.player1SocketID == this.$parent.socketId) {
-                return 1;
-            } else if (this.game.player2SocketID == this.$parent.socketId) {
-                return 2;
-            }
-            return 0;
-        },
-        ownPlayerName: function ownPlayerName() {
-            var ownNumber = this.ownPlayerNumber;
-            if (ownNumber == 1) return this.game.player1;
-            if (ownNumber == 2) return this.game.player2;
-            return "Unknown";
-        },
-        adversaryPlayerName: function adversaryPlayerName() {
-            var ownNumber = this.ownPlayerNumber;
-            if (ownNumber == 1) return this.game.player2;
-            if (ownNumber == 2) return this.game.player1;
-            return "Unknown";
-        },
-        allPlayerNames: function allPlayerNames() {
-            var names = [];
-            for (var i = 0; i < this.game.playerCount; i++) {
-                switch (i) {
-                    case 0:
-                        names.push(this.game.player1);
-                        break;
-                    case 1:
-                        names.push(this.game.player2);
-                        break;
-                    case 2:
-                        names.push(this.game.player3);
-                        break;
-                    case 3:
-                        names.push(this.game.player4);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            return names;
-        },
-        message: function message() {
-            var messageStr = "";
-
-            if (!this.game.gameStarted) {
-                messageStr = "Game has not started yet";
-            } else {
-                if (this.game.gameEnded) {
-                    messageStr = "Game has ended ";
-
-                    if (this.game.arePointsGiven == 0) {
-                        this.$parent.askForPoints(this.game);
-                    }
-
-                    if (this.game.winner.includes(this.ownPlayerName)) {
-                        messageStr += "and you WON ";
-                        if (this.game.winner.length > 1) {
-                            messageStr += "with a push, tied with ";
-                            var self = this;
-                            this.game.winner.forEach(function (value, index) {
-                                if (value != self.ownPlayerName) {
-                                    messageStr += value;
-                                    messageStr += ", ";
-                                }
-                            });
-                            messageStr += "(50 points)";
-                        } else {
-                            messageStr += "(100 points)";
-                        }
-                    } else {
-                        if (this.currentHandValue > 21) {
-                            messageStr += "and you lost due to";
-                        } else {
-                            messageStr += "and you Lost, (0 points)";
-                        }
-                    }
-                } else {
-                    messageStr = "Game is in progress (turn " + this.game.playerTurn + "), ";
-                    if (this.game.playerFolds[this.ownPlayerNumber - 1] == 1) {
-                        messageStr += "you folded 1st turn";
-                    } else {
-                        messageStr += "current choice: ";
-                        messageStr += this.game.queuedPlays[this.ownPlayerNumber - 1];
-                    }
-                }
-            }
-
-            if (this.currentHandValue == 21) {
-                messageStr += ", BLACKJACK(50 extra points)";
-            }
-            if (this.currentHandValue > 21) {
-                messageStr += " BUST (0 points)";
-            }
-
-            return messageStr;
-        },
-        alerttype: function alerttype() {
-            if (!this.game.gameStarted) {
-                return "alert-warning";
-            } else if (this.game.gameEnded) {
-                if (this.game.winner == this.ownPlayerNumber) {
-                    return "alert-success";
-                } else if (this.game.winner == 0) {
-                    return "alert-info";
-                }
-                return "alert-danger";
-            }
-            if (this.game.playerTurn == this.ownPlayerNumber) {
-                return "alert-success";
-            } else {
-                return "alert-info";
-            }
-        }
-    },
-    methods: {
-        winnerName: function winnerName() {
-            var winnerNames = "";
-            this.game.winner.forEach(function (value, index) {
-                if (winnerNames != "") {
-                    winnerNames += " and ";
-                }
-                if (value == 1) {
-                    winnerNames += allPlayerNames[index];
-                }
-            });
-            return winnerNames;
-        },
-        getSingleCardValue: function getSingleCardValue(card) {
-            var cValue = Number(card.substr(1));
-            //calcula valor de cada carta
-            //console.log(cValue);
-            if (cValue > 10) {
-                cValue = 10;
-            }
-            if (cValue == 1) {
-                cValue = 11;
-            }
-            return cValue;
-        },
-        checkBust: function checkBust() {
-            if (this.currentHandValue > 21) {
-                this.game.queuePlay(this.ownPlayerNumber, 'fold');
-            }
-        },
-        cardImageURL: function cardImageURL(pieceNumber) {
-            /*
-            var imgSrc = String(pieceNumber);
-            return '' + imgSrc + '.png';
-            */
-
-            return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + "/" + pieceNumber + ".png";
-        },
-        renderCard: function renderCard(card, index, handIndex) {
-            if (this.allPlayerNames[handIndex] != this.ownPlayerName && index > 0) {
-                if (this.game.gameEnded) {
-                    return this.cardImageURL(card);
-                }
-                return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + '/semFace.png';
-            } else {
-                return this.cardImageURL(card);
-            }
-        },
-        closeGame: function closeGame() {
-            this.$parent.close(this.game);
-        },
-        clickPiece: function clickPiece(index) {
-            if (!this.game.gameEnded) {
-                if (this.game.playerTurn != this.ownPlayerNumber) {
-                    alert("It's not your turn to play");
-                } else {
-                    if (this.game.board[index] == 0) {
-                        this.$parent.play(this.game, index);
-                    }
-                }
-            }
-        },
-        startGame: function startGame() {
-            this.$parent.startGame(this.game);
-        },
-        isPlayer1: function isPlayer1() {
-            if (this.ownPlayerNumber == 1) {
-                return true;
-            }
-            return false;
-        },
-        isGameStarted: function isGameStarted() {
-            return this.game.gameStarted;
-        },
-        canPlayerHit: function canPlayerHit() {
-            if (!this.game.gameEnded) {
-                if (this.isGameStarted() == true) {
-                    if (this.currentHandValue < 21) {
-                        if (this.game.playerFolds[this.ownPlayerNumber - 1] == 1) {
-                            return false;
-                        } else {
-                            //se for o primeiro turno so pode ter 3 cartas
-                            //se for o segundo turno so pode ter 4 cartas
-                            if (this.game.playerTurn == 1) {
-                                if (this.game.playerCards[this.ownPlayerNumber - 1].length == 2) {
-                                    return true;
-                                }
-                            } else {
-                                if (this.game.playerCards[this.ownPlayerNumber - 1].length == 3) {
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                    this.fold();
-                }
-            }
-            return false;
-        },
-        fold: function fold() {
-            if (!this.game.gameEnded) {
-                this.$parent.queuePlay(this.game, 'fold');
-            }
-        },
-        hit: function hit() {
-            if (!this.game.gameEnded) {
-                this.$parent.queuePlay(this.game, 'hit');
-            }
-        }
-    }
-});
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "gameseparator" }, [
-    _c("div", [
-      _c("h2", { staticClass: "text-center" }, [
-        _vm._v("Blackjack Game " + _vm._s(_vm.game.gameID))
-      ]),
-      _vm._v(" "),
-      _vm.isPlayer1() == true
-        ? _c("div", [
-            _vm.isGameStarted() == false
-              ? _c("div", [
-                  _c("p", [
-                    _vm.game.playerCount > 1 && _vm.game.deckToUse != undefined
-                      ? _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-xs btn-success",
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                _vm.startGame($event)
-                              }
-                            }
-                          },
-                          [_vm._v("Start game")]
-                        )
-                      : _vm._e()
-                  ])
-                ])
-              : _vm._e()
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("br")
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "game-zone-content" }, [
-      _c("div", { staticClass: "alert", class: _vm.alerttype }, [
-        _c("strong", [
-          _vm._v(_vm._s(_vm.message) + "     "),
-          _c(
-            "a",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.game.gameEnded,
-                  expression: "game.gameEnded"
-                }
-              ],
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.closeGame($event)
-                }
-              }
-            },
-            [_vm._v("Close Game")]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _vm._v(
-          "\n            Tempo até à próxima jogada: " +
-            _vm._s(_vm.game.turnTimer) +
-            "\n            "
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        _vm._l(_vm.game.playerCards, function(hand, handIndex) {
-          return _c("div", [
-            _c("strong", [
-              _vm._v(" " + _vm._s(_vm.allPlayerNames[handIndex]) + " ")
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "board" },
-              _vm._l(hand, function(card, index) {
-                return _c("b", [
-                  _c("img", {
-                    attrs: { src: _vm.renderCard(card, index, handIndex) }
-                  })
-                ])
-              })
-            )
-          ])
-        })
-      ),
-      _vm._v(" "),
-      _c("div", [
-        _c("p", [
-          _vm.canPlayerHit() == true
-            ? _c(
-                "button",
-                {
-                  staticClass: "btn btn-xs btn-success",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.hit($event)
-                    }
-                  }
-                },
-                [_vm._v("Pedir")]
-              )
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _c("p", [_vm._v("Meu Valor: " + _vm._s(_vm.currentHandValue))])
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("p", [
-          _vm.game.playerFolds[this.ownPlayerNumber - 1] == 0 &&
-          this.currentHandValue <= 21
-            ? _c(
-                "button",
-                {
-                  staticClass: "btn btn-xs btn-failure",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.fold($event)
-                    }
-                  }
-                },
-                [_vm._v("Fechar")]
-              )
-            : _vm._e()
-        ])
-      ]),
-      _vm._v(" "),
-      _c("hr")
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3d129664", module.exports)
-  }
-}
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -46920,19 +46171,19 @@ if (false) {
 }
 
 /***/ }),
-/* 61 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(62)
+  __webpack_require__(52)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(64)
+var __vue_script__ = __webpack_require__(54)
 /* template */
-var __vue_template__ = __webpack_require__(65)
+var __vue_template__ = __webpack_require__(55)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -46972,13 +46223,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 62 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(63);
+var content = __webpack_require__(53);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -46998,7 +46249,7 @@ if(false) {
 }
 
 /***/ }),
-/* 63 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -47012,7 +46263,7 @@ exports.push([module.i, "\n.loginForm{\n\twidth: 70%;\n\tpadding-top: 15%;\n\tpa
 
 
 /***/ }),
-/* 64 */
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47100,7 +46351,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 65 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47223,19 +46474,19 @@ if (false) {
 }
 
 /***/ }),
-/* 66 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(67)
+  __webpack_require__(57)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(69)
+var __vue_script__ = __webpack_require__(59)
 /* template */
-var __vue_template__ = __webpack_require__(70)
+var __vue_template__ = __webpack_require__(60)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -47275,13 +46526,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 67 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(68);
+var content = __webpack_require__(58);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -47301,7 +46552,7 @@ if(false) {
 }
 
 /***/ }),
-/* 68 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -47315,7 +46566,7 @@ exports.push([module.i, "\n.loginForm{\n\twidth: 70%;\n\tpadding-top: 15%;\n\tpa
 
 
 /***/ }),
-/* 69 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47383,7 +46634,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 70 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47526,15 +46777,15 @@ if (false) {
 }
 
 /***/ }),
-/* 71 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(72)
+var __vue_script__ = __webpack_require__(62)
 /* template */
-var __vue_template__ = __webpack_require__(73)
+var __vue_template__ = __webpack_require__(63)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -47574,7 +46825,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 72 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47739,7 +46990,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     self.newPassword = "";
                     self.loadPlayer();
                 }
-                console.log(response.data);
             }).catch(function (error) {
                 self.editingPassword = false;
                 self.showSuccess = false;
@@ -47808,7 +47058,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 73 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48205,12 +47455,22 @@ if (false) {
 }
 
 /***/ }),
-/* 74 */
+/* 64 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
 /* 75 */,
 /* 76 */,
 /* 77 */,
@@ -48239,25 +47499,767 @@ if (false) {
 /* 100 */,
 /* 101 */,
 /* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(104)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(106)
+/* template */
+var __vue_template__ = __webpack_require__(107)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-70eb8669"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/lobby.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-70eb8669", Component.options)
+  } else {
+    hotAPI.reload("data-v-70eb8669", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(105);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("3d1fc83e", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-70eb8669\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./lobby.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-70eb8669\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./lobby.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports) {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+// Component code (not registered)
+module.exports = {
+    props: ['games'],
+    methods: {
+        join: function join(game) {
+            this.$emit('join-click', game);
+        }
+    }
+};
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("table", { staticClass: "table table-striped" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "tbody",
+      _vm._l(_vm.games, function(game) {
+        return _c("tr", { key: game.gameID }, [
+          _c("td", [_vm._v(_vm._s(game.gameID))]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(game.player1))]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(game.playerCount) + "/4")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(game.dateCreated) + " ")]),
+          _vm._v(" "),
+          _c("td", [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-xs btn-primary",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.join(game)
+                  }
+                }
+              },
+              [_vm._v("Join")]
+            )
+          ])
+        ])
+      })
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Player 1")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Player Count")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Created at:")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Actions")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-70eb8669", module.exports)
+  }
+}
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(109)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(111)
+/* template */
+var __vue_template__ = __webpack_require__(112)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-3d129664"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/game-tictactoe.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3d129664", Component.options)
+  } else {
+    hotAPI.reload("data-v-3d129664", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(110);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("b3b45de2", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3d129664\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./game-tictactoe.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3d129664\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./game-tictactoe.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.gameseparator[data-v-3d129664]{\r\n    border-style: solid;\r\n    border-width: 2px 0 0 0;\r\n    border-color: black;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 111 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['game'],
+    data: function data() {
+        return {};
+    },
+    computed: {
+        currentHandValue: function currentHandValue() {
+            var handValue = 0;
+            var playerNames = this.allPlayerNames;
+            var thisName = this.ownPlayerName;
+            var cardValueDelegate = this.getSingleCardValue;
+            this.game.playerCards.forEach(function (hand, index) {
+                if (playerNames[index] === thisName) {
+                    hand.forEach(function (card, index) {
+                        handValue += cardValueDelegate(card);
+                    });
+                }
+            });
+            //console.log(handValue);
+            return handValue;
+        },
+        ownPlayerNumber: function ownPlayerNumber() {
+            if (this.game.player1SocketID == this.$parent.socketId) {
+                return 1;
+            } else if (this.game.player2SocketID == this.$parent.socketId) {
+                return 2;
+            }
+            return 0;
+        },
+        ownPlayerName: function ownPlayerName() {
+            var ownNumber = this.ownPlayerNumber;
+            if (ownNumber == 1) return this.game.player1;
+            if (ownNumber == 2) return this.game.player2;
+            return "Unknown";
+        },
+        adversaryPlayerName: function adversaryPlayerName() {
+            var ownNumber = this.ownPlayerNumber;
+            if (ownNumber == 1) return this.game.player2;
+            if (ownNumber == 2) return this.game.player1;
+            return "Unknown";
+        },
+        allPlayerNames: function allPlayerNames() {
+            var names = [];
+            for (var i = 0; i < this.game.playerCount; i++) {
+                switch (i) {
+                    case 0:
+                        names.push(this.game.player1);
+                        break;
+                    case 1:
+                        names.push(this.game.player2);
+                        break;
+                    case 2:
+                        names.push(this.game.player3);
+                        break;
+                    case 3:
+                        names.push(this.game.player4);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return names;
+        },
+        message: function message() {
+            var messageStr = "";
+
+            if (!this.game.gameStarted) {
+                messageStr = "Game has not started yet";
+            } else {
+                if (this.game.gameEnded) {
+                    messageStr = "Game has ended ";
+
+                    if (this.game.arePointsGiven == 0) {
+                        this.$parent.askForPoints(this.game);
+                    }
+
+                    if (this.game.winner.includes(this.ownPlayerName)) {
+                        messageStr += "and you WON ";
+                        if (this.game.winner.length > 1) {
+                            messageStr += "with a push, tied with ";
+                            var self = this;
+                            this.game.winner.forEach(function (value, index) {
+                                if (value != self.ownPlayerName) {
+                                    messageStr += value;
+                                    messageStr += ", ";
+                                }
+                            });
+                            messageStr += "(50 points)";
+                        } else {
+                            messageStr += "(100 points)";
+                        }
+                    } else {
+                        if (this.currentHandValue > 21) {
+                            messageStr += "and you lost due to";
+                        } else {
+                            messageStr += "and you Lost, (0 points)";
+                        }
+                    }
+                } else {
+                    messageStr = "Game is in progress (turn " + this.game.playerTurn + "), ";
+                    if (this.game.playerFolds[this.ownPlayerNumber - 1] == 1) {
+                        messageStr += "you folded 1st turn";
+                    } else {
+                        messageStr += "current choice: ";
+                        messageStr += this.game.queuedPlays[this.ownPlayerNumber - 1];
+                    }
+                }
+            }
+
+            if (this.currentHandValue == 21) {
+                messageStr += ", BLACKJACK(50 extra points)";
+            }
+            if (this.currentHandValue > 21) {
+                messageStr += " BUST (0 points)";
+            }
+
+            return messageStr;
+        },
+        alerttype: function alerttype() {
+            if (!this.game.gameStarted) {
+                return "alert-warning";
+            } else if (this.game.gameEnded) {
+                if (this.game.winner == this.ownPlayerNumber) {
+                    return "alert-success";
+                } else if (this.game.winner == 0) {
+                    return "alert-info";
+                }
+                return "alert-danger";
+            }
+            if (this.game.playerTurn == this.ownPlayerNumber) {
+                return "alert-success";
+            } else {
+                return "alert-info";
+            }
+        }
+    },
+    methods: {
+        winnerName: function winnerName() {
+            var winnerNames = "";
+            this.game.winner.forEach(function (value, index) {
+                if (winnerNames != "") {
+                    winnerNames += " and ";
+                }
+                if (value == 1) {
+                    winnerNames += allPlayerNames[index];
+                }
+            });
+            return winnerNames;
+        },
+        getSingleCardValue: function getSingleCardValue(card) {
+            var cValue = Number(card.substr(1));
+            //calcula valor de cada carta
+            //console.log(cValue);
+            if (cValue > 10) {
+                cValue = 10;
+            }
+            if (cValue == 1) {
+                cValue = 11;
+            }
+            return cValue;
+        },
+        checkBust: function checkBust() {
+            if (this.currentHandValue > 21) {
+                this.game.queuePlay(this.ownPlayerNumber, 'fold');
+            }
+        },
+        cardImageURL: function cardImageURL(pieceNumber) {
+            /*
+            var imgSrc = String(pieceNumber);
+            return '' + imgSrc + '.png';
+            */
+
+            return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + "/" + pieceNumber + ".png";
+        },
+        renderCard: function renderCard(card, index, handIndex) {
+            if (this.allPlayerNames[handIndex] != this.ownPlayerName && index > 0) {
+                if (this.game.gameEnded) {
+                    return this.cardImageURL(card);
+                }
+                return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + '/semFace.png';
+            } else {
+                return this.cardImageURL(card);
+            }
+        },
+        closeGame: function closeGame() {
+            this.$parent.close(this.game);
+        },
+        clickPiece: function clickPiece(index) {
+            if (!this.game.gameEnded) {
+                if (this.game.playerTurn != this.ownPlayerNumber) {
+                    alert("It's not your turn to play");
+                } else {
+                    if (this.game.board[index] == 0) {
+                        this.$parent.play(this.game, index);
+                    }
+                }
+            }
+        },
+        startGame: function startGame() {
+            this.$parent.startGame(this.game);
+        },
+        isPlayer1: function isPlayer1() {
+            if (this.ownPlayerNumber == 1) {
+                return true;
+            }
+            return false;
+        },
+        isGameStarted: function isGameStarted() {
+            return this.game.gameStarted;
+        },
+        canPlayerHit: function canPlayerHit() {
+            if (!this.game.gameEnded) {
+                if (this.isGameStarted() == true) {
+                    if (this.currentHandValue < 21) {
+                        if (this.game.playerFolds[this.ownPlayerNumber - 1] == 1) {
+                            return false;
+                        } else {
+                            //se for o primeiro turno so pode ter 3 cartas
+                            //se for o segundo turno so pode ter 4 cartas
+                            if (this.game.playerTurn == 1) {
+                                if (this.game.playerCards[this.ownPlayerNumber - 1].length == 2) {
+                                    return true;
+                                }
+                            } else {
+                                if (this.game.playerCards[this.ownPlayerNumber - 1].length == 3) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                    this.fold();
+                }
+            }
+            return false;
+        },
+        fold: function fold() {
+            if (!this.game.gameEnded) {
+                this.$parent.queuePlay(this.game, 'fold');
+            }
+        },
+        hit: function hit() {
+            if (!this.game.gameEnded) {
+                this.$parent.queuePlay(this.game, 'hit');
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "gameseparator" }, [
+    _c("div", [
+      _c("h2", { staticClass: "text-center" }, [
+        _vm._v("Blackjack Game " + _vm._s(_vm.game.gameID))
+      ]),
+      _vm._v(" "),
+      _vm.isPlayer1() == true
+        ? _c("div", [
+            _vm.isGameStarted() == false
+              ? _c("div", [
+                  _c("p", [
+                    _vm.game.playerCount > 1 && _vm.game.deckToUse != undefined
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-xs btn-success",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.startGame($event)
+                              }
+                            }
+                          },
+                          [_vm._v("Start game")]
+                        )
+                      : _vm._e()
+                  ])
+                ])
+              : _vm._e()
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("br")
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "game-zone-content" }, [
+      _c("div", { staticClass: "alert", class: _vm.alerttype }, [
+        _c("strong", [
+          _vm._v(_vm._s(_vm.message) + "     "),
+          _c(
+            "a",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.game.gameEnded,
+                  expression: "game.gameEnded"
+                }
+              ],
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.closeGame($event)
+                }
+              }
+            },
+            [_vm._v("Close Game")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _vm._v(
+          "\n            Tempo até à próxima jogada: " +
+            _vm._s(_vm.game.turnTimer) +
+            "\n            "
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        _vm._l(_vm.game.playerCards, function(hand, handIndex) {
+          return _c("div", [
+            _c("strong", [
+              _vm._v(" " + _vm._s(_vm.allPlayerNames[handIndex]) + " ")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "board" },
+              _vm._l(hand, function(card, index) {
+                return _c("b", [
+                  _c("img", {
+                    attrs: { src: _vm.renderCard(card, index, handIndex) }
+                  })
+                ])
+              })
+            )
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _c("div", [
+        _c("p", [
+          _vm.canPlayerHit() == true
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-xs btn-success",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.hit($event)
+                    }
+                  }
+                },
+                [_vm._v("Pedir")]
+              )
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v("Meu Valor: " + _vm._s(_vm.currentHandValue))])
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _c("p", [
+          _vm.game.playerFolds[this.ownPlayerNumber - 1] == 0 &&
+          this.currentHandValue <= 21
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-xs btn-failure",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.fold($event)
+                    }
+                  }
+                },
+                [_vm._v("Fechar")]
+              )
+            : _vm._e()
+        ])
+      ]),
+      _vm._v(" "),
+      _c("hr")
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3d129664", module.exports)
+  }
+}
+
+/***/ }),
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(114)
+var __vue_script__ = __webpack_require__(117)
 /* template */
-var __vue_template__ = __webpack_require__(115)
+var __vue_template__ = __webpack_require__(118)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -48297,7 +48299,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 114 */
+/* 117 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48423,7 +48425,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 115 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
