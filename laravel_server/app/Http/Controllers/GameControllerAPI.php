@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Resources\Game as GameResource;
 use App\Game;
-
+use App\User;
 class GameControllerAPI extends Controller
 {
     public function index()
@@ -31,53 +31,50 @@ class GameControllerAPI extends Controller
     public function store(Request $request)
     {
         $request->validate([
-                'player1' => 'required',
+                'created_by' => 'required',
             ]);
+        $user = User::where('nickname', $request->created_by)->first();
         $game = new Game();
         $game->fill($request->all());
-        // No matter what status and winner was defined on the client.
+        
+        //No matter what status and winner was defined on the client.
         // When creating a game it will always assume "pending" status
         // and winner will be null
+        
+        $game->created_by = $user->id;
         $game->status = 'pending';
-        $game->winner = null;
         $game->save();
+        
         return response()->json(new GameResource($game), 201);
     }
 
-    public function joinAndStart(Request $request, $id)
+    public function startGame(Request $request, $id)
     {
-        $player2 = $request->all()["player2"];
         $game = Game::findOrFail($id);
-        if (!(is_null($game->player2) || ($game->player2 == ""))) {
-            return response()->json(array('code'=> 409, 'message' => 'Cannot join a game that already has a second player'), 409);
-        }
-        if (is_null($game->status) || ($game->status != "pending")) {
-            return response()->json(array('code'=> 409, 'message' => 'Cannot join a game whose status is not "pending"'), 409);
-        }
-        $game->player2 = $player2;
         $game->status = 'active';
         $game->save();
-        return new GameResource($game);
+        return $game;
     }
 
-    public function endgame($id, $winner)
+    public function endgame($id)
     {
         $game = Game::findOrFail($id);
-        if (is_null($game->player1) || ($game->player1 == "")) {
+        if (is_null($game->created_by) || ($game->created_by == "")) {
             return response()->json(array('code'=> 409, 'message' => 'Cannot end a game that has no first player'), 409);
-        }
-        if (is_null($game->player2) || ($game->player2 == "")) {
-            return response()->json(array('code'=> 409, 'message' => 'Cannot end a game that has no second player'), 409);
         }
         if (is_null($game->status) || ($game->status != "active")) {
             return response()->json(array('code'=> 409, 'message' => 'Cannot end a game whose status is not "active"'), 409);
         }
-        if (($winner != 0) && ($winner != 1) && ($winner != 2)) {
-            return response()->json(array('code'=> 409, 'message' => 'To end a game winner must be 0 (tie), 1 (player1) or 2 (player2)'), 409);
-        }
-        $game->winner = $winner;
-        $game->status = 'complete';
+        $game->status = 'terminated';
         $game->save();
-        return new GameResource($game);
+        return $game;
+    }
+    
+    public function registerGameUser($gameid, Request $request)
+    {
+        $table = 'game_user';
+        $user = User::where('nickname', $request->user)->first();
+        \DB::insert('insert into game_user (game_id, user_id, winner) values (?, ?, ?)', [$gameid, $user->id, $request->is_winner]);
+       
     }
 }
