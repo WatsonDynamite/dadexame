@@ -85,31 +85,31 @@ export default {
 	methods: {
 		getStats: function() {
 
-			axios.get('http://exame.test/api/stats/totalPlayers')
+			axios.get('http://188.166.86.13/api/stats/totalPlayers')
 			.then(response => {
 				this.totalNrPlayers = response.data;
 				console.log(response.data);
             });
 
-            axios.get('http://exame.test/api/stats/totalGames')
+            axios.get('http://188.166.86.13/api/stats/totalGames')
 			.then(response => {
 				this.totalNrPlayedGames = response.data;
 				console.log(response.data);
             });
 
-			axios.get('http://exame.test/api/stats/topPlayersMorePoints')
+			axios.get('http://188.166.86.13/api/stats/topPlayersMorePoints')
 			.then(response => {
 				this.topPlayersPoints = response.data.data;
 				console.log(response.data);
             });
 
-            axios.get('http://exame.test/api/stats/topPlayersMoreGames')
+            axios.get('http://188.166.86.13/api/stats/topPlayersMoreGames')
 			.then(response => {
 				this.topPlayersGames = response.data.data;
 				console.log(response.data);
             });
 
-			axios.get('http://exame.test/api/stats/topPlayersBestAvg')
+			axios.get('http://188.166.86.13/api/stats/topPlayersBestAvg')
 			.then(response => {
 				this.topPlayersBestAvg = response.data.data;
 				console.log(response.data);
