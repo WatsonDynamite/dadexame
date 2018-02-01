@@ -53,4 +53,23 @@ class StatControllerAPI extends Controller
     }
     
 
+
+    //User Stats:
+    // total de jogos pontuaçao total e a media 
+  	//total vitorias empates derrotas
+
+    public function getUserStats(Request $request){
+
+    	$id = $request->user()->id;
+    	$user = User::where('id', $id)->first();
+    	
+    	$array =  array("games"=>$user->total_games_played, "points"=>$user->total_points, "avg"=>($user->total_points/$user->total_games_played));
+    	
+    	return $array;
+    }
+
+
+
+ 	
+
 }

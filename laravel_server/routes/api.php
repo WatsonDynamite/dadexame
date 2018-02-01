@@ -86,8 +86,8 @@ Route::get('stats/topPlayersMoreGames','StatControllerAPI@topPlayersMoreGames');
 Route::get('stats/topPlayersMorePoints','StatControllerAPI@topPlayersMorePoints');
 //get top 5 players with best average
 Route::get('stats/topPlayersBestAvg','StatControllerAPI@topPlayersBestAvg');
- 
-
+//Users own stats
+Route::middleware('auth:api')->get('stats/userStats','StatControllerAPI@getUserStats');
 
 Route::get('teste', function(){
 	return response()->json(['msg'=>'Só um teste'], 200);

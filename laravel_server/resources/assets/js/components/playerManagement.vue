@@ -223,6 +223,13 @@
                     .catch((error) => {
                         this.nickname = 'Error';
                     });
+
+                    axios.get('http://188.166.86.13/api/stats/userStats', {headers: { Authorization: AuthStr} })
+                    .then(response => {
+                    })
+                    .catch((error) => {
+                    });
+
                 },
             },
             mounted() {

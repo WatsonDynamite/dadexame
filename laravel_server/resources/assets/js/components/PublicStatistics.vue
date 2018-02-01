@@ -84,7 +84,6 @@ export default {
 
 	methods: {
 		getStats: function() {
-
 			axios.get('http://188.166.86.13/api/stats/totalPlayers')
 			.then(response => {
 				this.totalNrPlayers = response.data;
