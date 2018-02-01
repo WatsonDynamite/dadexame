@@ -41,7 +41,7 @@ export default {
 
 	methods: {
 		login: function() {
-			axios.post('http://188.166.86.13/api/loginAdmin',
+			axios.post('http://exame.test/api/loginAdmin',
 			{
 				email: this.email,
 				password: this.password

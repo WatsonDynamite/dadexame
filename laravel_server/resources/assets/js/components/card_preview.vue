@@ -28,7 +28,7 @@ export default {
 
 	methods: {
 		getDeckCards: function() {
-			axios.get('http://188.166.86.13/api/decks/' + this.selectedTableDeck)
+			axios.get('http://exame.test/api/decks/' + this.selectedTableDeck)
 			.then(response => {
 				this.previewCards = response.data.data;
 
@@ -36,7 +36,7 @@ export default {
 				this.previewCards.forEach( function(card, index) {
 					path = card.path;
 					card.path = path.replace("public/","storage/");
-					card.path = 'http://188.166.86.13/' + card.path;
+					card.path = 'http://exame.test/' + card.path;
 					console.log('PATH: ' + card.path);
 				});
 

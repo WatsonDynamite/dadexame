@@ -106,7 +106,7 @@
                     var games = 0;
 
                     //get the points he has right now and the games he's played
-                    axios.get('http://188.166.86.13/api/user', {headers: { Authorization: AuthStr} })
+                    axios.get('http://exame.test/api/user', {headers: { Authorization: AuthStr} })
                     .then(response => {
                         points =  response.data.total_points;
                         games =  response.data.total_games_played;
@@ -125,7 +125,7 @@
                     console.log("Now you have a total of "+ points +" points");
 
                     //UPDATE authenticated user's PARAMETERS
-                    axios.put('http://188.166.86.13/api/user',
+                    axios.put('http://exame.test/api/user',
                     {
                         total_points: points,
                         total_games_played: games
@@ -193,7 +193,7 @@
             },
             playerName(){
                 const AuthStr = 'Bearer '.concat(this.$auth.getToken());
-                axios.get('http://188.166.86.13/api/user', {headers: { Authorization: AuthStr} })
+                axios.get('http://exame.test/api/user', {headers: { Authorization: AuthStr} })
                 .then(response => {
                     this.currentPlayer =  response.data.nickname;
                 })

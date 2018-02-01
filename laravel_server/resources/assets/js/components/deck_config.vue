@@ -125,7 +125,7 @@ export default {
 
 	methods: {
 		getDecks: function() {
-			axios.get('http://188.166.86.13/api/decks')
+			axios.get('http://exame.test/api/decks')
 			.then(response => {
 				this.decks = response.data.data;
 				var self = this;
@@ -145,7 +145,7 @@ export default {
 			}
 		},
 		changeDeckStatus: function(deck){
-			axios.get('http://188.166.86.13/api/decks/'+deck.id+'/changeStatus')
+			axios.get('http://exame.test/api/decks/'+deck.id+'/changeStatus')
 				.then(response => {
                     this.getDecks();
                 });
@@ -158,7 +158,7 @@ export default {
 				formData.append("deck", this.selectedDeck);
 				formData.append("suite", this.selectedSuite);
 				formData.append("value", this.selectedValue);
-				axios.post('http://188.166.86.13/api/cards',formData,{
+				axios.post('http://exame.test/api/cards',formData,{
 					'Content-Type': 'multipart/form-data'	
 
 				})
@@ -168,7 +168,7 @@ export default {
 			}
 		},
 		deleteCard: function(user){
-            axios.delete('http://188.166.86.13/api/decks/'+user.id)
+            axios.delete('http://exame.test/api/decks/'+user.id)
                 .then(response => {
                 });
 		},
@@ -178,7 +178,7 @@ export default {
 				var imagefile = document.querySelector('#deckfile');
 				formData.append("image", imagefile.files[0]);
 				formData.append("name", this.newDeckTitle);
-				axios.post('http://188.166.86.13/api/decks',formData,{
+				axios.post('http://exame.test/api/decks',formData,{
 					'Content-Type': 'multipart/form-data'	
 				})
 				.then(response => {

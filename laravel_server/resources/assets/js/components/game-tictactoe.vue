@@ -227,14 +227,14 @@
                 return '' + imgSrc + '.png';
                 */
                 
-                return "http://188.166.86.13/storage/decks/" + this.game.deckToUse[1] + "/" + pieceNumber + ".png";
+                return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + "/" + pieceNumber + ".png";
             },
             renderCard(card, index, handIndex){
                 if(this.allPlayerNames[handIndex] != this.ownPlayerName && index > 0){
                     if(this.game.gameEnded){
                         return this.cardImageURL(card);
                     }
-                    return "http://188.166.86.13/storage/decks/" + this.game.deckToUse[1] + '/semFace.png';
+                    return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + '/semFace.png';
                 }else{
                     return this.cardImageURL(card);
                 }
