@@ -5,6 +5,10 @@
         <div class="text-center" v-if="checkLoaded() == false">
             <h3>Loading...</h3>
         </div>
+
+        <h5>Total Points: {{total_points}}</h5><br>
+        <h5>Total Games: {{total_games}}</h5><br>
+        <h5>Avg: {{average}}</h5><br>
         <div class="jumbotron" v-if="checkLoaded() == true">
             <h3>Nickname : {{ nickname }}</h3>
             <h3>Name : {{ name }}</h3>
@@ -96,6 +100,9 @@
                     showError: false,
                     errorMessage: " ",
                     deleteUser: false,
+                    total_points: 0,
+                    total_games: 0,
+                    average: 0
                 }
             },
             methods: {
@@ -108,7 +115,7 @@
                 saveUser(){
                     var AuthStr = 'Bearer '.concat(this.$auth.getToken());
                     var self = this;
-                    axios.put('http://exame.test/api/user/profile',
+                    axios.put('http://188.166.86.13/api/user/profile',
                     {
                         name: self.newName,
                         email: self.newEmail,
@@ -135,7 +142,7 @@
                 savePassword(){
                     var AuthStr = 'Bearer '.concat(this.$auth.getToken());
                     var self = this;
-                    axios.put('http://exame.test/api/user/pass',
+                    axios.put('http://188.166.86.13/api/user/pass',
                     {
                         newPassword: self.newPassword,
                         oldPassword: self.oldPassword
@@ -176,7 +183,7 @@
                 confirmDelete(){
                     var AuthStr = 'Bearer '.concat(this.$auth.getToken());
                     var self = this;
-                    axios.delete('http://exame.test/api/user',
+                    axios.delete('http://188.166.86.13/api/user',
                     {
                         headers: { 'Authorization': AuthStr}
                     }).then(function(response){
@@ -211,7 +218,7 @@
                 },
                 loadPlayer(){
                     var AuthStr = 'Bearer '.concat(this.$auth.getToken());
-                    axios.get('http://exame.test/api/user', {headers: { Authorization: AuthStr} })
+                    axios.get('http://188.166.86.13/api/user', {headers: { Authorization: AuthStr} })
                     .then(response => {
                         this.name =  response.data.name;
                         this.nickname =  response.data.nickname;
@@ -223,6 +230,17 @@
                     .catch((error) => {
                         this.nickname = 'Error';
                     });
+
+                    axios.get('http://188.166.86.13/api/stats/userStats', {headers: { Authorization: AuthStr} })
+                    .then(response => {
+                        this.total_points = response.data.points;
+                        this.total_games = response.data.games;
+                        this.average = response.data.avg;
+
+                    })
+                    .catch((error) => {
+                    });
+
                 },
             },
             mounted() {

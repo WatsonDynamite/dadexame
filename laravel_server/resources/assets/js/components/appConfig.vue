@@ -52,7 +52,7 @@ export default {
 	methods: {
 		getConfigs: function() {
 
-			axios.get('http://exame.test/api/configs')
+			axios.get('http://188.166.86.13/api/configs')
 			.then(response => {
 				console.log(response.data.data);
 				this.configs = response.data.data[0];
@@ -61,7 +61,10 @@ export default {
                 });
 		},
 		setConfig(){
-			axios.post('http://exame.test/api/configs',{
+
+			axios.post('http://188.166.86.13/api/configs')
+
+			axios.post('http://188.166.86.13/api/configs',{
 				driver: this.platform_email_properties.driver,
 				host: this.platform_email_properties.host,
 				port: this.platform_email_properties.port,

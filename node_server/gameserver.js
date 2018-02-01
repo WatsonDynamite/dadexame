@@ -70,7 +70,11 @@ io.on('connection', function (socket) {
 			numPlayer = 1;
 		} else if (game.player2SocketID == socket.id) {
 			numPlayer = 2;
-		} 
+		} else if (game.player3SocketID == socket.id) {
+            numPlayer = 3;
+        } else if (game.player4SocketID == socket.id) {
+            numPlayer = 4;
+        }
 		if (numPlayer === 0) {
 			socket.emit('invalid_play', {'type': 'Invalid_Player', 'game': game});
 			return;

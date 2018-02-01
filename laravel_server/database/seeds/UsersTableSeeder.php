@@ -41,6 +41,7 @@ class UsersTableSeeder extends Seeder
             'reason_blocked' => null,
             'reason_reactivated' => null,
             'total_points' => 0,
+            'confirmed' => 1,
             'total_games_played' => 0,
             'created_at' => $createdAt,
             'updated_at' => $updatedAt,

@@ -67,7 +67,12 @@
                     return 1;
                 } else if (this.game.player2SocketID == this.$parent.socketId) {
                     return 2;
-                } 
+                } else if (this.game.player3SocketID == this.$parent.socketId) {
+                    return 3;
+                } else if (this.game.player4SocketID == this.$parent.socketId){
+                    return 4;
+                }
+               
                 return 0;
             },
             ownPlayerName(){
@@ -76,6 +81,10 @@
                     return this.game.player1;
                 if (ownNumber == 2)
                     return this.game.player2;
+                if (ownNumber == 3)
+                    return this.game.player3;
+                if (ownNumber == 4)
+                    return this.game.player4;
                 return "Unknown";
             },
             adversaryPlayerName(){
@@ -218,14 +227,14 @@
                 return '' + imgSrc + '.png';
                 */
                 
-                return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + "/" + pieceNumber + ".png";
+                return "http://188.166.86.13/storage/decks/" + this.game.deckToUse[1] + "/" + pieceNumber + ".png";
             },
             renderCard(card, index, handIndex){
                 if(this.allPlayerNames[handIndex] != this.ownPlayerName && index > 0){
                     if(this.game.gameEnded){
                         return this.cardImageURL(card);
                     }
-                    return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + '/semFace.png';
+                    return "http://188.166.86.13/storage/decks/" + this.game.deckToUse[1] + '/semFace.png';
                 }else{
                     return this.cardImageURL(card);
                 }
