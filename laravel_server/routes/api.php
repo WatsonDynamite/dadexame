@@ -41,9 +41,9 @@ Route::get('games/lobby', 'GameControllerAPI@lobby');
 Route::get('games/status/{status}', 'GameControllerAPI@gamesStatus');
 Route::get('games/{id}', 'GameControllerAPI@getGame');
 Route::post('games', 'GameControllerAPI@store');
-Route::patch('games/{id}/join-start', 'GameControllerAPI@joinAndStart');
-Route::patch('games/{id}/endgame/{winner}', 'GameControllerAPI@endgame');
-
+Route::patch('games/{id}/startGame', 'GameControllerAPI@startGame');
+Route::patch('games/{id}/endgame', 'GameControllerAPI@endgame');
+Route::post('games/{id}/registerGameUser', 'GameControllerAPI@registerGameUser');
 /////////////////////DECKS//////////////////////////
 Route::get('decks', 'DeckControllerAPI@getDecks');
 Route::get('decks/{id}', 'DeckControllerAPI@getDeck');
