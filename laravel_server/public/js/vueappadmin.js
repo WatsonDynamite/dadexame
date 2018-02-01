@@ -46601,12 +46601,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
-			configs: null
+			configs: null,
+			platform_email_properties: []
 		};
 	},
 
@@ -46617,7 +46639,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			axios.get('http://exame.test/api/configs').then(function (response) {
 				console.log(response.data.data);
 				_this.configs = response.data.data[0];
-				console.log(_this.configs);
+				var aux = _this.configs.platform_email_properties;
+
+				console.log(aux.split(':').pop().split(';').shift());
+
+				var array;
+				var self = _this;
+				aux.forEach(function (element, index) {
+					array = element.split(",");
+					array = element.split(":");
+					console.log(array);
+					self.platform_email_properties[index] = array[1];
+					console.log(self.platform_email_properties);
+				});
+			});
+		},
+		setConfig: function setConfig() {
+			axios.post('http://exame.test/api/configs').then(function (response) {
+				console.log(response);
 			});
 		}
 	},
@@ -46668,6 +46707,146 @@ var render = function() {
                   return
                 }
                 _vm.$set(_vm.configs, "platform_email", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _c("br"),
+          _vm._v(" "),
+          _c("h5", { staticClass: "card-title" }, [
+            _vm._v("Application Email - Driver")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.platform_email_properties[0],
+                expression: "platform_email_properties[0]"
+              }
+            ],
+            attrs: { type: "text", name: "platform_email" },
+            domProps: { value: _vm.platform_email_properties[0] },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.platform_email_properties, 0, $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _c("br"),
+          _vm._v(" "),
+          _c("h5", { staticClass: "card-title" }, [
+            _vm._v("Application Email - Host")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.platform_email_properties[1],
+                expression: "platform_email_properties[1]"
+              }
+            ],
+            attrs: { type: "text", name: "platform_email" },
+            domProps: { value: _vm.platform_email_properties[1] },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.platform_email_properties, 1, $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _c("br"),
+          _vm._v(" "),
+          _c("h5", { staticClass: "card-title" }, [
+            _vm._v("Application Email - Port")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.platform_email_properties[2],
+                expression: "platform_email_properties[2]"
+              }
+            ],
+            attrs: { type: "text", name: "platform_email" },
+            domProps: { value: _vm.platform_email_properties[2] },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.platform_email_properties, 2, $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _c("br"),
+          _vm._v(" "),
+          _c("h5", { staticClass: "card-title" }, [
+            _vm._v("Application Email - Password")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.platform_email_properties[3],
+                expression: "platform_email_properties[3]"
+              }
+            ],
+            attrs: { type: "password", name: "platform_email" },
+            domProps: { value: _vm.platform_email_properties[3] },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.platform_email_properties, 3, $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _c("br"),
+          _vm._v(" "),
+          _c("h5", { staticClass: "card-title" }, [
+            _vm._v("Application Email - Encryption")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.platform_email_properties[4],
+                expression: "platform_email_properties[4]"
+              }
+            ],
+            attrs: { type: "text", name: "platform_email" },
+            domProps: { value: _vm.platform_email_properties[4] },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.platform_email_properties, 4, $event.target.value)
               }
             }
           }),

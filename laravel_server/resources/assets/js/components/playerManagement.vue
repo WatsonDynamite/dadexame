@@ -1,5 +1,6 @@
 <template>
 	<div>
+        <p><button class="btn btn-xs btn-failure" v-on:click.prevent="goBack">Return to Lobby</button></p>
         <h2 class="text-center">{{ title }}</h2>
         <div class="text-center" v-if="checkLoaded() == false">
             <h3>Loading...</h3>
@@ -98,6 +99,9 @@
                 }
             },
             methods: {
+                goBack(){
+                    this.$router.push('multitictactoe');
+                },
                 checkLoaded(){
                     return !(this.nickname === 'Loading...');
                 },
