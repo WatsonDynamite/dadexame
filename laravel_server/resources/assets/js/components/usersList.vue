@@ -51,19 +51,19 @@ export default {
 			
 			var self = this;
 
-			axios.get('http://exame.test/api/users')
+			axios.get('http://188.186.86.13/api/users')
 			.then(function (response) {
 			    self.users = response.data.data;
 			});
 		},
 		deleteUser: function(user){
-            axios.delete('http://exame.test/api/users/'+user.id)
+            axios.delete('http://188.186.86.13/api/users/'+user.id)
                 .then(response => {
                     this.getUsers();
                 });
 		},
 		blockUser: function(user) {
-			axios.get('http://exame.test/api/users/'+user.id+'/block')
+			axios.get('http://188.186.86.13/api/users/'+user.id+'/block')
 				.then(response => {
 					console.log(response);
                     this.getUsers();

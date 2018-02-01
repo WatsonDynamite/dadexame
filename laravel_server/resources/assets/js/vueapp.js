@@ -18,7 +18,7 @@ Vue.use(VueRouter);
 Vue.use(Auth);
 
 //Vue.use(VueSocketio, 'http://192.168.10.10:8080');
-Vue.use(VueSocketio, 'http://192.168.10.10:8080');
+Vue.use(VueSocketio, 'http://188.186.86.13:8080');
 
 //const user = Vue.component('user', require('./components/user.vue'));
 //const singleplayer_game = Vue.component('singlegame', require('./components/singleplayer_tictactoe.vue'));
