@@ -8,6 +8,7 @@
 				<a @click="showStats" class="waves-effect waves-light btn">Statistics</a>
 				<a @click="showDeckConfig" class="waves-effect waves-light btn">Decks</a>
 				<a @click="showEditPassword" class="waves-effect waves-light btn">Change Password</a>
+				<a @click="logout" class="waves-effect waves-light btn" style="float: right" >Logout</a>
 			</div>	
 		</div>
 		<users-list :users="users" v-if="index == 1" ref="usersListRef"></users-list>
@@ -35,6 +36,10 @@
 	    methods: {
 	    	showUsers: function(){
 	            this.index = 1;
+	        },
+	        logout: function(){
+	        	this.$router.push('login');
+                this.$auth.destroyToken();
 	        },
 	        showStats: function(){
 	            this.index = 2;

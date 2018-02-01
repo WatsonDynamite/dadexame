@@ -46148,6 +46148,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -46156,59 +46157,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            users: [],
-            index: 1
-        };
-    },
-    methods: {
-        showUsers: function showUsers() {
-            this.index = 1;
-        },
-        showStats: function showStats() {
-            this.index = 2;
-        },
-        showAppConfig: function showAppConfig() {
-            this.index = 3;
-        },
-        showDeckConfig: function showDeckConfig() {
-            this.index = 4;
-        },
-        showEditPassword: function showEditPassword() {
-            this.index = 5;
-        },
-        savedUser: function savedUser() {
-            this.currentUser = null;
-            this.$refs.usersListRef.editingUser = null;
-            this.showSuccess = true;
-            this.successMessage = 'User Saved';
-        },
-        cancelEdit: function cancelEdit() {
-            this.currentUser = null;
-            this.$refs.usersListRef.editingUser = null;
-            this.showSuccess = false;
-        },
-        getUsers: function getUsers() {
-            var _this = this;
+	data: function data() {
+		return {
+			users: [],
+			index: 1
+		};
+	},
+	methods: {
+		showUsers: function showUsers() {
+			this.index = 1;
+		},
+		logout: function logout() {
+			this.$router.push('login');
+			this.$auth.destroyToken();
+		},
+		showStats: function showStats() {
+			this.index = 2;
+		},
+		showAppConfig: function showAppConfig() {
+			this.index = 3;
+		},
+		showDeckConfig: function showDeckConfig() {
+			this.index = 4;
+		},
+		showEditPassword: function showEditPassword() {
+			this.index = 5;
+		},
+		savedUser: function savedUser() {
+			this.currentUser = null;
+			this.$refs.usersListRef.editingUser = null;
+			this.showSuccess = true;
+			this.successMessage = 'User Saved';
+		},
+		cancelEdit: function cancelEdit() {
+			this.currentUser = null;
+			this.$refs.usersListRef.editingUser = null;
+			this.showSuccess = false;
+		},
+		getUsers: function getUsers() {
+			var _this = this;
 
-            axios.get('api/users').then(function (response) {
-                _this.users = response.data.data;
-            });
-        },
-        childMessage: function childMessage(message) {
-            this.showSuccess = true;
-            this.successMessage = message;
-        }
-    },
-    components: {
-        'users-list': __WEBPACK_IMPORTED_MODULE_0__usersList_vue___default.a,
-        'app-config': __WEBPACK_IMPORTED_MODULE_1__appConfig_vue___default.a,
-        'stats': __WEBPACK_IMPORTED_MODULE_2__statistics_vue___default.a,
-        'deck-config': __WEBPACK_IMPORTED_MODULE_3__deck_config_vue___default.a,
-        'admin-pass': __WEBPACK_IMPORTED_MODULE_4__admin_pass_vue___default.a
-    },
-    mounted: function mounted() {}
+			axios.get('api/users').then(function (response) {
+				_this.users = response.data.data;
+			});
+		},
+		childMessage: function childMessage(message) {
+			this.showSuccess = true;
+			this.successMessage = message;
+		}
+	},
+	components: {
+		'users-list': __WEBPACK_IMPORTED_MODULE_0__usersList_vue___default.a,
+		'app-config': __WEBPACK_IMPORTED_MODULE_1__appConfig_vue___default.a,
+		'stats': __WEBPACK_IMPORTED_MODULE_2__statistics_vue___default.a,
+		'deck-config': __WEBPACK_IMPORTED_MODULE_3__deck_config_vue___default.a,
+		'admin-pass': __WEBPACK_IMPORTED_MODULE_4__admin_pass_vue___default.a
+	},
+	mounted: function mounted() {}
 });
 
 /***/ }),
@@ -48034,6 +48039,16 @@ var render = function() {
               on: { click: _vm.showEditPassword }
             },
             [_vm._v("Change Password")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "waves-effect waves-light btn",
+              staticStyle: { float: "right" },
+              on: { click: _vm.logout }
+            },
+            [_vm._v("Logout")]
           )
         ])
       ]),
