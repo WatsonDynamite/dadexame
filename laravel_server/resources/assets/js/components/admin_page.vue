@@ -7,12 +7,14 @@
 				<a @click="showAppConfig" class="waves-effect waves-light btn">App Configurations</a>
 				<a @click="showStats" class="waves-effect waves-light btn">Statistics</a>
 				<a @click="showDeckConfig" class="waves-effect waves-light btn">Decks</a>
+				<a @click="showEditPassword" class="waves-effect waves-light btn">Change Password</a>
 			</div>	
 		</div>
 		<users-list :users="users" v-if="index == 1" ref="usersListRef"></users-list>
 		<stats v-if="index ==2" ></stats>
 		<app-config v-if="index == 3"></app-config>
 		<deck-config v-if="index == 4"></deck-config>		
+		<admin-pass v-if="index == 5"></admin-pass>		
 	</div>				
 </template>
 
@@ -21,6 +23,7 @@
 	import AppConfig from './appConfig.vue';
 	import Statistics from './statistics.vue';
 	import DeckConfig from './deck_config.vue';
+	import AdminPass from './admin_pass.vue';
 
 	export default {
 		data: function(){
@@ -41,6 +44,9 @@
 	        },
 	        showDeckConfig: function(){
 	        	this.index = 4;
+	        },
+	        showEditPassword: function() {
+	        	this.index = 5;
 	        },
 	        savedUser: function(){
 	            this.currentUser = null;
@@ -66,7 +72,8 @@
 	    	'users-list': UsersList,
 	    	'app-config': AppConfig,
 	    	'stats': Statistics,
-	    	'deck-config': DeckConfig
+	    	'deck-config': DeckConfig,
+	    	'admin-pass': AdminPass
 	    },
 	    mounted() {
 			

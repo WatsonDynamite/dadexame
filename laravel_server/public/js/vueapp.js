@@ -47724,7 +47724,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     self.newPassword = "";
                     self.loadPlayer();
                 }
-                console.log(response.data);
             }).catch(function (error) {
                 self.editingPassword = false;
                 self.showSuccess = false;

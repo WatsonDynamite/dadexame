@@ -162,7 +162,6 @@
                             self.newPassword = "";
                             self.loadPlayer();
                         }
-                        console.log(response.data);
                     }).catch((error) => {
                         self.editingPassword = false;
                         self.showSuccess = false;
