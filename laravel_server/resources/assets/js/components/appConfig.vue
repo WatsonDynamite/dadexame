@@ -52,7 +52,7 @@ export default {
 	methods: {
 		getConfigs: function() {
 
-			axios.get('http://188.186.86.13/api/configs')
+			axios.get('http://exame.test/api/configs')
 			.then(response => {
 				console.log(response.data.data);
 				this.configs = response.data.data[0];
@@ -62,7 +62,7 @@ export default {
 		},
 		setConfig(){
 <<<<<<< HEAD
-			axios.post('http://188.186.86.13/api/configs')
+			axios.post('http://exame.test/api/configs')
 =======
 			axios.post('http://exame.test/api/configs',{
 				driver: this.platform_email_properties.driver,

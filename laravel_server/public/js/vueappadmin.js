@@ -45882,7 +45882,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		login: function login() {
 			var _this = this;
 
-			axios.post('http://188.186.86.13/api/loginAdmin', {
+			axios.post('http://exame.test/api/loginAdmin', {
 				email: this.email,
 				password: this.password
 			}, {
@@ -46250,6 +46250,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46265,21 +46268,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			var self = this;
 
-			axios.get('http://188.186.86.13/api/users').then(function (response) {
+			axios.get('http://exame.test/api/users').then(function (response) {
 				self.users = response.data.data;
 			});
 		},
 		deleteUser: function deleteUser(user) {
 			var _this = this;
 
-			axios.delete('http://188.186.86.13/api/users/' + user.id).then(function (response) {
+			axios.delete('http://exame.test/api/users/' + user.id).then(function (response) {
 				_this.getUsers();
 			});
 		},
 		blockUser: function blockUser(user) {
 			var _this2 = this;
 
-			axios.get('http://188.186.86.13/api/users/' + user.id + '/block').then(function (response) {
+			axios.get('http://exame.test/api/users/' + user.id + '/block').then(function (response) {
 				console.log(response);
 				_this2.getUsers();
 			});
@@ -46318,28 +46321,15 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(user.email))]),
               _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(user.total_points))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(user.total_games_played))]),
+              _vm._v(" "),
               user.blocked == 1 ? _c("td", [_vm._v("Yes")]) : _vm._e(),
               _vm._v(" "),
               user.blocked == 0 ? _c("td", [_vm._v("No")]) : _vm._e(),
               _vm._v(" "),
               _c("td", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "waves-effect waves-light btn",
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "medium material-icons" }, [
-                      _vm._v("details")
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
                 _c(
                   "a",
                   {
@@ -46395,6 +46385,10 @@ var staticRenderFns = [
         _c("th", [_vm._v("Nickname")]),
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total Points")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Games Played")]),
         _vm._v(" "),
         _c("th", [_vm._v("Blocked")]),
         _vm._v(" "),
@@ -46464,7 +46458,7 @@ module.exports = Component.exports
 /* 79 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: SyntaxError: Unexpected token (64:0)\n\n  62 | \t\t},\n  63 | \t\tsetConfig(){\n> 64 | <<<<<<< HEAD\n     | ^\n  65 | \t\t\taxios.post('http://188.186.86.13/api/configs')\n  66 | =======\n  67 | \t\t\taxios.post('http://exame.test/api/configs',{\n");
+throw new Error("Module build failed: SyntaxError: Unexpected token (64:0)\n\n  62 | \t\t},\n  63 | \t\tsetConfig(){\n> 64 | <<<<<<< HEAD\n     | ^\n  65 | \t\t\taxios.post('http://exame.test/api/configs')\n  66 | =======\n  67 | \t\t\taxios.post('http://exame.test/api/configs',{\n");
 
 /***/ }),
 /* 80 */
@@ -46876,27 +46870,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getStats: function getStats() {
 			var _this = this;
 
-			axios.get('http://188.186.86.13/api/stats/totalPlayers').then(function (response) {
+			axios.get('http://exame.test/api/stats/totalPlayers').then(function (response) {
 				_this.totalNrPlayers = response.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://188.186.86.13/api/stats/totalGames').then(function (response) {
+			axios.get('http://exame.test/api/stats/totalGames').then(function (response) {
 				_this.totalNrPlayedGames = response.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://188.186.86.13/api/stats/topPlayersMorePoints').then(function (response) {
+			axios.get('http://exame.test/api/stats/topPlayersMorePoints').then(function (response) {
 				_this.topPlayersPoints = response.data.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://188.186.86.13/api/stats/topPlayersMoreGames').then(function (response) {
+			axios.get('http://exame.test/api/stats/topPlayersMoreGames').then(function (response) {
 				_this.topPlayersGames = response.data.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://188.186.86.13/api/stats/topPlayersBestAvg').then(function (response) {
+			axios.get('http://exame.test/api/stats/topPlayersBestAvg').then(function (response) {
 				_this.topPlayersBestAvg = response.data.data;
 				console.log(response.data);
 			});
@@ -47283,7 +47277,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getDecks: function getDecks() {
 			var _this = this;
 
-			axios.get('http://188.186.86.13/api/decks').then(function (response) {
+			axios.get('http://exame.test/api/decks').then(function (response) {
 				_this.decks = response.data.data;
 				var self = _this;
 				_this.decks.forEach(function (deck, index) {
@@ -47303,7 +47297,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		changeDeckStatus: function changeDeckStatus(deck) {
 			var _this2 = this;
 
-			axios.get('http://188.186.86.13/api/decks/' + deck.id + '/changeStatus').then(function (response) {
+			axios.get('http://exame.test/api/decks/' + deck.id + '/changeStatus').then(function (response) {
 				_this2.getDecks();
 			});
 		},
@@ -47317,7 +47311,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				formData.append("deck", this.selectedDeck);
 				formData.append("suite", this.selectedSuite);
 				formData.append("value", this.selectedValue);
-				axios.post('http://188.186.86.13/api/cards', formData, {
+				axios.post('http://exame.test/api/cards', formData, {
 					'Content-Type': 'multipart/form-data'
 
 				}).then(function (response) {
@@ -47326,7 +47320,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}
 		},
 		deleteCard: function deleteCard(user) {
-			axios.delete('http://188.186.86.13/api/decks/' + user.id).then(function (response) {});
+			axios.delete('http://exame.test/api/decks/' + user.id).then(function (response) {});
 		},
 		createDeck: function createDeck() {
 			var _this4 = this;
@@ -47336,7 +47330,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				var imagefile = document.querySelector('#deckfile');
 				formData.append("image", imagefile.files[0]);
 				formData.append("name", this.newDeckTitle);
-				axios.post('http://188.186.86.13/api/decks', formData, {
+				axios.post('http://exame.test/api/decks', formData, {
 					'Content-Type': 'multipart/form-data'
 				}).then(function (response) {
 					_this4.newDeckTitle = '';
@@ -47490,14 +47484,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getDeckCards: function getDeckCards() {
 			var _this = this;
 
-			axios.get('http://188.186.86.13/api/decks/' + this.selectedTableDeck).then(function (response) {
+			axios.get('http://exame.test/api/decks/' + this.selectedTableDeck).then(function (response) {
 				_this.previewCards = response.data.data;
 
 				var path;
 				_this.previewCards.forEach(function (card, index) {
 					path = card.path;
 					card.path = path.replace("public/", "storage/");
-					card.path = 'http://188.186.86.13/' + card.path;
+					card.path = 'http://exame.test/' + card.path;
 					console.log('PATH: ' + card.path);
 				});
 
