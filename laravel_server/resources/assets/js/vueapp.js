@@ -26,7 +26,7 @@ const multiplayerGame = Vue.component('multiplayergame', require('./components/m
 const login = Vue.component('login', require('./components/login.vue'));
 const register = Vue.component('register', require('./components/register.vue'));
 const playerManagement = Vue.component('playerManagement', require('./components/playerManagement.vue'));
-
+const statistics = Vue.component('statistics', require('./components/PublicStatistics.vue'));
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -35,7 +35,9 @@ const routes = [
   //{ path: '/users', component: user },
   //{ path: '/singletictactoe', component: singleplayer_game },
   { path: '/multitictactoe', component: multiplayerGame, meta:{forAuth: true}},
-  { path: '/playermanagement', component: playerManagement, meta:{forAuth:true}}
+  { path: '/playermanagement', component: playerManagement, meta:{forAuth:true}},
+  { path: '/statistics', component: statistics, meta:{forVisitors: true}}
+
 ];
 
 const router = new VueRouter({

@@ -18,16 +18,27 @@ class ConfigControllerAPI extends Controller
 	public function setConfigInfo(Request $request){
 
 		$config = array(
-                'driver' => $mail->driver,
-                'host' => $mail->host,
-                'port' => $mail->port,
-                'from' => array('address' => $mail->from_address, 'name' => $mail->from_name),
-                'encryption' => $mail->encryption,
-                'username' => $mail->username,
-                'password' => $mail->password,
+                'driver' => $request->driver,
+                'host' => $request->host,
+                'port' => $request->port,
+                'from' => array('address' => $request->email, 'name' => 'Blackjack Game'),
+                'encryption' => $request->encryption,
+                'username' => $request->username,
+                'password' => $request->password,
                 'sendmail' => '/usr/sbin/sendmail -bs',
                 'pretend' => false
             );
+
+		//saves to DB
+		$config_var = Config::where('id', 1)->first();
+
+		$config_var->platform_email = $request->email;
+		$config_var->platform_email_properties = '{"driver": "'.$request->driver.'",'.
+												'"host": "'.$request->host.'",'.
+												'"port": "'.$request->port.'",'.
+												'"password": "'.$request->password.'",'.
+												'"encryption": "'.$request->encryption.'"}';
+		$config_var->save();
 
 		Config::set('mail',$config);
 	}

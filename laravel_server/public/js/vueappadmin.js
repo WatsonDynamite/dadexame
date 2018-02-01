@@ -46116,6 +46116,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__statistics_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__statistics_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__deck_config_vue__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__deck_config_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__deck_config_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__admin_pass_vue__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__admin_pass_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__admin_pass_vue__);
 //
 //
 //
@@ -46134,6 +46136,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+
 
 
 
@@ -46141,55 +46147,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            users: [],
-            index: 1
-        };
-    },
-    methods: {
-        showUsers: function showUsers() {
-            this.index = 1;
-        },
-        showStats: function showStats() {
-            this.index = 2;
-        },
-        showAppConfig: function showAppConfig() {
-            this.index = 3;
-        },
-        showDeckConfig: function showDeckConfig() {
-            this.index = 4;
-        },
-        savedUser: function savedUser() {
-            this.currentUser = null;
-            this.$refs.usersListRef.editingUser = null;
-            this.showSuccess = true;
-            this.successMessage = 'User Saved';
-        },
-        cancelEdit: function cancelEdit() {
-            this.currentUser = null;
-            this.$refs.usersListRef.editingUser = null;
-            this.showSuccess = false;
-        },
-        getUsers: function getUsers() {
-            var _this = this;
+	data: function data() {
+		return {
+			users: [],
+			index: 1
+		};
+	},
+	methods: {
+		showUsers: function showUsers() {
+			this.index = 1;
+		},
+		logout: function logout() {
+			this.$router.push('login');
+			this.$auth.destroyToken();
+		},
+		showStats: function showStats() {
+			this.index = 2;
+		},
+		showAppConfig: function showAppConfig() {
+			this.index = 3;
+		},
+		showDeckConfig: function showDeckConfig() {
+			this.index = 4;
+		},
+		showEditPassword: function showEditPassword() {
+			this.index = 5;
+		},
+		savedUser: function savedUser() {
+			this.currentUser = null;
+			this.$refs.usersListRef.editingUser = null;
+			this.showSuccess = true;
+			this.successMessage = 'User Saved';
+		},
+		cancelEdit: function cancelEdit() {
+			this.currentUser = null;
+			this.$refs.usersListRef.editingUser = null;
+			this.showSuccess = false;
+		},
+		getUsers: function getUsers() {
+			var _this = this;
 
-            axios.get('api/users').then(function (response) {
-                _this.users = response.data.data;
-            });
-        },
-        childMessage: function childMessage(message) {
-            this.showSuccess = true;
-            this.successMessage = message;
-        }
-    },
-    components: {
-        'users-list': __WEBPACK_IMPORTED_MODULE_0__usersList_vue___default.a,
-        'app-config': __WEBPACK_IMPORTED_MODULE_1__appConfig_vue___default.a,
-        'stats': __WEBPACK_IMPORTED_MODULE_2__statistics_vue___default.a,
-        'deck-config': __WEBPACK_IMPORTED_MODULE_3__deck_config_vue___default.a
-    },
-    mounted: function mounted() {}
+			axios.get('api/users').then(function (response) {
+				_this.users = response.data.data;
+			});
+		},
+		childMessage: function childMessage(message) {
+			this.showSuccess = true;
+			this.successMessage = message;
+		}
+	},
+	components: {
+		'users-list': __WEBPACK_IMPORTED_MODULE_0__usersList_vue___default.a,
+		'app-config': __WEBPACK_IMPORTED_MODULE_1__appConfig_vue___default.a,
+		'stats': __WEBPACK_IMPORTED_MODULE_2__statistics_vue___default.a,
+		'deck-config': __WEBPACK_IMPORTED_MODULE_3__deck_config_vue___default.a,
+		'admin-pass': __WEBPACK_IMPORTED_MODULE_4__admin_pass_vue___default.a
+	},
+	mounted: function mounted() {}
 });
 
 /***/ }),
@@ -46448,93 +46462,9 @@ module.exports = Component.exports
 
 /***/ }),
 /* 79 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-			configs: null,
-			platform_email_properties: []
-		};
-	},
-
-	methods: {
-		getConfigs: function getConfigs() {
-			var _this = this;
-
-			axios.get('http://188.186.86.13/api/configs').then(function (response) {
-				console.log(response.data.data);
-				_this.configs = response.data.data[0];
-				var aux = _this.configs.platform_email_properties;
-
-				console.log(aux.split(':').pop().split(';').shift());
-
-				var array;
-				var self = _this;
-				aux.forEach(function (element, index) {
-					array = element.split(",");
-					array = element.split(":");
-					console.log(array);
-					self.platform_email_properties[index] = array[1];
-					console.log(self.platform_email_properties);
-				});
-			});
-		},
-		setConfig: function setConfig() {
-			axios.post('http://188.186.86.13/api/configs').then(function (response) {
-				console.log(response);
-			});
-		}
-	},
-	computed: {},
-	mounted: function mounted() {
-		this.getConfigs();
-	}
-});
+throw new Error("Module build failed: SyntaxError: Unexpected token (64:0)\n\n  62 | \t\t},\n  63 | \t\tsetConfig(){\n> 64 | <<<<<<< HEAD\n     | ^\n  65 | \t\t\taxios.post('http://188.186.86.13/api/configs')\n  66 | =======\n  67 | \t\t\taxios.post('http://exame.test/api/configs',{\n");
 
 /***/ }),
 /* 80 */
@@ -46589,18 +46519,22 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.platform_email_properties[0],
-                expression: "platform_email_properties[0]"
+                value: _vm.platform_email_properties.driver,
+                expression: "platform_email_properties.driver"
               }
             ],
             attrs: { type: "text", name: "platform_email" },
-            domProps: { value: _vm.platform_email_properties[0] },
+            domProps: { value: _vm.platform_email_properties.driver },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.platform_email_properties, 0, $event.target.value)
+                _vm.$set(
+                  _vm.platform_email_properties,
+                  "driver",
+                  $event.target.value
+                )
               }
             }
           }),
@@ -46617,18 +46551,22 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.platform_email_properties[1],
-                expression: "platform_email_properties[1]"
+                value: _vm.platform_email_properties.host,
+                expression: "platform_email_properties.host"
               }
             ],
             attrs: { type: "text", name: "platform_email" },
-            domProps: { value: _vm.platform_email_properties[1] },
+            domProps: { value: _vm.platform_email_properties.host },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.platform_email_properties, 1, $event.target.value)
+                _vm.$set(
+                  _vm.platform_email_properties,
+                  "host",
+                  $event.target.value
+                )
               }
             }
           }),
@@ -46645,18 +46583,22 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.platform_email_properties[2],
-                expression: "platform_email_properties[2]"
+                value: _vm.platform_email_properties.port,
+                expression: "platform_email_properties.port"
               }
             ],
             attrs: { type: "text", name: "platform_email" },
-            domProps: { value: _vm.platform_email_properties[2] },
+            domProps: { value: _vm.platform_email_properties.port },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.platform_email_properties, 2, $event.target.value)
+                _vm.$set(
+                  _vm.platform_email_properties,
+                  "port",
+                  $event.target.value
+                )
               }
             }
           }),
@@ -46673,18 +46615,22 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.platform_email_properties[3],
-                expression: "platform_email_properties[3]"
+                value: _vm.platform_email_properties.password,
+                expression: "platform_email_properties.password"
               }
             ],
             attrs: { type: "password", name: "platform_email" },
-            domProps: { value: _vm.platform_email_properties[3] },
+            domProps: { value: _vm.platform_email_properties.password },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.platform_email_properties, 3, $event.target.value)
+                _vm.$set(
+                  _vm.platform_email_properties,
+                  "password",
+                  $event.target.value
+                )
               }
             }
           }),
@@ -46701,18 +46647,22 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.platform_email_properties[4],
-                expression: "platform_email_properties[4]"
+                value: _vm.platform_email_properties.encryption,
+                expression: "platform_email_properties.encryption"
               }
             ],
             attrs: { type: "text", name: "platform_email" },
-            domProps: { value: _vm.platform_email_properties[4] },
+            domProps: { value: _vm.platform_email_properties.encryption },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.platform_email_properties, 4, $event.target.value)
+                _vm.$set(
+                  _vm.platform_email_properties,
+                  "encryption",
+                  $event.target.value
+                )
               }
             }
           }),
@@ -46744,7 +46694,16 @@ var render = function() {
               }
             }
           })
-        ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "waves-effect waves-light btn",
+            on: { click: _vm.setConfig }
+          },
+          [_vm._v("Submit")]
+        )
       ])
     ])
   ])
@@ -48006,6 +47965,25 @@ var render = function() {
               on: { click: _vm.showDeckConfig }
             },
             [_vm._v("Decks")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "waves-effect waves-light btn",
+              on: { click: _vm.showEditPassword }
+            },
+            [_vm._v("Change Password")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "waves-effect waves-light btn",
+              staticStyle: { float: "right" },
+              on: { click: _vm.logout }
+            },
+            [_vm._v("Logout")]
           )
         ])
       ]),
@@ -48018,7 +47996,9 @@ var render = function() {
       _vm._v(" "),
       _vm.index == 3 ? _c("app-config") : _vm._e(),
       _vm._v(" "),
-      _vm.index == 4 ? _c("deck-config") : _vm._e()
+      _vm.index == 4 ? _c("deck-config") : _vm._e(),
+      _vm._v(" "),
+      _vm.index == 5 ? _c("admin-pass") : _vm._e()
     ],
     1
   )
@@ -48030,6 +48010,287 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-da070308", module.exports)
+  }
+}
+
+/***/ }),
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(114)
+/* template */
+var __vue_template__ = __webpack_require__(115)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/admin_pass.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-af882204", Component.options)
+  } else {
+    hotAPI.reload("data-v-af882204", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 114 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            newPassword: "",
+            oldPassword: "",
+            showSuccess: false,
+            successMessage: " ",
+            showError: false,
+            errorMessage: " "
+        };
+    },
+    methods: {
+        savePassword: function savePassword() {
+            var AuthStr = 'Bearer '.concat(this.$auth.getToken());
+            var self = this;
+            axios.put('http://exame.test/api/user/pass', {
+                newPassword: self.newPassword,
+                oldPassword: self.oldPassword
+            }, {
+                headers: { 'Authorization': AuthStr,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json' }
+            }).then(function (response) {
+                if (response.data == "Wrong Password") {
+                    self.showSuccess = false;
+                    self.showError = true;
+                    self.errorMessage = "Unable to update password";
+                    self.oldPassword = "";
+                    self.newPassword = "";
+                } else {
+                    self.showSuccess = true;
+                    self.showError = false;
+                    self.successMessage = "Password updated successfully";
+                    self.oldPassword = "";
+                    self.newPassword = "";
+                }
+            }).catch(function (error) {
+                self.showSuccess = false;
+                self.showError = true;
+                self.errorMessage = "Unable to update password";
+                self.oldPassword = "";
+                self.newPassword = "";
+            });
+        },
+        mounted: function mounted() {}
+    }
+});
+
+/***/ }),
+/* 115 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.showSuccess
+      ? _c("div", { staticClass: "alert alert-success" }, [
+          _c("strong", [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.successMessage) +
+                "\n            "
+            )
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showError
+      ? _c("div", { staticClass: "alert alert-danger" }, [
+          _c("strong", [
+            _vm._v(
+              "\n                " + _vm._s(_vm.errorMessage) + "\n            "
+            )
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "jumbotron" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "inputPassword" } }, [
+          _vm._v("New Password")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.newPassword,
+              expression: "newPassword"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "password", placeholder: "" },
+          domProps: { value: _vm.newPassword },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.newPassword = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "inputPasswordOld" } }, [
+          _vm._v("Old Password")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.oldPassword,
+              expression: "oldPassword"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: "" },
+          domProps: { value: _vm.oldPassword },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.oldPassword = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-default",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              _vm.savePassword()
+            }
+          }
+        },
+        [_vm._v("Save")]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("em", [
+        _vm._v(
+          "In order to change your password, you must type your current one."
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-af882204", module.exports)
   }
 }
 

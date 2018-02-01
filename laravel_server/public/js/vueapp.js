@@ -46959,7 +46959,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'Accept': 'application/json' }
             }).then(function (response) {
                 if (response.data == "Wrong Password") {
-                    self.editingPassword = false;
+                    //self.editingPassword = false;
                     self.showSuccess = false;
                     self.showError = true;
                     self.errorMessage = "Unable to update password";
@@ -46975,7 +46975,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     self.newPassword = "";
                     self.loadPlayer();
                 }
-                console.log(response.data);
             }).catch(function (error) {
                 self.editingPassword = false;
                 self.showSuccess = false;
@@ -47006,7 +47005,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         cancelEdit: function cancelEdit() {
             this.showSuccess = false;
-            this.errorMessage = false;
+            this.showError = false;
             this.editingUser = false;
             this.newName = this.name;
             this.newNickname = this.nickname;
@@ -47014,7 +47013,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         cancelPassword: function cancelPassword() {
             this.showSuccess = false;
-            this.errorMessage = false;
+            this.showError = false;
             this.editingPassword = false;
             this.newPassword = "";
             this.oldPassword = "";
@@ -47073,28 +47072,6 @@ var render = function() {
     _vm.checkLoaded() == false
       ? _c("div", { staticClass: "text-center" }, [
           _c("h3", [_vm._v("Loading...")])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.showSuccess
-      ? _c("div", { staticClass: "alert alert-success" }, [
-          _c("strong", [
-            _vm._v(
-              "\n                " +
-                _vm._s(_vm.successMessage) +
-                "\n            "
-            )
-          ])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.showError
-      ? _c("div", { staticClass: "alert alert-danger" }, [
-          _c("strong", [
-            _vm._v(
-              "\n                " + _vm._s(_vm.errorMessage) + "\n            "
-            )
-          ])
         ])
       : _vm._e(),
     _vm._v(" "),
@@ -47391,6 +47368,28 @@ var render = function() {
             },
             [_vm._v("Cancel")]
           )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showSuccess
+      ? _c("div", { staticClass: "alert alert-success" }, [
+          _c("strong", [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.successMessage) +
+                "\n            "
+            )
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showError
+      ? _c("div", { staticClass: "alert alert-danger" }, [
+          _c("strong", [
+            _vm._v(
+              "\n                " + _vm._s(_vm.errorMessage) + "\n            "
+            )
+          ])
         ])
       : _vm._e()
   ])

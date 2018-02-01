@@ -5,16 +5,6 @@
         <div class="text-center" v-if="checkLoaded() == false">
             <h3>Loading...</h3>
         </div>
-        <div class="alert alert-success" v-if="showSuccess">
-            <strong>
-                {{ successMessage }}
-            </strong>
-        </div>
-        <div class="alert alert-danger" v-if="showError">
-            <strong>
-                {{ errorMessage }}
-            </strong>
-        </div>
         <div class="jumbotron" v-if="checkLoaded() == true">
             <h3>Nickname : {{ nickname }}</h3>
             <h3>Name : {{ name }}</h3>
@@ -72,6 +62,16 @@
             <p><em>Are you sure you want to delete?</em></p>
             <a class="btn btn-default" v-on:click.prevent="confirmDelete()">I'm sure</a>
             <a class="btn btn-default" v-on:click.prevent="cancelDelete()">Cancel</a>
+        </div>
+        <div class="alert alert-success" v-if="showSuccess">
+            <strong>
+                {{ successMessage }}
+            </strong>
+        </div>
+        <div class="alert alert-danger" v-if="showError">
+            <strong>
+                {{ errorMessage }}
+            </strong>
         </div>
     </div>
 </template>
@@ -146,7 +146,7 @@
                                    'Accept': 'application/json' }
                     }).then(function(response){
                         if(response.data == "Wrong Password"){
-                            self.editingPassword = false;
+                            //self.editingPassword = false;
                             self.showSuccess = false;
                             self.showError = true;
                             self.errorMessage = "Unable to update password";
@@ -162,7 +162,6 @@
                             self.newPassword = "";
                             self.loadPlayer();
                         }
-                        console.log(response.data);
                     }).catch((error) => {
                         self.editingPassword = false;
                         self.showSuccess = false;
@@ -194,7 +193,7 @@
                 },
                 cancelEdit(){
                     this.showSuccess = false;
-                    this.errorMessage = false;
+                    this.showError = false;
                     this.editingUser = false;
                     this.newName =  this.name;
                     this.newNickname =  this.nickname;
@@ -202,7 +201,7 @@
                 },
                 cancelPassword(){
                     this.showSuccess = false;
-                    this.errorMessage = false;
+                    this.showError = false;
                     this.editingPassword = false;
                     this.newPassword =  "";
                     this.oldPassword =  "";
