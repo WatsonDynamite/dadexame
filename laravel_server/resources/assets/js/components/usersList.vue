@@ -9,6 +9,8 @@
 	            <th>Name</th>
 	            <th>Nickname</th>
 	            <th>Email</th>
+	            <th>Total Points</th>
+	            <th>Games Played</th>
 	            <th>Blocked</th>
 	            <th>Actions</th>
 	        </tr>
@@ -19,10 +21,11 @@
 	            <td>{{ user.name }}</td>
 	            <td>{{ user.nickname }}</td>
 	            <td>{{ user.email }}</td>
+	            <td>{{ user.total_points }}</td>
+	            <td>{{ user.total_games_played }}</td>
 	            <td v-if="user.blocked == 1">Yes</td>
 	            <td v-if="user.blocked == 0">No</td>
 	            <td>
-	                <a class="waves-effect waves-light btn" v-on:click.prevent=""><i class="medium material-icons">details</i></a>
 	                <a class="waves-effect waves-light btn" v-on:click.prevent="blockUser(user)"><i class="medium material-icons">do_not_disturb</i></a>
 	                <a class="waves-effect waves-light btn" v-on:click.prevent="deleteUser(user)"><i class="medium material-icons">delete</i></a>
 	            </td>

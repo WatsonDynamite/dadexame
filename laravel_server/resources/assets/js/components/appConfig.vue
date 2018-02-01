@@ -11,28 +11,29 @@
 				<br><br>
 
 				<h5 class="card-title">Application Email - Driver</h5>
-				<input v-model="platform_email_properties[0]" type="text" name="platform_email">
+				<input v-model="platform_email_properties.driver" type="text" name="platform_email">
 				<br><br>
 
 				<h5 class="card-title">Application Email - Host</h5>
-				<input v-model="platform_email_properties[1]" type="text" name="platform_email">
+				<input v-model="platform_email_properties.host" type="text" name="platform_email">
 				<br><br>
 
 				<h5 class="card-title">Application Email - Port</h5>
-				<input v-model="platform_email_properties[2]" type="text" name="platform_email">
+				<input v-model="platform_email_properties.port" type="text" name="platform_email">
 				<br><br>
 
 				<h5 class="card-title">Application Email - Password</h5>
-				<input v-model="platform_email_properties[3]" type="password" name="platform_email">
+				<input v-model="platform_email_properties.password" type="password" name="platform_email">
 				<br><br>
 
 				<h5 class="card-title">Application Email - Encryption</h5>
-				<input v-model="platform_email_properties[4]" type="text" name="platform_email">
+				<input v-model="platform_email_properties.encryption" type="text" name="platform_email">
 				<br><br>
 
 				<h5 class="card-title">Application Image Path</h5	>
 				<input v-model="configs.img_base_path" type="text" name="img_base_path">
 			</div>
+			<a @click="setConfig" class="waves-effect waves-light btn">Submit</a>
 		</div>
 		</div>
 			
@@ -55,24 +56,20 @@ export default {
 			.then(response => {
 				console.log(response.data.data);
 				this.configs = response.data.data[0];
-				var aux = this.configs.platform_email_properties;
-				
-				console.log(aux.split(':').pop().split(';').shift()); 
-
-				var array;
-				var self = this;
-				aux.forEach( function(element, index) {
-					array = element.split(",");
-					array = element.split(":");
-					console.log(array);
-					self.platform_email_properties[index] = array[1];
-					console.log(self.platform_email_properties);
-				});
-
+				this.platform_email_properties =JSON.parse( this.configs.platform_email_properties);
+				console.log(this.platform_email_properties);
                 });
 		},
 		setConfig(){
-			axios.post('http://exame.test/api/configs')
+			axios.post('http://exame.test/api/configs',{
+				driver: this.platform_email_properties.driver,
+				host: this.platform_email_properties.host,
+				port: this.platform_email_properties.port,
+				password: this.platform_email_properties.password ,
+				encryption: this.platform_email_properties.encryption,
+				email: this.configs.platform_email
+
+			})
 			.then(response => {
 				console.log(response);
 			});
@@ -86,3 +83,6 @@ export default {
 }
 
 </script>
+
+
+

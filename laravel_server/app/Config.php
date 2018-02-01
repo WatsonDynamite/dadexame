@@ -14,8 +14,9 @@ class Config extends Model
     protected $table = 'config';
 
     protected $fillable = [
-        'platform_id',
-        'img_base_path'
+        'platform_email_properties',
+        'img_base_path',
+        'platform_email'
     ];
 
 }
