@@ -46260,6 +46260,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46328,28 +46331,15 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(user.email))]),
               _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(user.total_points))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(user.total_games_played))]),
+              _vm._v(" "),
               user.blocked == 1 ? _c("td", [_vm._v("Yes")]) : _vm._e(),
               _vm._v(" "),
               user.blocked == 0 ? _c("td", [_vm._v("No")]) : _vm._e(),
               _vm._v(" "),
               _c("td", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "waves-effect waves-light btn",
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "medium material-icons" }, [
-                      _vm._v("details")
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
                 _c(
                   "a",
                   {
@@ -46405,6 +46395,10 @@ var staticRenderFns = [
         _c("th", [_vm._v("Nickname")]),
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total Points")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Games Played")]),
         _vm._v(" "),
         _c("th", [_vm._v("Blocked")]),
         _vm._v(" "),
@@ -46516,6 +46510,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46533,23 +46528,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			axios.get('http://exame.test/api/configs').then(function (response) {
 				console.log(response.data.data);
 				_this.configs = response.data.data[0];
-				var aux = _this.configs.platform_email_properties;
-
-				console.log(aux.split(':').pop().split(';').shift());
-
-				var array;
-				var self = _this;
-				aux.forEach(function (element, index) {
-					array = element.split(",");
-					array = element.split(":");
-					console.log(array);
-					self.platform_email_properties[index] = array[1];
-					console.log(self.platform_email_properties);
-				});
+				_this.platform_email_properties = JSON.parse(_this.configs.platform_email_properties);
+				console.log(_this.platform_email_properties);
 			});
 		},
 		setConfig: function setConfig() {
-			axios.post('http://exame.test/api/configs').then(function (response) {
+			axios.post('http://exame.test/api/configs', {
+				driver: this.platform_email_properties.driver,
+				host: this.platform_email_properties.host,
+				port: this.platform_email_properties.port,
+				password: this.platform_email_properties.password,
+				encryption: this.platform_email_properties.encryption,
+				email: this.configs.platform_email
+
+			}).then(function (response) {
 				console.log(response);
 			});
 		}
@@ -46613,18 +46605,22 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.platform_email_properties[0],
-                expression: "platform_email_properties[0]"
+                value: _vm.platform_email_properties.driver,
+                expression: "platform_email_properties.driver"
               }
             ],
             attrs: { type: "text", name: "platform_email" },
-            domProps: { value: _vm.platform_email_properties[0] },
+            domProps: { value: _vm.platform_email_properties.driver },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.platform_email_properties, 0, $event.target.value)
+                _vm.$set(
+                  _vm.platform_email_properties,
+                  "driver",
+                  $event.target.value
+                )
               }
             }
           }),
@@ -46641,18 +46637,22 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.platform_email_properties[1],
-                expression: "platform_email_properties[1]"
+                value: _vm.platform_email_properties.host,
+                expression: "platform_email_properties.host"
               }
             ],
             attrs: { type: "text", name: "platform_email" },
-            domProps: { value: _vm.platform_email_properties[1] },
+            domProps: { value: _vm.platform_email_properties.host },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.platform_email_properties, 1, $event.target.value)
+                _vm.$set(
+                  _vm.platform_email_properties,
+                  "host",
+                  $event.target.value
+                )
               }
             }
           }),
@@ -46669,18 +46669,22 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.platform_email_properties[2],
-                expression: "platform_email_properties[2]"
+                value: _vm.platform_email_properties.port,
+                expression: "platform_email_properties.port"
               }
             ],
             attrs: { type: "text", name: "platform_email" },
-            domProps: { value: _vm.platform_email_properties[2] },
+            domProps: { value: _vm.platform_email_properties.port },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.platform_email_properties, 2, $event.target.value)
+                _vm.$set(
+                  _vm.platform_email_properties,
+                  "port",
+                  $event.target.value
+                )
               }
             }
           }),
@@ -46697,18 +46701,22 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.platform_email_properties[3],
-                expression: "platform_email_properties[3]"
+                value: _vm.platform_email_properties.password,
+                expression: "platform_email_properties.password"
               }
             ],
             attrs: { type: "password", name: "platform_email" },
-            domProps: { value: _vm.platform_email_properties[3] },
+            domProps: { value: _vm.platform_email_properties.password },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.platform_email_properties, 3, $event.target.value)
+                _vm.$set(
+                  _vm.platform_email_properties,
+                  "password",
+                  $event.target.value
+                )
               }
             }
           }),
@@ -46725,18 +46733,22 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.platform_email_properties[4],
-                expression: "platform_email_properties[4]"
+                value: _vm.platform_email_properties.encryption,
+                expression: "platform_email_properties.encryption"
               }
             ],
             attrs: { type: "text", name: "platform_email" },
-            domProps: { value: _vm.platform_email_properties[4] },
+            domProps: { value: _vm.platform_email_properties.encryption },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.platform_email_properties, 4, $event.target.value)
+                _vm.$set(
+                  _vm.platform_email_properties,
+                  "encryption",
+                  $event.target.value
+                )
               }
             }
           }),
@@ -46768,7 +46780,16 @@ var render = function() {
               }
             }
           })
-        ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "waves-effect waves-light btn",
+            on: { click: _vm.setConfig }
+          },
+          [_vm._v("Submit")]
+        )
       ])
     ])
   ])

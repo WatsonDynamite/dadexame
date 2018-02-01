@@ -45644,11 +45644,12 @@ var multiplayerGame = Vue.component('multiplayergame', __webpack_require__(46));
 var login = Vue.component('login', __webpack_require__(61));
 var register = Vue.component('register', __webpack_require__(66));
 var playerManagement = Vue.component('playerManagement', __webpack_require__(71));
+var statistics = Vue.component('statistics', __webpack_require__(113));
 
 var routes = [{ path: '/', redirect: '/login' }, { path: '/login', component: login }, { path: '/register', component: register, meta: { forVisitors: true } },
 //{ path: '/users', component: user },
 //{ path: '/singletictactoe', component: singleplayer_game },
-{ path: '/multitictactoe', component: multiplayerGame, meta: { forAuth: true } }, { path: '/playermanagement', component: playerManagement, meta: { forAuth: true } }];
+{ path: '/multitictactoe', component: multiplayerGame, meta: { forAuth: true } }, { path: '/playermanagement', component: playerManagement, meta: { forAuth: true } }, { path: '/statistics', component: statistics, meta: { forVisitors: true } }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
   routes: routes
@@ -46336,7 +46337,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.gameseparator[data-v-3d129664]{\r\n    border-style: solid;\r\n    border-width: 2px 0 0 0;\r\n    border-color: black;\n}\r\n", ""]);
+exports.push([module.i, "\n.gameseparator[data-v-3d129664]{\n    border-style: solid;\n    border-width: 2px 0 0 0;\n    border-color: black;\n}\n", ""]);
 
 // exports
 
@@ -47048,6 +47049,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -47089,6 +47091,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		register: function register() {
 			this.$router.push('register');
+		},
+		stats: function stats() {
+			this.$router.push('statistics');
 		}
 	},
 	mounted: function mounted() {}
@@ -47190,6 +47195,16 @@ var render = function() {
               on: { click: _vm.register }
             },
             [_vm._v("Register")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn waves-effect waves-light",
+              staticStyle: { float: "right" },
+              on: { click: _vm.stats }
+            },
+            [_vm._v("Statistics")]
           ),
           _c("br")
         ])
@@ -47708,7 +47723,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'Accept': 'application/json' }
             }).then(function (response) {
                 if (response.data == "Wrong Password") {
-                    self.editingPassword = false;
+                    //self.editingPassword = false;
                     self.showSuccess = false;
                     self.showError = true;
                     self.errorMessage = "Unable to update password";
@@ -47754,7 +47769,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         cancelEdit: function cancelEdit() {
             this.showSuccess = false;
-            this.errorMessage = false;
+            this.showError = false;
             this.editingUser = false;
             this.newName = this.name;
             this.newNickname = this.nickname;
@@ -47762,7 +47777,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         cancelPassword: function cancelPassword() {
             this.showSuccess = false;
-            this.errorMessage = false;
+            this.showError = false;
             this.editingPassword = false;
             this.newPassword = "";
             this.oldPassword = "";
@@ -47821,28 +47836,6 @@ var render = function() {
     _vm.checkLoaded() == false
       ? _c("div", { staticClass: "text-center" }, [
           _c("h3", [_vm._v("Loading...")])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.showSuccess
-      ? _c("div", { staticClass: "alert alert-success" }, [
-          _c("strong", [
-            _vm._v(
-              "\n                " +
-                _vm._s(_vm.successMessage) +
-                "\n            "
-            )
-          ])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.showError
-      ? _c("div", { staticClass: "alert alert-danger" }, [
-          _c("strong", [
-            _vm._v(
-              "\n                " + _vm._s(_vm.errorMessage) + "\n            "
-            )
-          ])
         ])
       : _vm._e(),
     _vm._v(" "),
@@ -48140,6 +48133,28 @@ var render = function() {
             [_vm._v("Cancel")]
           )
         ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showSuccess
+      ? _c("div", { staticClass: "alert alert-success" }, [
+          _c("strong", [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.successMessage) +
+                "\n            "
+            )
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showError
+      ? _c("div", { staticClass: "alert alert-danger" }, [
+          _c("strong", [
+            _vm._v(
+              "\n                " + _vm._s(_vm.errorMessage) + "\n            "
+            )
+          ])
+        ])
       : _vm._e()
   ])
 }
@@ -48193,6 +48208,365 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(114)
+/* template */
+var __vue_template__ = __webpack_require__(115)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/PublicStatistics.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7091f349", Component.options)
+  } else {
+    hotAPI.reload("data-v-7091f349", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 114 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			topPlayersPoints: [],
+			topPlayersGames: [],
+			topPlayersBestAvg: [],
+			totalNrPlayers: 0,
+			totalNrPlayedGames: 0
+		};
+	},
+
+	methods: {
+		getStats: function getStats() {
+			var _this = this;
+
+			axios.get('http://exame.test/api/stats/totalPlayers').then(function (response) {
+				_this.totalNrPlayers = response.data;
+				console.log(response.data);
+			});
+
+			axios.get('http://exame.test/api/stats/totalGames').then(function (response) {
+				_this.totalNrPlayedGames = response.data;
+				console.log(response.data);
+			});
+
+			axios.get('http://exame.test/api/stats/topPlayersMorePoints').then(function (response) {
+				_this.topPlayersPoints = response.data.data;
+				console.log(response.data);
+			});
+
+			axios.get('http://exame.test/api/stats/topPlayersMoreGames').then(function (response) {
+				_this.topPlayersGames = response.data.data;
+				console.log(response.data);
+			});
+
+			axios.get('http://exame.test/api/stats/topPlayersBestAvg').then(function (response) {
+				_this.topPlayersBestAvg = response.data.data;
+				console.log(response.data);
+			});
+		}
+	},
+	computed: {},
+	mounted: function mounted() {
+		this.getStats();
+	}
+});
+
+/***/ }),
+/* 115 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h2", [_vm._v("BlackJack App Statistics")]),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c("h4", [_vm._v("Total nr of players: " + _vm._s(_vm.totalNrPlayers))]),
+    _c("br"),
+    _vm._v(" "),
+    _c("h4", [
+      _vm._v("Total nr of games played: " + _vm._s(_vm.totalNrPlayedGames))
+    ]),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c("h4", [_vm._v("Top 5 Highscores")]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-striped" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.topPlayersPoints, function(user) {
+          return _c("tr", { key: user.id }, [
+            _c("td", [_vm._v(_vm._s(user.name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(user.nickname))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(user.total_points))])
+          ])
+        })
+      )
+    ]),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c("h4", [_vm._v("Top 5 Players with the most games played")]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-striped" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.topPlayersGames, function(user) {
+          return _c("tr", { key: user.id }, [
+            _c("td", [_vm._v(_vm._s(user.name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(user.nickname))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(user.total_games_played))])
+          ])
+        })
+      )
+    ]),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c("h4", [_vm._v("Top 5 Players with the best Avg")]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-striped" }, [
+      _vm._m(2),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.topPlayersBestAvg, function(user) {
+          return _c("tr", { key: user.id }, [
+            _c("td", [_vm._v(_vm._s(user.name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(user.nickname))]),
+            _vm._v(" "),
+            _c("td", [
+              _vm._v(
+                _vm._s(
+                  Number(
+                    (user.total_points / user.total_games_played).toFixed(1)
+                  )
+                )
+              )
+            ])
+          ])
+        })
+      )
+    ]),
+    _c("br"),
+    _c("br")
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nickname")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Highscore")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nickname")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Games Played")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nickname")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Avg")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7091f349", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

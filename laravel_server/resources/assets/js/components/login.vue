@@ -21,7 +21,8 @@
 			<div class="divider"></div>
 			<br>
 			<button class="btn waves-effect waves-light" @click="login">Login</button>
-			<button class="btn waves-effect waves-light" @click="register">Register</button><br>
+			<button class="btn waves-effect waves-light" @click="register">Register</button>
+			<button style="float: right" class="btn waves-effect waves-light" @click="stats">Statistics</button><br>
 			</div>	
 			</div>	
 		</div>
@@ -71,6 +72,9 @@ export default {
 		},
 		register:  function(){
 			this.$router.push('register');
+		},
+		stats:  function(){
+			this.$router.push('statistics');
 		}
 	},
 	mounted() {
