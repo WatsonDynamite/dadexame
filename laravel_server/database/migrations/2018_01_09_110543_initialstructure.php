@@ -21,9 +21,7 @@ class InitialStructure extends Migration
             $table->string('nickname')->unique();
             $table->boolean('admin')->default(false);
             $table->boolean('blocked')->default(false);
-            $table->boolean('confirmed')->default(false);
             $table->string('reason_blocked')->nullable();
-            $table->string('confirmation_code')->nullable();
             $table->boolean('confirmed')->default(0);
             $table->string('reason_reactivated')->nullable();
             $table->integer('total_points')->default(0);

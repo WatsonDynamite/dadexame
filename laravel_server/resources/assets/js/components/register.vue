@@ -7,16 +7,16 @@
 	              <h1>Login - BlackJack App</h1>
 					<br>
 				<div class="input-field">
-					<input v-model="name" class="validate" type="text" placeHolder="Email">
+					<input v-model="name" class="validate" type="text" placeHolder="name">
 				</div>
 				<div class="input-field">
-					<input v-model="nickname" class="validate" type="text" placeHolder="Email">
+					<input v-model="nickname" class="validate" type="text" placeHolder="nickname">
 				</div>
 				<div class="input-field">
-					<input v-model="email" class="validate" type="email" placeHolder="Email">
+					<input v-model="email" class="validate" type="email" placeHolder="email">
 				</div>
 				<div class="input-field">
-					<input v-model="password" class="validate" type="password" placeHolder="secret">
+					<input v-model="password" class="validate" type="password" placeHolder="password">
 				</div>
 			</div><br>
 			<div class="card-action">
