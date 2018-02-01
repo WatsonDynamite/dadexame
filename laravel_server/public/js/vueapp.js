@@ -45644,7 +45644,7 @@ var multiplayerGame = Vue.component('multiplayergame', __webpack_require__(46));
 var login = Vue.component('login', __webpack_require__(61));
 var register = Vue.component('register', __webpack_require__(66));
 var playerManagement = Vue.component('playerManagement', __webpack_require__(71));
-var statistics = Vue.component('statistics', __webpack_require__(113));
+var statistics = Vue.component('statistics', __webpack_require__(116));
 
 var routes = [{ path: '/', redirect: '/login' }, { path: '/login', component: login }, { path: '/register', component: register, meta: { forVisitors: true } },
 //{ path: '/users', component: user },
@@ -46337,7 +46337,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.gameseparator[data-v-3d129664]{\n    border-style: solid;\n    border-width: 2px 0 0 0;\n    border-color: black;\n}\n", ""]);
+exports.push([module.i, "\n.gameseparator[data-v-3d129664]{\r\n    border-style: solid;\r\n    border-width: 2px 0 0 0;\r\n    border-color: black;\n}\r\n", ""]);
 
 // exports
 
@@ -48248,15 +48248,18 @@ if (false) {
 /* 110 */,
 /* 111 */,
 /* 112 */,
-/* 113 */
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(114)
+var __vue_script__ = __webpack_require__(117)
 /* template */
-var __vue_template__ = __webpack_require__(115)
+var __vue_template__ = __webpack_require__(118)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -48296,7 +48299,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 114 */
+/* 117 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48422,7 +48425,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 115 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
