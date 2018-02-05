@@ -4,7 +4,7 @@
     <br>
     Please follow the link below to verify your email address
     <br><br>
-    <a href="{!! url("http://exame.test/api/verify/".$confirmation_code."") !!}" title="Verification Link">Verification Link</a>
+    <a href="{!! url("http://128.199.51.26/api/verify/".$confirmation_code."") !!}" title="Verification Link">Verification Link</a>
     <br><br>
     <br/>
 </div>

@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 
-define('YOUR_SERVER_URL', 'http://188.166.86.13');
+define('YOUR_SERVER_URL', 'http://128.199.51.26');
 // Check "oauth_clients" table for next 2 values:
 define('CLIENT_ID', '2');
-define('CLIENT_SECRET','NPdLvM4472RKZwgPAJXKMHjxpIbr8LobxaXGW9Be');
+define('CLIENT_SECRET','	jkam2AA8X2PuE1hPsnGG2QkA4ZZGB9cpJGy0pCou');
 class LoginControllerAPI extends Controller
 {
 	public function login(Request $request)

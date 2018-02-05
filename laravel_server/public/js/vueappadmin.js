@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 65);
+/******/ 	return __webpack_require__(__webpack_require__.s = 78);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -45604,9 +45604,9 @@ module.exports = function listToStyles (parentId, list) {
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(76)
+var __vue_script__ = __webpack_require__(89)
 /* template */
-var __vue_template__ = __webpack_require__(77)
+var __vue_template__ = __webpack_require__(90)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -45668,14 +45668,27 @@ module.exports = Component.exports
 /* 62 */,
 /* 63 */,
 /* 64 */,
-/* 65 */
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(66);
+module.exports = __webpack_require__(79);
 
 
 /***/ }),
-/* 66 */
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45704,8 +45717,8 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1__auth_auth_js__["a" /* default */]);
 //Vue.use(VueSocketio, 'http://192.168.10.10:8080');
 
 //const user = Vue.component('user', require('./components/user.vue'));
-var login = Vue.component('login', __webpack_require__(67));
-var adminPage = Vue.component('adminPage', __webpack_require__(72));
+var login = Vue.component('login', __webpack_require__(80));
+var adminPage = Vue.component('adminPage', __webpack_require__(85));
 var usersList = Vue.component('usersList', __webpack_require__(42));
 
 var routes = [{ path: '/', redirect: '/login' }, { path: '/login', component: login, meta: { forVisitors: true } }, { path: '/adminPage', component: adminPage, meta: { forAuth: true } }, { path: '/usersList', component: usersList, meta: { forAuth: true } }];
@@ -45740,19 +45753,19 @@ var app = new Vue({
 }).$mount('#app');
 
 /***/ }),
-/* 67 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(68)
+  __webpack_require__(81)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(70)
+var __vue_script__ = __webpack_require__(83)
 /* template */
-var __vue_template__ = __webpack_require__(71)
+var __vue_template__ = __webpack_require__(84)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -45792,13 +45805,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 68 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(69);
+var content = __webpack_require__(82);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -45818,7 +45831,7 @@ if(false) {
 }
 
 /***/ }),
-/* 69 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -45832,7 +45845,7 @@ exports.push([module.i, "\n.loginForm{\n\twidth: 70%;\n\tpadding-top: 15%;\n\tpa
 
 
 /***/ }),
-/* 70 */
+/* 83 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45882,7 +45895,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		login: function login() {
 			var _this = this;
 
-			axios.post('http://188.166.86.13/api/loginAdmin', {
+			axios.post('http://exame.test/api/loginAdmin', {
 				email: this.email,
 				password: this.password
 			}, {
@@ -45907,7 +45920,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 71 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -46011,19 +46024,19 @@ if (false) {
 }
 
 /***/ }),
-/* 72 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(73)
+  __webpack_require__(86)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(75)
+var __vue_script__ = __webpack_require__(88)
 /* template */
-var __vue_template__ = __webpack_require__(94)
+var __vue_template__ = __webpack_require__(110)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -46063,13 +46076,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 73 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(74);
+var content = __webpack_require__(87);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -46089,7 +46102,7 @@ if(false) {
 }
 
 /***/ }),
-/* 74 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -46103,20 +46116,20 @@ exports.push([module.i, "\n.card a[data-v-da070308]{\n\tpadding: 0 1rem;\n}\n", 
 
 
 /***/ }),
-/* 75 */
+/* 88 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__usersList_vue__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__usersList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__usersList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__appConfig_vue__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__appConfig_vue__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__appConfig_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__appConfig_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__statistics_vue__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__statistics_vue__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__statistics_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__statistics_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__deck_config_vue__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__deck_config_vue__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__deck_config_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__deck_config_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__admin_pass_vue__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__admin_pass_vue__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__admin_pass_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__admin_pass_vue__);
 //
 //
@@ -46207,11 +46220,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 76 */
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -46259,7 +46278,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			users: null,
-			editingUser: 0
+			editingUser: 0,
+			url: 'CLICAR PARA VER JOGADORES BLOQUEADOS'
 		};
 	},
 
@@ -46268,25 +46288,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			var self = this;
 
-			axios.get('http://188.166.86.13/api/users').then(function (response) {
+			axios.get('http://exame.test/api/users').then(function (response) {
 				self.users = response.data.data;
 			});
 		},
 		deleteUser: function deleteUser(user) {
 			var _this = this;
 
-			axios.delete('http://188.166.86.13/api/users/' + user.id).then(function (response) {
+			axios.delete('http://exame.test/api/users/' + user.id).then(function (response) {
 				_this.getUsers();
 			});
 		},
 		blockUser: function blockUser(user) {
 			var _this2 = this;
 
-			axios.get('http://188.166.86.13/api/users/' + user.id + '/block').then(function (response) {
+			axios.get('http://exame.test/api/users/' + user.id + '/block').then(function (response) {
 				console.log(response);
 				_this2.getUsers();
 			});
+		},
+		changeURL: function changeURL() {
+			var self = this;
+			this.url = 0;
+			this.users.forEach(function (user, index) {
+				if (user.blocked == 1) {
+					self.url++;
+				}
+			});
 		}
+
 	},
 	computed: {},
 	mounted: function mounted() {
@@ -46295,7 +46325,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 77 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -46304,6 +46334,25 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("h2", [_vm._v("BlackJack App Users")]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "a",
+      {
+        attrs: { href: "url" },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            _vm.changeURL()
+          }
+        }
+      },
+      [_vm._v(_vm._s(_vm.url))]
+    ),
+    _vm._v(" "),
+    _c("br"),
+    _c("br"),
     _vm._v(" "),
     _c("table", { staticClass: "table table-striped" }, [
       _vm._m(0),
@@ -46407,15 +46456,15 @@ if (false) {
 }
 
 /***/ }),
-/* 78 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(79)
+var __vue_script__ = __webpack_require__(92)
 /* template */
-var __vue_template__ = __webpack_require__(80)
+var __vue_template__ = __webpack_require__(93)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -46455,13 +46504,98 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 79 */
-/***/ (function(module, exports) {
+/* 92 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: Unexpected token (64:0)\n\n  62 | \t\t},\n  63 | \t\tsetConfig(){\n> 64 | <<<<<<< HEAD\n     | ^\n  65 | \t\t\taxios.post('http://188.166.86.13/api/configs')\n  66 | =======\n  67 | \t\t\taxios.post('http://188.166.86.13/api/configs',{\n");
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			configs: null,
+			platform_email_properties: []
+		};
+	},
+
+	methods: {
+		getConfigs: function getConfigs() {
+			var _this = this;
+
+			axios.get('http://exame.test/api/configs').then(function (response) {
+				console.log(response.data.data);
+				_this.configs = response.data.data[0];
+				_this.platform_email_properties = JSON.parse(_this.configs.platform_email_properties);
+				console.log(_this.platform_email_properties);
+			});
+		},
+		setConfig: function setConfig() {
+
+			axios.post('http://exame.test/api/configs');
+
+			axios.post('http://exame.test/api/configs', {
+				driver: this.platform_email_properties.driver,
+				host: this.platform_email_properties.host,
+				port: this.platform_email_properties.port,
+				password: this.platform_email_properties.password,
+				encryption: this.platform_email_properties.encryption,
+				email: this.configs.platform_email
+
+			}).then(function (response) {
+				console.log(response);
+			});
+		}
+	},
+	computed: {},
+	mounted: function mounted() {
+		this.getConfigs();
+	}
+});
 
 /***/ }),
-/* 80 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -46713,15 +46847,15 @@ if (false) {
 }
 
 /***/ }),
-/* 81 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(82)
+var __vue_script__ = __webpack_require__(95)
 /* template */
-var __vue_template__ = __webpack_require__(83)
+var __vue_template__ = __webpack_require__(96)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -46761,7 +46895,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 82 */
+/* 95 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46870,27 +47004,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getStats: function getStats() {
 			var _this = this;
 
-			axios.get('http://188.166.86.13/api/stats/totalPlayers').then(function (response) {
+			axios.get('http://exame.test/api/stats/totalPlayers').then(function (response) {
 				_this.totalNrPlayers = response.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://188.166.86.13/api/stats/totalGames').then(function (response) {
+			axios.get('http://exame.test/api/stats/totalGames').then(function (response) {
 				_this.totalNrPlayedGames = response.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://188.166.86.13/api/stats/topPlayersMorePoints').then(function (response) {
+			axios.get('http://exame.test/api/stats/topPlayersMorePoints').then(function (response) {
 				_this.topPlayersPoints = response.data.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://188.166.86.13/api/stats/topPlayersMoreGames').then(function (response) {
+			axios.get('http://exame.test/api/stats/topPlayersMoreGames').then(function (response) {
 				_this.topPlayersGames = response.data.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://188.166.86.13/api/stats/topPlayersBestAvg').then(function (response) {
+			axios.get('http://exame.test/api/stats/topPlayersBestAvg').then(function (response) {
 				_this.topPlayersBestAvg = response.data.data;
 				console.log(response.data);
 			});
@@ -46903,7 +47037,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 83 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47050,19 +47184,19 @@ if (false) {
 }
 
 /***/ }),
-/* 84 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(85)
+  __webpack_require__(98)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(87)
+var __vue_script__ = __webpack_require__(100)
 /* template */
-var __vue_template__ = __webpack_require__(93)
+var __vue_template__ = __webpack_require__(106)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -47102,13 +47236,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 85 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(86);
+var content = __webpack_require__(99);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -47128,7 +47262,7 @@ if(false) {
 }
 
 /***/ }),
-/* 86 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -47142,12 +47276,12 @@ exports.push([module.i, "\nselect{\n\tcolor: #000;\n}\n", ""]);
 
 
 /***/ }),
-/* 87 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__card_preview_vue__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__card_preview_vue__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__card_preview_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__card_preview_vue__);
 //
 //
@@ -47277,7 +47411,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getDecks: function getDecks() {
 			var _this = this;
 
-			axios.get('http://188.166.86.13/api/decks').then(function (response) {
+			axios.get('http://exame.test/api/decks').then(function (response) {
 				_this.decks = response.data.data;
 				var self = _this;
 				_this.decks.forEach(function (deck, index) {
@@ -47297,7 +47431,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		changeDeckStatus: function changeDeckStatus(deck) {
 			var _this2 = this;
 
-			axios.get('http://188.166.86.13/api/decks/' + deck.id + '/changeStatus').then(function (response) {
+			axios.get('http://exame.test/api/decks/' + deck.id + '/changeStatus').then(function (response) {
 				_this2.getDecks();
 			});
 		},
@@ -47311,7 +47445,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				formData.append("deck", this.selectedDeck);
 				formData.append("suite", this.selectedSuite);
 				formData.append("value", this.selectedValue);
-				axios.post('http://188.166.86.13/api/cards', formData, {
+				axios.post('http://exame.test/api/cards', formData, {
 					'Content-Type': 'multipart/form-data'
 
 				}).then(function (response) {
@@ -47320,7 +47454,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}
 		},
 		deleteCard: function deleteCard(user) {
-			axios.delete('http://188.166.86.13/api/decks/' + user.id).then(function (response) {});
+			axios.delete('http://exame.test/api/decks/' + user.id).then(function (response) {});
 		},
 		createDeck: function createDeck() {
 			var _this4 = this;
@@ -47330,7 +47464,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				var imagefile = document.querySelector('#deckfile');
 				formData.append("image", imagefile.files[0]);
 				formData.append("name", this.newDeckTitle);
-				axios.post('http://188.166.86.13/api/decks', formData, {
+				axios.post('http://exame.test/api/decks', formData, {
 					'Content-Type': 'multipart/form-data'
 				}).then(function (response) {
 					_this4.newDeckTitle = '';
@@ -47355,19 +47489,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 88 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(89)
+  __webpack_require__(102)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(91)
+var __vue_script__ = __webpack_require__(104)
 /* template */
-var __vue_template__ = __webpack_require__(92)
+var __vue_template__ = __webpack_require__(105)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -47407,13 +47541,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 89 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(90);
+var content = __webpack_require__(103);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -47433,7 +47567,7 @@ if(false) {
 }
 
 /***/ }),
-/* 90 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -47447,7 +47581,7 @@ exports.push([module.i, "\n.previewImage{\n\twidth: 100px;\n\theight: 150px;\n}\
 
 
 /***/ }),
-/* 91 */
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47484,14 +47618,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getDeckCards: function getDeckCards() {
 			var _this = this;
 
-			axios.get('http://188.166.86.13/api/decks/' + this.selectedTableDeck).then(function (response) {
+			axios.get('http://exame.test/api/decks/' + this.selectedTableDeck).then(function (response) {
 				_this.previewCards = response.data.data;
 
 				var path;
 				_this.previewCards.forEach(function (card, index) {
 					path = card.path;
 					card.path = path.replace("public/", "storage/");
-					card.path = 'http://188.166.86.13/' + card.path;
+					card.path = 'http://exame.test/' + card.path;
 					console.log('PATH: ' + card.path);
 				});
 
@@ -47506,7 +47640,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 92 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47548,7 +47682,7 @@ if (false) {
 }
 
 /***/ }),
-/* 93 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47913,128 +48047,15 @@ if (false) {
 }
 
 /***/ }),
-/* 94 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("div", { staticClass: "navbar" }, [
-        _c("div", { staticClass: "card-panel blue-grey darken-3" }, [
-          _c(
-            "a",
-            {
-              staticClass: "waves-effect waves-light btn",
-              on: { click: _vm.showUsers }
-            },
-            [_vm._v("Users")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "waves-effect waves-light btn",
-              on: { click: _vm.showAppConfig }
-            },
-            [_vm._v("App Configurations")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "waves-effect waves-light btn",
-              on: { click: _vm.showStats }
-            },
-            [_vm._v("Statistics")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "waves-effect waves-light btn",
-              on: { click: _vm.showDeckConfig }
-            },
-            [_vm._v("Decks")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "waves-effect waves-light btn",
-              on: { click: _vm.showEditPassword }
-            },
-            [_vm._v("Change Password")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "waves-effect waves-light btn",
-              staticStyle: { float: "right" },
-              on: { click: _vm.logout }
-            },
-            [_vm._v("Logout")]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _vm.index == 1
-        ? _c("users-list", { ref: "usersListRef", attrs: { users: _vm.users } })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.index == 2 ? _c("stats") : _vm._e(),
-      _vm._v(" "),
-      _vm.index == 3 ? _c("app-config") : _vm._e(),
-      _vm._v(" "),
-      _vm.index == 4 ? _c("deck-config") : _vm._e(),
-      _vm._v(" "),
-      _vm.index == 5 ? _c("admin-pass") : _vm._e()
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-da070308", module.exports)
-  }
-}
-
-/***/ }),
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(114)
+var __vue_script__ = __webpack_require__(108)
 /* template */
-var __vue_template__ = __webpack_require__(115)
+var __vue_template__ = __webpack_require__(109)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -48074,7 +48095,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 114 */
+/* 108 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48126,7 +48147,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         savePassword: function savePassword() {
             var AuthStr = 'Bearer '.concat(this.$auth.getToken());
             var self = this;
-            axios.put('http://188.166.86.13/api/user/pass', {
+            axios.put('http://exame.test/api/user/pass', {
                 newPassword: self.newPassword,
                 oldPassword: self.oldPassword
             }, {
@@ -48160,7 +48181,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 115 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48285,6 +48306,101 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-af882204", module.exports)
+  }
+}
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "navbar" }, [
+        _c("div", { staticClass: "card-panel blue-grey darken-3" }, [
+          _c(
+            "a",
+            {
+              staticClass: "waves-effect waves-light btn",
+              on: { click: _vm.showUsers }
+            },
+            [_vm._v("Users")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "waves-effect waves-light btn",
+              on: { click: _vm.showAppConfig }
+            },
+            [_vm._v("App Configurations")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "waves-effect waves-light btn",
+              on: { click: _vm.showStats }
+            },
+            [_vm._v("Statistics")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "waves-effect waves-light btn",
+              on: { click: _vm.showDeckConfig }
+            },
+            [_vm._v("Decks")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "waves-effect waves-light btn",
+              on: { click: _vm.showEditPassword }
+            },
+            [_vm._v("Change Password")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "waves-effect waves-light btn",
+              staticStyle: { float: "right" },
+              on: { click: _vm.logout }
+            },
+            [_vm._v("Logout")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _vm.index == 1
+        ? _c("users-list", { ref: "usersListRef", attrs: { users: _vm.users } })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.index == 2 ? _c("stats") : _vm._e(),
+      _vm._v(" "),
+      _vm.index == 3 ? _c("app-config") : _vm._e(),
+      _vm._v(" "),
+      _vm.index == 4 ? _c("deck-config") : _vm._e(),
+      _vm._v(" "),
+      _vm.index == 5 ? _c("admin-pass") : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-da070308", module.exports)
   }
 }
 

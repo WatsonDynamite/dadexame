@@ -45,7 +45,7 @@
             	savePassword(){
                     var AuthStr = 'Bearer '.concat(this.$auth.getToken());
                     var self = this;
-                    axios.put('http://exame.test/api/user/pass',
+                    axios.put('http://128.199.51.26/api/user/pass',
                     {
                         newPassword: self.newPassword,
                         oldPassword: self.oldPassword

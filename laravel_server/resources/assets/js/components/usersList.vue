@@ -2,7 +2,10 @@
 	<div>
 	
 	<h2>BlackJack App Users</h2>
-	
+			
+
+			<br>
+		
 	<table class="table table-striped">
 	    <thead>
 	        <tr>
@@ -45,7 +48,8 @@ export default {
 	data: function() {
 		return{
 			users: null,
-			editingUser: 0
+			editingUser: 0,
+			url: 'CLICAR PARA VER JOGADORES BLOQUEADOS'
 		}
 	},
 
@@ -54,24 +58,34 @@ export default {
 			
 			var self = this;
 
-			axios.get('http://exame.test/api/users')
+			axios.get('http://128.199.51.26/api/users')
 			.then(function (response) {
 			    self.users = response.data.data;
 			});
 		},
 		deleteUser: function(user){
-            axios.delete('http://exame.test/api/users/'+user.id)
+            axios.delete('http://128.199.51.26/api/users/'+user.id)
                 .then(response => {
                     this.getUsers();
                 });
 		},
 		blockUser: function(user) {
-			axios.get('http://exame.test/api/users/'+user.id+'/block')
+			axios.get('http://128.199.51.26/api/users/'+user.id+'/block')
 				.then(response => {
 					console.log(response);
                     this.getUsers();
                 });
+		},
+		changeURL: function(){
+			var self = this;
+			this.url = 0;
+			this.users.forEach( function(user, index) {
+				if(user.blocked == 1){
+					self.url++;
+				}	
+			});
 		}
+
 	},
 	computed:{    
         },

@@ -37,7 +37,7 @@ io.on('connection', function (socket) {
 
     setInterval(function(){
     	socket.emit('my_active_games_changed');
-    }, 500);
+    }, 1500);
 
     socket.on('create_game', function (data){
     	let game = games.createGame(data.playerName, socket.id);

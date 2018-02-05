@@ -43,7 +43,7 @@ export default {
 
 	methods: {
 		register: function() {
-			axios.post('http://exame.test/api/users',
+			axios.post('http://128.199.51.26/api/users',
 			{
 				name: this.name,
 				nickname: this.nickname,

@@ -115,7 +115,7 @@
                 saveUser(){
                     var AuthStr = 'Bearer '.concat(this.$auth.getToken());
                     var self = this;
-                    axios.put('http://exame.test/api/user/profile',
+                    axios.put('http://128.199.51.26/api/user/profile',
                     {
                         name: self.newName,
                         email: self.newEmail,
@@ -142,7 +142,7 @@
                 savePassword(){
                     var AuthStr = 'Bearer '.concat(this.$auth.getToken());
                     var self = this;
-                    axios.put('http://exame.test/api/user/pass',
+                    axios.put('http://128.199.51.26/api/user/pass',
                     {
                         newPassword: self.newPassword,
                         oldPassword: self.oldPassword
@@ -183,7 +183,7 @@
                 confirmDelete(){
                     var AuthStr = 'Bearer '.concat(this.$auth.getToken());
                     var self = this;
-                    axios.delete('http://exame.test/api/user',
+                    axios.delete('http://128.199.51.26/api/user',
                     {
                         headers: { 'Authorization': AuthStr}
                     }).then(function(response){
@@ -218,7 +218,7 @@
                 },
                 loadPlayer(){
                     var AuthStr = 'Bearer '.concat(this.$auth.getToken());
-                    axios.get('http://exame.test/api/user', {headers: { Authorization: AuthStr} })
+                    axios.get('http://128.199.51.26/api/user', {headers: { Authorization: AuthStr} })
                     .then(response => {
                         this.name =  response.data.name;
                         this.nickname =  response.data.nickname;
@@ -231,7 +231,7 @@
                         this.nickname = 'Error';
                     });
 
-                    axios.get('http://exame.test/api/stats/userStats', {headers: { Authorization: AuthStr} })
+                    axios.get('http://128.199.51.26/api/stats/userStats', {headers: { Authorization: AuthStr} })
                     .then(response => {
                         this.total_points = response.data.points;
                         this.total_games = response.data.games;
