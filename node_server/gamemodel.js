@@ -33,7 +33,7 @@ class TicTacToeGame {
     uploadGameOnCreate(){
         var axios = require('axios');
         var self = this;
-          axios.post('http://188.166.86.13/api/games',
+          axios.post('http://128.199.51.26/api/games',
 			{
 				created_by: self.player1,
 				total_players: self.playerCount,
@@ -55,7 +55,7 @@ class TicTacToeGame {
         var self = this;
         var activeDecks = [];
         var axios = require("axios");
-        axios.get('http://188.166.86.13/api/decks/')
+        axios.get('http://128.199.51.26/api/decks/')
 			.then(response => {
 				var decks = response.data.data;
 
@@ -103,7 +103,7 @@ class TicTacToeGame {
                 this.setup(this.playerCount);
                 var axios = require('axios');
                 var self = this;
-                axios.patch('http://188.166.86.13/api/games/' + self.idInDB + '/startGame')
+                axios.patch('http://128.199.51.26/api/games/' + self.idInDB + '/startGame')
                 .then(response=> {
                     console.log("response: " + response.data);
                 });
@@ -197,7 +197,7 @@ class TicTacToeGame {
                    if(self.winner.includes(self.player1)){
                        isWinner = 1;
                    }
-                   axios.post('http://188.166.86.13/api/games/' + this.idInDB + '/registerGameUser',
+                   axios.post('http://128.199.51.26/api/games/' + this.idInDB + '/registerGameUser',
                     {
                     user: self.player1,
                     is_winner: isWinner
@@ -209,7 +209,7 @@ class TicTacToeGame {
                     if(self.winner.includes(self.player2)){
                        isWinner = 1;
                     }
-                    axios.post('http://188.166.86.13/api/games/' + this.idInDB + '/registerGameUser',
+                    axios.post('http://128.199.51.26/api/games/' + this.idInDB + '/registerGameUser',
                     {
                     user: self.player2,
                     is_winner: isWinner
@@ -219,7 +219,7 @@ class TicTacToeGame {
                     if(self.winner.includes(self.player3)){
                        isWinner = 1;
                     }
-                    axios.post('http://188.166.86.13/api/games/' + this.idInDB + '/registerGameUser',
+                    axios.post('http://128.199.51.26/api/games/' + this.idInDB + '/registerGameUser',
                     {
                     user: self.player3,
                     is_winner: isWinner
@@ -229,7 +229,7 @@ class TicTacToeGame {
                     if(self.winner.includes(self.player4)){
                        isWinner = 1;
                     }
-                    axios.post('http://188.166.86.13/api/games/' + this.idInDB + '/registerGameUser',
+                    axios.post('http://128.199.51.26/api/games/' + this.idInDB + '/registerGameUser',
                     {
                     user: self.player4,
                     is_winner: isWinner

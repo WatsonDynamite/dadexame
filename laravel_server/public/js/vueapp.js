@@ -45636,7 +45636,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]);
 Vue.use(__WEBPACK_IMPORTED_MODULE_2__auth_auth_js__["a" /* default */]);
 
 //Vue.use(VueSocketio, 'http://192.168.10.10:8080');
-Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_socket_io___default.a, 'http://188.166.86.13:8080');
+Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_socket_io___default.a, 'http://128.199.51.26:8080');
 
 //const user = Vue.component('user', require('./components/user.vue'));
 //const singleplayer_game = Vue.component('singlegame', require('./components/singleplayer_tictactoe.vue'));
@@ -45940,7 +45940,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var games = 0;
 
                 //get the points he has right now and the games he's played
-                axios.get('http://exame.test/api/user', { headers: { Authorization: AuthStr } }).then(function (response) {
+                axios.get('http://128.199.51.26/api/user', { headers: { Authorization: AuthStr } }).then(function (response) {
                     points = response.data.total_points;
                     games = response.data.total_games_played;
                 }).catch(function (error) {
@@ -45957,7 +45957,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log("Now you have a total of " + points + " points");
 
                 //UPDATE authenticated user's PARAMETERS
-                axios.put('http://exame.test/api/user', {
+                axios.put('http://128.199.51.26/api/user', {
                     total_points: points,
                     total_games_played: games
                 }, {
@@ -46023,7 +46023,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             var AuthStr = 'Bearer '.concat(this.$auth.getToken());
-            axios.get('http://exame.test/api/user', { headers: { Authorization: AuthStr } }).then(function (response) {
+            axios.get('http://128.199.51.26/api/user', { headers: { Authorization: AuthStr } }).then(function (response) {
                 _this.currentPlayer = response.data.nickname;
             }).catch(function (error) {
                 _this.currentPlayer = 'Missing';
@@ -46568,14 +46568,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return '' + imgSrc + '.png';
             */
 
-            return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + "/" + pieceNumber + ".png";
+            return "http://128.199.51.26/storage/decks/" + this.game.deckToUse[1] + "/" + pieceNumber + ".png";
         },
         renderCard: function renderCard(card, index, handIndex) {
             if (this.allPlayerNames[handIndex] != this.ownPlayerName && index > 0) {
                 if (this.game.gameEnded) {
                     return this.cardImageURL(card);
                 }
-                return "http://exame.test/storage/decks/" + this.game.deckToUse[1] + '/semFace.png';
+                return "http://128.199.51.26/storage/decks/" + this.game.deckToUse[1] + '/semFace.png';
             } else {
                 return this.cardImageURL(card);
             }
@@ -47073,7 +47073,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		login: function login() {
 			var _this = this;
 
-			axios.post('http://exame.test/api/login', {
+			axios.post('http://128.199.51.26/api/login', {
 				email: this.email,
 				password: this.password
 			}, {
@@ -47374,7 +47374,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		register: function register() {
 			var _this = this;
 
-			axios.post('http://exame.test/api/users', {
+			axios.post('http://128.199.51.26/api/users', {
 				name: this.name,
 				nickname: this.nickname,
 				email: this.email,
@@ -47703,7 +47703,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         saveUser: function saveUser() {
             var AuthStr = 'Bearer '.concat(this.$auth.getToken());
             var self = this;
-            axios.put('http://exame.test/api/user/profile', {
+            axios.put('http://128.199.51.26/api/user/profile', {
                 name: self.newName,
                 email: self.newEmail,
                 nickname: self.newNickname
@@ -47728,7 +47728,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         savePassword: function savePassword() {
             var AuthStr = 'Bearer '.concat(this.$auth.getToken());
             var self = this;
-            axios.put('http://exame.test/api/user/pass', {
+            axios.put('http://128.199.51.26/api/user/pass', {
                 newPassword: self.newPassword,
                 oldPassword: self.oldPassword
             }, {
@@ -47767,7 +47767,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         confirmDelete: function confirmDelete() {
             var AuthStr = 'Bearer '.concat(this.$auth.getToken());
             var self = this;
-            axios.delete('http://exame.test/api/user', {
+            axios.delete('http://128.199.51.26/api/user', {
                 headers: { 'Authorization': AuthStr }
             }).then(function (response) {
                 self.$router.push('/');
@@ -47803,7 +47803,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             var AuthStr = 'Bearer '.concat(this.$auth.getToken());
-            axios.get('http://exame.test/api/user', { headers: { Authorization: AuthStr } }).then(function (response) {
+            axios.get('http://128.199.51.26/api/user', { headers: { Authorization: AuthStr } }).then(function (response) {
                 _this.name = response.data.name;
                 _this.nickname = response.data.nickname;
                 _this.email = response.data.email;
@@ -47814,7 +47814,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.nickname = 'Error';
             });
 
-            axios.get('http://exame.test/api/stats/userStats', { headers: { Authorization: AuthStr } }).then(function (response) {
+            axios.get('http://128.199.51.26/api/stats/userStats', { headers: { Authorization: AuthStr } }).then(function (response) {
                 _this.total_points = response.data.points;
                 _this.total_games = response.data.games;
                 _this.average = response.data.avg;
@@ -48374,27 +48374,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getStats: function getStats() {
 			var _this = this;
 
-			axios.get('http://exame.test/api/stats/totalPlayers').then(function (response) {
+			axios.get('http://128.199.51.26/api/stats/totalPlayers').then(function (response) {
 				_this.totalNrPlayers = response.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://exame.test/api/stats/totalGames').then(function (response) {
+			axios.get('http://128.199.51.26/api/stats/totalGames').then(function (response) {
 				_this.totalNrPlayedGames = response.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://exame.test/api/stats/topPlayersMorePoints').then(function (response) {
+			axios.get('http://128.199.51.26/api/stats/topPlayersMorePoints').then(function (response) {
 				_this.topPlayersPoints = response.data.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://exame.test/api/stats/topPlayersMoreGames').then(function (response) {
+			axios.get('http://128.199.51.26/api/stats/topPlayersMoreGames').then(function (response) {
 				_this.topPlayersGames = response.data.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://exame.test/api/stats/topPlayersBestAvg').then(function (response) {
+			axios.get('http://128.199.51.26/api/stats/topPlayersBestAvg').then(function (response) {
 				_this.topPlayersBestAvg = response.data.data;
 				console.log(response.data);
 			});

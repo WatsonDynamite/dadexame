@@ -45895,7 +45895,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		login: function login() {
 			var _this = this;
 
-			axios.post('http://exame.test/api/loginAdmin', {
+			axios.post('http://128.199.51.26/api/loginAdmin', {
 				email: this.email,
 				password: this.password
 			}, {
@@ -46288,21 +46288,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			var self = this;
 
-			axios.get('http://exame.test/api/users').then(function (response) {
+			axios.get('http://128.199.51.26/api/users').then(function (response) {
 				self.users = response.data.data;
 			});
 		},
 		deleteUser: function deleteUser(user) {
 			var _this = this;
 
-			axios.delete('http://exame.test/api/users/' + user.id).then(function (response) {
+			axios.delete('http://128.199.51.26/api/users/' + user.id).then(function (response) {
 				_this.getUsers();
 			});
 		},
 		blockUser: function blockUser(user) {
 			var _this2 = this;
 
-			axios.get('http://exame.test/api/users/' + user.id + '/block').then(function (response) {
+			axios.get('http://128.199.51.26/api/users/' + user.id + '/block').then(function (response) {
 				console.log(response);
 				_this2.getUsers();
 			});
@@ -46564,7 +46564,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getConfigs: function getConfigs() {
 			var _this = this;
 
-			axios.get('http://exame.test/api/configs').then(function (response) {
+			axios.get('http://128.199.51.26/api/configs').then(function (response) {
 				console.log(response.data.data);
 				_this.configs = response.data.data[0];
 				_this.platform_email_properties = JSON.parse(_this.configs.platform_email_properties);
@@ -46573,9 +46573,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		setConfig: function setConfig() {
 
-			axios.post('http://exame.test/api/configs');
+			axios.post('http://128.199.51.26/api/configs');
 
-			axios.post('http://exame.test/api/configs', {
+			axios.post('http://128.199.51.26/api/configs', {
 				driver: this.platform_email_properties.driver,
 				host: this.platform_email_properties.host,
 				port: this.platform_email_properties.port,
@@ -47004,27 +47004,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getStats: function getStats() {
 			var _this = this;
 
-			axios.get('http://exame.test/api/stats/totalPlayers').then(function (response) {
+			axios.get('http://128.199.51.26/api/stats/totalPlayers').then(function (response) {
 				_this.totalNrPlayers = response.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://exame.test/api/stats/totalGames').then(function (response) {
+			axios.get('http://128.199.51.26/api/stats/totalGames').then(function (response) {
 				_this.totalNrPlayedGames = response.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://exame.test/api/stats/topPlayersMorePoints').then(function (response) {
+			axios.get('http://128.199.51.26/api/stats/topPlayersMorePoints').then(function (response) {
 				_this.topPlayersPoints = response.data.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://exame.test/api/stats/topPlayersMoreGames').then(function (response) {
+			axios.get('http://128.199.51.26/api/stats/topPlayersMoreGames').then(function (response) {
 				_this.topPlayersGames = response.data.data;
 				console.log(response.data);
 			});
 
-			axios.get('http://exame.test/api/stats/topPlayersBestAvg').then(function (response) {
+			axios.get('http://128.199.51.26/api/stats/topPlayersBestAvg').then(function (response) {
 				_this.topPlayersBestAvg = response.data.data;
 				console.log(response.data);
 			});
@@ -47411,7 +47411,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getDecks: function getDecks() {
 			var _this = this;
 
-			axios.get('http://exame.test/api/decks').then(function (response) {
+			axios.get('http://128.199.51.26/api/decks').then(function (response) {
 				_this.decks = response.data.data;
 				var self = _this;
 				_this.decks.forEach(function (deck, index) {
@@ -47431,7 +47431,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		changeDeckStatus: function changeDeckStatus(deck) {
 			var _this2 = this;
 
-			axios.get('http://exame.test/api/decks/' + deck.id + '/changeStatus').then(function (response) {
+			axios.get('http://128.199.51.26/api/decks/' + deck.id + '/changeStatus').then(function (response) {
 				_this2.getDecks();
 			});
 		},
@@ -47445,7 +47445,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				formData.append("deck", this.selectedDeck);
 				formData.append("suite", this.selectedSuite);
 				formData.append("value", this.selectedValue);
-				axios.post('http://exame.test/api/cards', formData, {
+				axios.post('http://128.199.51.26/api/cards', formData, {
 					'Content-Type': 'multipart/form-data'
 
 				}).then(function (response) {
@@ -47454,7 +47454,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}
 		},
 		deleteCard: function deleteCard(user) {
-			axios.delete('http://exame.test/api/decks/' + user.id).then(function (response) {});
+			axios.delete('http://128.199.51.26/api/decks/' + user.id).then(function (response) {});
 		},
 		createDeck: function createDeck() {
 			var _this4 = this;
@@ -47464,7 +47464,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				var imagefile = document.querySelector('#deckfile');
 				formData.append("image", imagefile.files[0]);
 				formData.append("name", this.newDeckTitle);
-				axios.post('http://exame.test/api/decks', formData, {
+				axios.post('http://128.199.51.26/api/decks', formData, {
 					'Content-Type': 'multipart/form-data'
 				}).then(function (response) {
 					_this4.newDeckTitle = '';
@@ -47618,14 +47618,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getDeckCards: function getDeckCards() {
 			var _this = this;
 
-			axios.get('http://exame.test/api/decks/' + this.selectedTableDeck).then(function (response) {
+			axios.get('http://128.199.51.26/api/decks/' + this.selectedTableDeck).then(function (response) {
 				_this.previewCards = response.data.data;
 
 				var path;
 				_this.previewCards.forEach(function (card, index) {
 					path = card.path;
 					card.path = path.replace("public/", "storage/");
-					card.path = 'http://exame.test/' + card.path;
+					card.path = 'http://128.199.51.26/' + card.path;
 					console.log('PATH: ' + card.path);
 				});
 
@@ -48147,7 +48147,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         savePassword: function savePassword() {
             var AuthStr = 'Bearer '.concat(this.$auth.getToken());
             var self = this;
-            axios.put('http://exame.test/api/user/pass', {
+            axios.put('http://128.199.51.26/api/user/pass', {
                 newPassword: self.newPassword,
                 oldPassword: self.oldPassword
             }, {

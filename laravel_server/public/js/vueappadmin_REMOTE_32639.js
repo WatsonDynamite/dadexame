@@ -45889,7 +45889,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		login: function login() {
 			var _this = this;
 
-			axios.post('http://exame.test/api/loginAdmin', {
+			axios.post('http://128.199.51.26/api/loginAdmin', {
 				email: this.email,
 				password: this.password
 			}, {
@@ -46258,21 +46258,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			var self = this;
 
-			axios.get('http://exame.test/api/users').then(function (response) {
+			axios.get('http://128.199.51.26/api/users').then(function (response) {
 				self.users = response.data.data;
 			});
 		},
 		deleteUser: function deleteUser(user) {
 			var _this = this;
 
-			axios.delete('http://exame.test/api/users/' + user.id).then(function (response) {
+			axios.delete('http://128.199.51.26/api/users/' + user.id).then(function (response) {
 				_this.getUsers();
 			});
 		},
 		blockUser: function blockUser(user) {
 			var _this2 = this;
 
-			axios.get('http://exame.test/api/users/' + user.id + '/block').then(function (response) {
+			axios.get('http://128.199.51.26/api/users/' + user.id + '/block').then(function (response) {
 				console.log(response);
 				_this2.getUsers();
 			});
@@ -46491,7 +46491,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getConfigs: function getConfigs() {
 			var _this = this;
 
-			axios.get('http://exame.test/api/configs').then(function (response) {
+			axios.get('http://128.199.51.26/api/configs').then(function (response) {
 				console.log(response.data.data);
 				_this.configs = response.data.data[0];
 				console.log(_this.configs);
@@ -46685,7 +46685,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getDecks: function getDecks() {
 			var _this = this;
 
-			axios.get('http://exame.test/api/decks').then(function (response) {
+			axios.get('http://128.199.51.26/api/decks').then(function (response) {
 				console.log(response.data.data);
 				_this.decks = response.data.data;
 			});
@@ -46695,7 +46695,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var imagefile = document.querySelector('#file');
 			formData.append("image", imagefile.files[0]);
 
-			axios.post('http://exame.test/api/decks', formData, {
+			axios.post('http://128.199.51.26/api/decks', formData, {
 				'Content-Type': 'multipart/form-data'
 			}).then(function (response) {
 				console.log(response);
@@ -46888,7 +46888,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getDecks: function getDecks() {
 			var _this = this;
 
-			axios.get('http://exame.test/api/decks').then(function (response) {
+			axios.get('http://128.199.51.26/api/decks').then(function (response) {
 				console.log(response.data.data);
 				_this.decks = response.data.data;
 			});
@@ -46896,7 +46896,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		changeDeckStatus: function changeDeckStatus(deck) {
 			var _this2 = this;
 
-			axios.get('http://exame.test/api/decks/' + deck.id + '/changeStatus').then(function (response) {
+			axios.get('http://128.199.51.26/api/decks/' + deck.id + '/changeStatus').then(function (response) {
 				console.log(response);
 				_this2.getDecks();
 			});
@@ -46906,14 +46906,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var imagefile = document.querySelector('#file');
 			formData.append("image", imagefile.files[0]);
 
-			axios.post('http://exame.test/api/decks', formData, {
+			axios.post('http://128.199.51.26/api/decks', formData, {
 				'Content-Type': 'multipart/form-data'
 			}).then(function (response) {
 				console.log(response);
 			});
 		},
 		deleteCard: function deleteCard(user) {
-			axios.delete('http://exame.test/api/decks/' + user.id).then(function (response) {});
+			axios.delete('http://128.199.51.26/api/decks/' + user.id).then(function (response) {});
 		}
 	},
 	computed: {},
